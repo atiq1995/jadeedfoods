@@ -960,6 +960,7 @@ summary,
 }
 .jf-rich-aroma__media { position: relative; min-height: 420px; }
 .jf-rich-aroma__circle {
+  display: block;
   width: min(420px, 90%);
   aspect-ratio: 1;
   border-radius: 50%;

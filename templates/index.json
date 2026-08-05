@@ -6,7 +6,7 @@
         "title": "Flavors Made to Be Remembered",
         "subtitle": "",
         "button_label": "",
-        "button_link": ""
+        "button_link": "/collections/all"
       }
     },
     "shop_by_category": {
@@ -16,21 +16,24 @@
           "type": "category",
           "settings": {
             "title": "RANGE OF RICE",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
+            "link": "/collections/all"
           }
         },
         "cat_spices": {
           "type": "category",
           "settings": {
             "title": "RANGE OF SPICE",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
+            "link": "/collections/all"
           }
         },
         "cat_oil": {
           "type": "category",
           "settings": {
             "title": "RANGE OF OIL",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
+            "link": "/collections/all"
           }
         }
       },
@@ -40,15 +43,15 @@
     "special_deals": {
       "type": "special-deals",
       "blocks": {
-        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165" } },
-        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165" } },
-        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165" } }
+        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165", "link": "/collections/all" } },
+        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165", "link": "/collections/all" } },
+        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165", "link": "/collections/all" } }
       },
       "block_order": ["deal_pepper", "deal_flax", "deal_pack"],
       "settings": {
         "heading": "Special Deals",
         "button_label": "See all products",
-        "button_link": ""
+        "button_link": "/collections/all"
       }
     },
     "rich_aroma": {
@@ -61,9 +64,9 @@
     "best_selling_products": {
       "type": "best-selling-products",
       "blocks": {
-        "prod_rice": { "type": "product_tile", "settings": { "title": "BEST SELLING RICE" } },
-        "prod_spices": { "type": "product_tile", "settings": { "title": "BEST SELLING SPICES" } },
-        "prod_oil": { "type": "product_tile", "settings": { "title": "BEST SELLING OIL" } }
+        "prod_rice": { "type": "product_tile", "settings": { "title": "BEST SELLING RICE", "link": "/collections/all" } },
+        "prod_spices": { "type": "product_tile", "settings": { "title": "BEST SELLING SPICES", "link": "/collections/all" } },
+        "prod_oil": { "type": "product_tile", "settings": { "title": "BEST SELLING OIL", "link": "/collections/all" } }
       },
       "block_order": ["prod_rice", "prod_spices", "prod_oil"],
       "settings": { "heading": "Best Selling Products", "subheading": "" }
@@ -83,42 +86,42 @@
           "type": "manual_post",
           "settings": {
             "title": "Cooking tips",
-            "link": ""
+            "link": "/blogs/news"
           }
         },
         "blog_2": {
           "type": "manual_post",
           "settings": {
             "title": "Kitchen stories",
-            "link": ""
+            "link": "/blogs/news"
           }
         },
         "blog_3": {
           "type": "manual_post",
           "settings": {
             "title": "Spice guide",
-            "link": ""
+            "link": "/blogs/news"
           }
         },
         "blog_4": {
           "type": "manual_post",
           "settings": {
             "title": "Recipe ideas",
-            "link": ""
+            "link": "/blogs/news"
           }
         },
         "blog_5": {
           "type": "manual_post",
           "settings": {
             "title": "Healthy cooking",
-            "link": ""
+            "link": "/blogs/news"
           }
         },
         "blog_6": {
           "type": "manual_post",
           "settings": {
             "title": "Product news",
-            "link": ""
+            "link": "/blogs/news"
           }
         }
       },
@@ -128,7 +131,7 @@
         "source": "manual",
         "article_limit": 6,
         "button_label": "Read more",
-        "button_link": ""
+        "button_link": "/blogs/news"
       }
     },
     "lifestyle": {

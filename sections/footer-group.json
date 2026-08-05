@@ -7,23 +7,23 @@
       "blocks": {
         "quick_policy": {
           "type": "quick_link",
-          "settings": { "label": "Policy", "url": "" }
+          "settings": { "label": "Policy", "url": "/pages/privacy-policy" }
         },
         "quick_terms": {
           "type": "quick_link",
-          "settings": { "label": "Terms & Conditions", "url": "" }
+          "settings": { "label": "Terms & Conditions", "url": "/pages/terms-and-conditions" }
         },
         "quick_faqs": {
           "type": "quick_link",
-          "settings": { "label": "FAQs", "url": "" }
+          "settings": { "label": "FAQs", "url": "/pages/faqs" }
         },
         "company_about": {
           "type": "company_link",
-          "settings": { "label": "About Us", "url": "" }
+          "settings": { "label": "About Us", "url": "/pages/about-us" }
         },
         "company_contact": {
           "type": "company_link",
-          "settings": { "label": "Contact", "url": "" }
+          "settings": { "label": "Contact", "url": "/pages/contact-us" }
         },
         "insta_1": { "type": "instagram", "settings": {} },
         "insta_2": { "type": "instagram", "settings": {} },

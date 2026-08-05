@@ -9,9 +9,7 @@
   if section.settings.enable_country_selector or section.settings.enable_language_selector
     assign language_country_selector = true
   endif
-  if section.blocks.size > 0
-    assign announcement_bar = true
-  endif
+  assign announcement_bar = true
 -%}
 
 {% if social_icons %}
@@ -49,6 +47,12 @@
             </a>
           {%- endif -%}
         {%- endif -%}
+      </div>
+    {%- elsif section.blocks.size == 0 -%}
+      <div class="announcement-bar" role="region" aria-label="{{ 'sections.header.announcement' | t }}">
+        <p class="announcement-bar__message h5">
+          <span>Welcome to Jadeed Foods Online Store!</span>
+        </p>
       </div>
     {%- elsif section.blocks.size > 1 -%}
       <slideshow-component
