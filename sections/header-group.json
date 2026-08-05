@@ -18,8 +18,6 @@
           "type": "announcement",
           "settings": {
             "text": "Welcome to Jadeed Foods Online Store!",
-            "text_alignment": "center",
-            "color_scheme": "scheme-3",
             "link": ""
           }
         }
