@@ -2,19 +2,25 @@
   <div class="jf-testimonials-lockup">
     <p class="jf-testimonials-lockup__it">{{ section.settings.lockup_prefix | default: 'It has to be' }}</p>
     <div class="jf-testimonials-lockup__brand">
-      <img
-        class="jf-testimonials-lockup__logo"
-        src="{{ 'jadeed-logo.png' | asset_url }}"
-        alt="Jadeed Foods"
-        width="280"
-        height="161"
-        loading="lazy"
-      >
-      <p class="jf-testimonials-lockup__foods">
-        <span class="jf-testimonials-lockup__rule" aria-hidden="true"></span>
-        <span>{{ section.settings.lockup_suffix | default: 'Foods' }}</span>
-        <span class="jf-testimonials-lockup__rule" aria-hidden="true"></span>
-      </p>
+      {% if section.settings.logo != blank %}
+        <img
+          class="jf-testimonials-lockup__logo"
+          src="{{ section.settings.logo | image_url: width: 560 }}"
+          alt="{{ shop.name }}"
+          width="280"
+          height="161"
+          loading="lazy"
+        >
+      {% else %}
+        <img
+          class="jf-testimonials-lockup__logo"
+          src="{{ 'jadeed-testimonials-lockup.png' | asset_url }}"
+          alt="Jadeed Foods"
+          width="280"
+          height="161"
+          loading="lazy"
+        >
+      {% endif %}
     </div>
   </div>
 
