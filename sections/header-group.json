@@ -51,7 +51,7 @@
         "login_label": "Login / Sign Up",
         "show_vendor_link": true,
         "vendor_link_label": "Become a Vendor",
-        "vendor_link_url": "/pages/contact-us"
+        "vendor_link_url": ""
       }
     }
   },

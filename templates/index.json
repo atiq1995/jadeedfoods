@@ -6,7 +6,7 @@
         "title": "Flavors Made to Be Remembered",
         "subtitle": "",
         "button_label": "",
-        "button_link": "/collections/all"
+        "button_link": ""
       }
     },
     "shop_by_category": {
@@ -48,7 +48,7 @@
       "settings": {
         "heading": "Special Deals",
         "button_label": "See all products",
-        "button_link": "/collections/all"
+        "button_link": ""
       }
     },
     "rich_aroma": {
@@ -83,42 +83,42 @@
           "type": "manual_post",
           "settings": {
             "title": "Cooking tips",
-            "link": "/blogs/news"
+            "link": ""
           }
         },
         "blog_2": {
           "type": "manual_post",
           "settings": {
             "title": "Kitchen stories",
-            "link": "/blogs/news"
+            "link": ""
           }
         },
         "blog_3": {
           "type": "manual_post",
           "settings": {
             "title": "Spice guide",
-            "link": "/blogs/news"
+            "link": ""
           }
         },
         "blog_4": {
           "type": "manual_post",
           "settings": {
             "title": "Recipe ideas",
-            "link": "/blogs/news"
+            "link": ""
           }
         },
         "blog_5": {
           "type": "manual_post",
           "settings": {
             "title": "Healthy cooking",
-            "link": "/blogs/news"
+            "link": ""
           }
         },
         "blog_6": {
           "type": "manual_post",
           "settings": {
             "title": "Product news",
-            "link": "/blogs/news"
+            "link": ""
           }
         }
       },
@@ -128,7 +128,7 @@
         "source": "manual",
         "article_limit": 6,
         "button_label": "Read more",
-        "button_link": "/blogs/news"
+        "button_link": ""
       }
     },
     "lifestyle": {
