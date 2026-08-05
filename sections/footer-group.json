@@ -1,0 +1,64 @@
+{
+  "name": "t:sections.footer.name",
+  "type": "footer",
+  "sections": {
+    "jadeed_footer": {
+      "type": "jadeed-footer",
+      "blocks": {
+        "quick_policy": {
+          "type": "quick_link",
+          "settings": { "label": "Policy", "url": "/pages/privacy-policy" }
+        },
+        "quick_terms": {
+          "type": "quick_link",
+          "settings": { "label": "Terms & Conditions", "url": "/pages/terms-and-conditions" }
+        },
+        "quick_faqs": {
+          "type": "quick_link",
+          "settings": { "label": "FAQs", "url": "/pages/faqs" }
+        },
+        "company_about": {
+          "type": "company_link",
+          "settings": { "label": "About Us", "url": "/pages/about-us" }
+        },
+        "company_contact": {
+          "type": "company_link",
+          "settings": { "label": "Contact", "url": "/pages/contact-us" }
+        },
+        "insta_1": { "type": "instagram", "settings": {} },
+        "insta_2": { "type": "instagram", "settings": {} },
+        "insta_3": { "type": "instagram", "settings": {} },
+        "insta_4": { "type": "instagram", "settings": {} },
+        "insta_5": { "type": "instagram", "settings": {} },
+        "insta_6": { "type": "instagram", "settings": {} }
+      },
+      "block_order": [
+        "quick_policy",
+        "quick_terms",
+        "quick_faqs",
+        "company_about",
+        "company_contact",
+        "insta_1",
+        "insta_2",
+        "insta_3",
+        "insta_4",
+        "insta_5",
+        "insta_6"
+      ],
+      "settings": {
+        "about_heading": "About Us",
+        "about_text": "<p>Jadeed Foods brings purity you can trust and taste you'll love — rice, spices, and cooking oil crafted with care.</p>",
+        "address": "53-C, Satellite Town, Chandni Chowk, Murree Road, Rawalpindi, Pakistan.",
+        "email": "web@jadeedfoods.com",
+        "phone": "+92-51-111-JADEED",
+        "quick_heading": "Quick Links",
+        "company_heading": "Company",
+        "instagram_heading": "Follow on Instagram",
+        "instagram_url": "",
+        "copyright": "2025 Jadeed Foods. All Rights Reserved",
+        "show_social": true
+      }
+    }
+  },
+  "order": ["jadeed_footer"]
+}

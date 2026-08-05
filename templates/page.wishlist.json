@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero-image",
+      "settings": {
+        "title": "Wishlist",
+        "asset_key": "wishlist_hero",
+        "overlay": true
+      }
+    },
+    "placeholder": {
+      "type": "jadeed-wishlist-placeholder",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "placeholder"]
+}

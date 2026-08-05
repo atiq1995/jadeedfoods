@@ -1,0 +1,182 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero-banner",
+      "settings": {
+        "title": "Flavors Made to Be Remembered",
+        "subtitle": "",
+        "button_label": "",
+        "button_link": "/collections/all"
+      }
+    },
+    "shop_by_category": {
+      "type": "shop-by-category",
+      "blocks": {
+        "cat_rice": {
+          "type": "category",
+          "settings": {
+            "title": "RANGE OF RICE",
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+          }
+        },
+        "cat_spices": {
+          "type": "category",
+          "settings": {
+            "title": "RANGE OF SPICE",
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+          }
+        },
+        "cat_oil": {
+          "type": "category",
+          "settings": {
+            "title": "RANGE OF OIL",
+            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission."
+          }
+        }
+      },
+      "block_order": ["cat_rice", "cat_spices", "cat_oil"],
+      "settings": { "heading": "Shop by Category" }
+    },
+    "special_deals": {
+      "type": "special-deals",
+      "blocks": {
+        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165" } },
+        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165" } },
+        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165" } }
+      },
+      "block_order": ["deal_pepper", "deal_flax", "deal_pack"],
+      "settings": {
+        "heading": "Special Deals",
+        "button_label": "See all products",
+        "button_link": "/collections/all"
+      }
+    },
+    "rich_aroma": {
+      "type": "rich-aroma",
+      "settings": {
+        "title": "Rich Aroma. Perfect Taste.",
+        "text": "From rich aroma to bold taste, our spices bring every dish to life with the perfect touch of tradition."
+      }
+    },
+    "best_selling_products": {
+      "type": "best-selling-products",
+      "blocks": {
+        "prod_rice": { "type": "product_tile", "settings": { "title": "BEST SELLING RICE" } },
+        "prod_spices": { "type": "product_tile", "settings": { "title": "BEST SELLING SPICES" } },
+        "prod_oil": { "type": "product_tile", "settings": { "title": "BEST SELLING OIL" } }
+      },
+      "block_order": ["prod_rice", "prod_spices", "prod_oil"],
+      "settings": { "heading": "Best Selling Products", "subheading": "" }
+    },
+    "purity_banner": {
+      "type": "purity-banner",
+      "settings": {
+        "word": "PURITY",
+        "line_before": "you can trust,",
+        "line_after": "taste you'll love!"
+      }
+    },
+    "blogs": {
+      "type": "blogs",
+      "blocks": {
+        "blog_1": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Cooking tips",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_2": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Kitchen stories",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_3": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Spice guide",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_4": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Recipe ideas",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_5": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Healthy cooking",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_6": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Product news",
+            "link": "/blogs/news"
+          }
+        }
+      },
+      "block_order": ["blog_1", "blog_2", "blog_3", "blog_4", "blog_5", "blog_6"],
+      "settings": {
+        "heading": "Blogs",
+        "source": "manual",
+        "article_limit": 6,
+        "button_label": "Read more",
+        "button_link": "/blogs/news"
+      }
+    },
+    "lifestyle": {
+      "type": "lifestyle-banner",
+      "settings": { "heading": "Friends enjoying Jadeed Foods" }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I absolutely love Jadeed Cooking Oil! It's not only great for heart health but also perfect for those who are health-conscious. While it may be a bit pricier, your health is invaluable, and taking care of your body is essential—we only have one life to live. I enjoy cooking with this oil, everything turns out delicious and perfectly cooked. It's a fantastic choice for anyone who values their well-being!",
+            "name": "Gregory Huang"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Jadeed spices bring authentic flavor to every dish. Quality I can trust for my family every day.",
+            "name": "Sara Ahmed"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The rice quality is outstanding — fluffy, fragrant, and consistently excellent. Highly recommend!",
+            "name": "Ali Khan"
+          }
+        }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "heading": "Testimonials",
+        "lockup_prefix": "It has to be",
+        "lockup_suffix": "Foods"
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "shop_by_category",
+    "special_deals",
+    "rich_aroma",
+    "best_selling_products",
+    "purity_banner",
+    "blogs",
+    "lifestyle",
+    "testimonials"
+  ]
+}

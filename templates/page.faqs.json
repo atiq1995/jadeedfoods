@@ -1,0 +1,50 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero-image",
+      "settings": {
+        "title": "FAQs",
+        "asset_key": "faqs_hero",
+        "overlay": false
+      }
+    },
+    "shipping": {
+      "type": "jadeed-faq-group",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "What shipping methods are available?", "answer": "<p>We offer standard and express shipping depending on your location.</p>", "open_by_default": true } },
+        "q2": { "type": "faq", "settings": { "question": "Do you ship internationally?", "answer": "<p>We currently serve Pakistan and selected GCC markets through partner channels.</p>" } },
+        "q3": { "type": "faq", "settings": { "question": "How long will it take to get my package?", "answer": "<p>Most orders are delivered within 2-5 working days after confirmation.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": { "heading": "Shipping" }
+    },
+    "payment": {
+      "type": "jadeed-faq-group",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "What payment methods are accepted?", "answer": "<p>We accept Cash on Delivery and online card payments where available.</p>", "open_by_default": true } },
+        "q2": { "type": "faq", "settings": { "question": "Is buying online safe?", "answer": "<p>Yes. All checkout transactions are secured by Shopify's payment infrastructure.</p>" } }
+      },
+      "block_order": ["q1", "q2"],
+      "settings": { "heading": "Payment" }
+    },
+    "orders_returns": {
+      "type": "jadeed-faq-group",
+      "blocks": {
+        "q1": { "type": "faq", "settings": { "question": "How do I place an order?", "answer": "<p>Add products to your cart and proceed to checkout.</p>", "open_by_default": true } },
+        "q2": { "type": "faq", "settings": { "question": "How can I cancel or change my order?", "answer": "<p>Contact support immediately after placing your order for modifications.</p>" } },
+        "q3": { "type": "faq", "settings": { "question": "How do I track my order?", "answer": "<p>Use the Order Tracking page with your Order ID and billing email.</p>" } }
+      },
+      "block_order": ["q1", "q2", "q3"],
+      "settings": { "heading": "Order & Returns" }
+    },
+    "cta": {
+      "type": "jadeed-faq-cta",
+      "settings": {
+        "eyebrow": "We're here to help!",
+        "title": "Contact us",
+        "button_label": "Contact us"
+      }
+    }
+  },
+  "order": ["hero", "shipping", "payment", "orders_returns", "cta"]
+}

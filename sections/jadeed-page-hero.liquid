@@ -1,0 +1,21 @@
+<section class="jf-page-hero">
+  <div class="jf-container">
+    <h1 class="jf-page-hero__title">{{ section.settings.title }}</h1>
+    {% if section.settings.subtitle != blank %}
+      <p class="jf-hero__subtitle">{{ section.settings.subtitle }}</p>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page hero",
+  "tag": "section",
+  "class": "section-jadeed-page-hero",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Page title" },
+    { "type": "text", "id": "subtitle", "label": "Subtitle" }
+  ],
+  "presets": [{ "name": "Page hero" }]
+}
+{% endschema %}

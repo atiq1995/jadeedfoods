@@ -1,0 +1,66 @@
+{
+  "sections": {
+    "blog_listing": {
+      "type": "jadeed-blog-listing",
+      "blocks": {
+        "post_1": {
+          "type": "post",
+          "settings": {
+            "title": "Cooking tips for aromatic rice",
+            "date": "Aug 1, 2025",
+            "excerpt": "Rinse, soak, and steam Jadeed rice the right way for fluffy grains every time."
+          }
+        },
+        "post_2": {
+          "type": "post",
+          "settings": {
+            "title": "Kitchen stories from Jadeed",
+            "date": "Jul 24, 2025",
+            "excerpt": "How families across Pakistan cook with Jadeed spices, oil, and rice every day."
+          }
+        },
+        "post_3": {
+          "type": "post",
+          "settings": {
+            "title": "Spice guide for everyday meals",
+            "date": "Jul 12, 2025",
+            "excerpt": "Build a pantry of essential Jadeed spices and know when to use each blend."
+          }
+        },
+        "post_4": {
+          "type": "post",
+          "settings": {
+            "title": "Recipe ideas with pure cooking oil",
+            "date": "Jun 28, 2025",
+            "excerpt": "From shallow fries to tadka — get the best results with Jadeed cooking oil."
+          }
+        },
+        "post_5": {
+          "type": "post",
+          "settings": {
+            "title": "Healthy cooking made simple",
+            "date": "Jun 10, 2025",
+            "excerpt": "Balance flavor and wellness with lighter techniques and quality ingredients."
+          }
+        },
+        "post_6": {
+          "type": "post",
+          "settings": {
+            "title": "Product news and updates",
+            "date": "May 30, 2025",
+            "excerpt": "New packs, seasonal blends, and what’s next from Jadeed Foods."
+          }
+        }
+      },
+      "block_order": ["post_1", "post_2", "post_3", "post_4", "post_5", "post_6"],
+      "settings": {
+        "heading": "Blogs",
+        "subheading": "Recipes, spice guides, and kitchen stories from Jadeed Foods.",
+        "per_page": 6,
+        "show_date": true,
+        "blog_note": "Create a Shopify blog named News and publish articles — then assign this theme’s blog template, or link Read more to /blogs/news."
+      }
+    }
+  },
+  "order": ["blog_listing"]
+}

@@ -1,0 +1,29 @@
+<section class="jf-page-content">
+  <div class="jf-container" style="max-width:640px;">
+    <h2 class="jf-section__heading jf-section__heading--navy" style="font-size:40px;">{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.instructions }}</p>
+    <form class="jf-order-tracking" action="#" method="get">
+      <div class="field">
+        <input class="field__input" type="text" name="order" placeholder="{{ section.settings.placeholder }}" aria-label="Order number">
+      </div>
+      <button type="submit" class="jf-btn">{{ section.settings.button_label }}</button>
+    </form>
+    <p style="margin-top:16px;font-size:14px;color:var(--jf-muted);">{{ section.settings.note }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Order tracking",
+  "tag": "section",
+  "class": "section-jadeed-order-tracking",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Track your order" },
+    { "type": "textarea", "id": "instructions", "label": "Instructions", "default": "Enter your order number to check delivery status." },
+    { "type": "text", "id": "placeholder", "label": "Input placeholder", "default": "Order number" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Track order" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Connect this form to your order tracking app or Shopify order status page." }
+  ],
+  "presets": [{ "name": "Order tracking" }]
+}
+{% endschema %}

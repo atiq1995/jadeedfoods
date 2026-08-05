@@ -1,0 +1,39 @@
+<section class="jf-section jf-section--cream">
+  <div class="jf-container" style="max-width:800px;">
+    {% for block in section.blocks %}
+      <details class="jf-faq-item" {{ block.shopify_attributes }}>
+        <summary>{{ block.settings.question }}</summary>
+        <div class="jf-faq-item__answer rte">{{ block.settings.answer }}</div>
+      </details>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQs",
+  "tag": "section",
+  "class": "section-jadeed-faqs",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "Where do you deliver?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>We deliver across Pakistan.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "FAQs",
+      "blocks": [
+        { "type": "faq", "settings": { "question": "Where do you deliver?", "answer": "<p>We deliver across Pakistan for orders placed on jadeedfoods.com.</p>" } },
+        { "type": "faq", "settings": { "question": "What is the minimum order for free delivery?", "answer": "<p>Free delivery applies on orders up to Rs. 4999 as shown in the header.</p>" } },
+        { "type": "faq", "settings": { "question": "Are your products certified?", "answer": "<p>Yes. Jadeed Foods products follow strict quality and safety standards.</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

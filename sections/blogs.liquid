@@ -1,0 +1,111 @@
+<section class="jf-section jf-section--cream" id="blogs">
+  <div class="jf-container">
+    <h2 class="jf-section__heading jf-section__heading--navy">{{ section.settings.heading }}</h2>
+    <div class="jf-blog-grid jf-blog-grid--masonry">
+      {% if section.settings.source == 'blog' and section.settings.blog != blank %}
+        {% for article in section.settings.blog.articles limit: section.settings.article_limit %}
+          {% liquid
+            assign article_bg = ''
+            if article.image != blank
+              assign article_bg = article.image | image_url: width: 800
+            endif
+          %}
+          <a
+            href="{{ article.url }}"
+            class="jf-blog-card{% if article.excerpt != blank %} jf-blog-card--featured{% endif %}"
+            style="{% if article_bg != blank %}background-image:url('{{ article_bg }}');{% endif %}"
+          >
+            <div class="jf-blog-card__body">
+              <span class="jf-blog-card__title">{{ article.title }}</span>
+              {% if article.excerpt != blank %}
+                <p class="jf-blog-card__excerpt">{{ article.excerpt | strip_html | truncate: 90 }}</p>
+              {% endif %}
+            </div>
+            <span class="jf-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        {% endfor %}
+      {% else %}
+        {% assign default_keys = 'blog_1,blog_2,blog_3,blog_4,blog_5,blog_6' | split: ',' %}
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_bg = ''
+            assign default_key = default_keys[forloop.index0]
+            if block.settings.image != blank
+              assign card_bg = block.settings.image | image_url: width: 800
+            elsif default_key != blank
+              capture card_bg
+                render 'jadeed-asset-url', key: default_key
+              endcapture
+              assign card_bg = card_bg | strip
+            endif
+            assign card_link = block.settings.link
+            if card_link == blank
+              assign card_link = section.settings.button_link | default: '/blogs/news'
+            endif
+          %}
+          <a
+            href="{{ card_link }}"
+            class="jf-blog-card{% if block.settings.excerpt != blank %} jf-blog-card--featured{% endif %}"
+            style="{% if card_bg != blank %}background-image:url('{{ card_bg }}');{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="jf-blog-card__body">
+              <span class="jf-blog-card__title">{{ block.settings.title }}</span>
+              {% if block.settings.excerpt != blank %}
+                <p class="jf-blog-card__excerpt">{{ block.settings.excerpt }}</p>
+              {% endif %}
+            </div>
+            <span class="jf-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        {% endfor %}
+      {% endif %}
+    </div>
+    {% if section.settings.button_label != blank %}
+      <div class="jf-section__footer">
+        <a href="{{ section.settings.button_link | default: '/blogs/news' }}" class="jf-btn jf-btn--sm">{{ section.settings.button_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Blogs",
+  "tag": "section",
+  "class": "section-jadeed-blogs",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Blogs" },
+    {
+      "type": "select",
+      "id": "source",
+      "label": "Content source",
+      "options": [
+        { "value": "blog", "label": "Shopify blog" },
+        { "value": "manual", "label": "Manual blocks" }
+      ],
+      "default": "manual"
+    },
+    { "type": "blog", "id": "blog", "label": "Blog (if using Shopify blog)" },
+    { "type": "range", "id": "article_limit", "label": "Articles to show", "min": 2, "max": 8, "step": 1, "default": 6 },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Read more" },
+    { "type": "url", "id": "button_link", "label": "Button link", "default": "/blogs/news" }
+  ],
+  "blocks": [
+    {
+      "type": "manual_post",
+      "name": "Blog card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Cooking tips" },
+        { "type": "textarea", "id": "excerpt", "label": "Excerpt (shown on featured cards)" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Blogs" }]
+}
+{% endschema %}

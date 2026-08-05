@@ -1,0 +1,21 @@
+<section class="jf-page-content">
+  <div class="jf-container">
+    {% if section.settings.content != blank %}
+      <div class="rte">{{ section.settings.content }}</div>
+    {% else %}
+      {{ page.content }}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Page content",
+  "tag": "section",
+  "class": "section-jadeed-page-content",
+  "settings": [
+    { "type": "richtext", "id": "content", "label": "Content override" }
+  ],
+  "presets": [{ "name": "Page content" }]
+}
+{% endschema %}

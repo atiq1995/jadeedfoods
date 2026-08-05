@@ -1,0 +1,26 @@
+<section class="jf-about-story">
+  <div class="jf-container">
+    <h2 class="jf-about-story__title">{{ section.settings.heading }}</h2>
+    <div class="jf-about-story__content rte">
+      {{ section.settings.content }}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About story",
+  "tag": "section",
+  "class": "section-jadeed-about-story",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our Story & Values" },
+    {
+      "type": "richtext",
+      "id": "content",
+      "label": "Content",
+      "default": "<p>Jadeed Foods is a proud division of the Jadeed Group of Companies, built on decades of trust and quality across Pakistan and beyond.</p><p>From careful sourcing to modern packaging, we maintain strict food safety standards so every pack delivers consistency.</p>"
+    }
+  ],
+  "presets": [{ "name": "About story" }]
+}
+{% endschema %}

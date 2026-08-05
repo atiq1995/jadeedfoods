@@ -1,0 +1,71 @@
+<section class="jf-category-strip">
+  <div class="jf-container">
+    <div class="jf-category-strip__row">
+      {% for block in section.blocks %}
+        {% liquid
+          assign link_url = block.settings.link
+          if link_url == blank and block.settings.collection != blank
+            assign link_url = block.settings.collection.url
+          endif
+          if link_url == blank
+            assign link_url = routes.all_products_collection_url
+          endif
+          assign img_url = ''
+          if block.settings.image != blank
+            assign img_url = block.settings.image | image_url: width: 280
+          elsif block.settings.asset_key != blank
+            capture img_url
+              render 'jadeed-asset-url', key: block.settings.asset_key
+            endcapture
+            assign img_url = img_url | strip
+          endif
+        %}
+        <a href="{{ link_url }}" class="jf-category-strip__item" {{ block.shopify_attributes }}>
+          <span class="jf-category-strip__label">{{ block.settings.label }}</span>
+          <span class="jf-category-strip__media">
+            {% if img_url != blank %}
+              <img src="{{ img_url }}" alt="{{ block.settings.label | escape }}" width="160" height="160" loading="lazy">
+            {% endif %}
+          </span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Category strip",
+  "tag": "section",
+  "class": "section-jadeed-category-strip",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Oil" },
+        { "type": "collection", "id": "collection", "label": "Collection" },
+        { "type": "url", "id": "link", "label": "Link override" },
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        {
+          "type": "text",
+          "id": "asset_key",
+          "label": "Fallback asset key",
+          "info": "e.g. category_oil, category_rice, category_spices"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Category strip",
+      "blocks": [
+        { "type": "category", "settings": { "label": "Oil", "asset_key": "category_oil" } },
+        { "type": "category", "settings": { "label": "Rice", "asset_key": "category_rice" } },
+        { "type": "category", "settings": { "label": "Spices", "asset_key": "category_spices" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

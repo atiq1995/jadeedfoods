@@ -1,0 +1,25 @@
+<section class="jf-legal-page">
+  <div class="jf-container">
+    <h1 class="jf-legal-page__title">{{ section.settings.title | default: page.title }}</h1>
+    <div class="jf-legal-page__content rte">
+      {% if section.settings.content != blank %}
+        {{ section.settings.content }}
+      {% else %}
+        {{ page.content }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Legal page content",
+  "tag": "section",
+  "class": "section-jadeed-legal-page",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title override" },
+    { "type": "richtext", "id": "content", "label": "Content override" }
+  ],
+  "presets": [{ "name": "Legal page content" }]
+}
+{% endschema %}

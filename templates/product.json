@@ -1,0 +1,135 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "blocks": {
+        "title": { "type": "title" },
+        "meta": { "type": "jadeed_meta", "settings": {} },
+        "price": { "type": "price" },
+        "quantity_selector": { "type": "quantity_selector" },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_dynamic_checkout": true,
+            "show_gift_card_recipient": false
+          }
+        },
+        "info_heading": {
+          "type": "jadeed_info_heading",
+          "settings": { "heading": "Product Information" }
+        },
+        "desc_tab": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Description",
+            "content": "{{ product.description }}",
+            "icon": "clipboard"
+          }
+        },
+        "ingredients_tab": {
+          "type": "collapsible_tab",
+          "settings": {
+            "heading": "Ingredients",
+            "content": "<p>See packaging for full ingredient details and nutritional information.</p>",
+            "icon": "leaf"
+          }
+        }
+      },
+      "block_order": [
+        "title",
+        "meta",
+        "price",
+        "quantity_selector",
+        "buy_buttons",
+        "info_heading",
+        "desc_tab",
+        "ingredients_tab"
+      ],
+      "settings": {
+        "enable_sticky_info": true,
+        "color_scheme": "scheme-1",
+        "media_position": "left",
+        "gallery_layout": "stacked",
+        "media_size": "large",
+        "constrain_to_viewport": true,
+        "media_fit": "contain",
+        "image_zoom": "lightbox",
+        "mobile_thumbnails": "hide",
+        "hide_variants": true,
+        "enable_video_looping": false,
+        "padding_top": 36,
+        "padding_bottom": 24
+      }
+    },
+    "related-products": {
+      "type": "jadeed-related-products",
+      "settings": {
+        "heading": "Related Products",
+        "products_to_show": 4,
+        "button_label": "Buy Now",
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    },
+    "review-banner": {
+      "type": "jadeed-product-reviews-cta",
+      "settings": {
+        "text": "To review \"[product]\" be the first to review"
+      }
+    },
+    "reviews": {
+      "type": "jadeed-product-reviews",
+      "blocks": {
+        "review-1": {
+          "type": "review",
+          "settings": {
+            "quote": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            "name": "Mark Jones",
+            "date": "14th May 2022",
+            "rating_count": "4k+",
+            "rating": 5
+          }
+        },
+        "review-2": {
+          "type": "review",
+          "settings": {
+            "quote": "Excellent quality and authentic taste. We use Jadeed spices every day in our kitchen.",
+            "name": "Sarah Ali",
+            "date": "2nd Apr 2022",
+            "rating_count": "4k+",
+            "rating": 5
+          }
+        },
+        "review-3": {
+          "type": "review",
+          "settings": {
+            "quote": "Fresh, aromatic, and beautifully packed. Delivery was quick and the product exceeded expectations.",
+            "name": "Ahmed Khan",
+            "date": "18th Jun 2022",
+            "rating_count": "4k+",
+            "rating": 5
+          }
+        }
+      },
+      "block_order": ["review-1", "review-2", "review-3"],
+      "settings": {
+        "heading": "Reviews",
+        "sort_label": "Most Recent",
+        "button_label": "Write a review",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "feedback-modal": {
+      "type": "jadeed-feedback-modal",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "related-products",
+    "review-banner",
+    "reviews",
+    "feedback-modal"
+  ]
+}

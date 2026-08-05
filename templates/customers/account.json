@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "banner": {
+      "type": "jadeed-customer-auth",
+      "settings": {
+        "title": "My Account",
+        "asset_key": ""
+      }
+    },
+    "main": {
+      "type": "main-account",
+      "settings": {
+        "padding_top": 36,
+        "padding_bottom": 36
+      }
+    }
+  },
+  "order": [
+    "banner",
+    "main"
+  ]
+}

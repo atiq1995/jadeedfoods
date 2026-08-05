@@ -1,0 +1,39 @@
+<section class="jf-faq-group">
+  <div class="jf-container">
+    <h2 class="jf-faq-group__title">{{ section.settings.heading }}</h2>
+    <div class="jf-faq-group__items">
+      {% for block in section.blocks %}
+        <details class="jf-faq-group__item" {% if block.settings.open_by_default %}open{% endif %} {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.question }}</span>
+            <span class="jf-faq-group__icon" aria-hidden="true"></span>
+          </summary>
+          <div class="jf-faq-group__answer rte">{{ block.settings.answer }}</div>
+        </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ group",
+  "tag": "section",
+  "class": "section-jadeed-faq-group",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping" }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "FAQ item",
+      "settings": [
+        { "type": "text", "id": "question", "label": "Question", "default": "What shipping methods are available?" },
+        { "type": "richtext", "id": "answer", "label": "Answer", "default": "<p>We offer standard and express shipping options across Pakistan.</p>" },
+        { "type": "checkbox", "id": "open_by_default", "label": "Open by default", "default": false }
+      ]
+    }
+  ],
+  "presets": [{ "name": "FAQ group" }]
+}
+{% endschema %}

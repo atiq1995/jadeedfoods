@@ -1,0 +1,54 @@
+{%- comment -%}
+  Returns theme asset URL for Jadeed default images.
+  Usage: {% render 'jadeed-asset-url', key: 'category_rice' %}
+{%- endcomment -%}
+{%- case key -%}
+  {%- when 'hero' -%}{{ 'jadeed-hero-bg.jpg' | asset_url }}
+  {%- when 'category_rice' -%}{{ 'jadeed-category-rice.jpg' | asset_url }}
+  {%- when 'category_spices' -%}{{ 'jadeed-category-spices.jpg' | asset_url }}
+  {%- when 'category_oil' -%}{{ 'jadeed-category-oil.jpg' | asset_url }}
+  {%- when 'deal_pepper' -%}{{ 'jadeed-deal-pepper.jpg' | asset_url }}
+  {%- when 'deal_flax' -%}{{ 'jadeed-deal-flax.jpg' | asset_url }}
+  {%- when 'deal_pack' -%}{{ 'jadeed-deal-pack.jpg' | asset_url }}
+  {%- when 'rich_aroma' -%}{{ 'jadeed-rich-aroma.jpg' | asset_url }}
+  {%- when 'product_rice' -%}{{ 'jadeed-product-rice.jpg' | asset_url }}
+  {%- when 'product_spices' -%}{{ 'jadeed-product-spices.jpg' | asset_url }}
+  {%- when 'product_oil' -%}{{ 'jadeed-product-oil.jpg' | asset_url }}
+  {%- when 'lifestyle' -%}{{ 'jadeed-lifestyle-group.jpg' | asset_url }}
+  {%- when 'logo' -%}{{ 'jadeed-logo.png' | asset_url }}
+  {%- when 'delivery_truck' -%}{{ 'jadeed-delivery-truck.svg' | asset_url }}
+  {%- when 'free_delivery' -%}{{ 'jadeed-free-delivery.svg' | asset_url }}
+  {%- when 'blog_1' -%}{{ 'jadeed-blog-1.jpg' | asset_url }}
+  {%- when 'blog_2' -%}{{ 'jadeed-blog-2.jpg' | asset_url }}
+  {%- when 'blog_3' -%}{{ 'jadeed-blog-3.jpg' | asset_url }}
+  {%- when 'blog_4' -%}{{ 'jadeed-blog-4.jpg' | asset_url }}
+  {%- when 'blog_5' -%}{{ 'jadeed-blog-5.jpg' | asset_url }}
+  {%- when 'blog_6' -%}{{ 'jadeed-blog-6.jpg' | asset_url }}
+  {%- when 'insta_1' -%}{{ 'jadeed-insta-1.jpg' | asset_url }}
+  {%- when 'insta_2' -%}{{ 'jadeed-insta-2.jpg' | asset_url }}
+  {%- when 'insta_3' -%}{{ 'jadeed-insta-3.jpg' | asset_url }}
+  {%- when 'insta_4' -%}{{ 'jadeed-insta-4.jpg' | asset_url }}
+  {%- when 'insta_5' -%}{{ 'jadeed-insta-5.jpg' | asset_url }}
+  {%- when 'insta_6' -%}{{ 'jadeed-insta-6.jpg' | asset_url }}
+  {%- when 'testimonials_lockup' -%}{{ 'jadeed-testimonials-lockup.png' | asset_url }}
+  {%- when 'promo_consistency' -%}{{ 'jadeed-promo-consistency.jpg' | asset_url }}
+  {%- when 'about_hero' -%}{{ 'jadeed-about-hero.jpg' | asset_url }}
+  {%- when 'about_pillars_left' -%}{{ 'jadeed-about-pillars-left.jpg' | asset_url }}
+  {%- when 'about_timeline_1' -%}{{ 'jadeed-about-timeline-1.jpg' | asset_url }}
+  {%- when 'about_timeline_2' -%}{{ 'jadeed-about-timeline-2.jpg' | asset_url }}
+  {%- when 'about_timeline_3' -%}{{ 'jadeed-about-timeline-3.jpg' | asset_url }}
+  {%- when 'contact_hero' -%}{{ 'jadeed-contact-hero.jpg' | asset_url }}
+  {%- when 'contact_map' -%}{{ 'jadeed-contact-map.jpg' | asset_url }}
+  {%- when 'order_tracking_hero' -%}{{ 'jadeed-order-tracking-hero.jpg' | asset_url }}
+  {%- when 'login_hero' -%}{{ 'jadeed-login-hero.jpg' | asset_url }}
+  {%- when 'collection_hero' -%}{{ 'jadeed-collection-hero.jpg' | asset_url }}
+  {%- when 'product_review_cta' -%}{{ 'jadeed-product-review-cta.jpg' | asset_url }}
+  {%- when 'legal_bg' -%}{{ 'jadeed-legal-bg.jpg' | asset_url }}
+  {%- when 'terms_bg' -%}{{ 'jadeed-terms-bg.jpg' | asset_url }}
+  {%- when 'wishlist_hero' -%}{{ 'jadeed-wishlist-hero.jpg' | asset_url }}
+  {%- when 'cart_hero' -%}{{ 'jadeed-cart-hero.jpg' | asset_url }}
+  {%- when 'faqs_hero' -%}{{ 'jadeed-faqs-hero.jpg' | asset_url }}
+  {%- when 'feedback_modal_bg' -%}{{ 'jadeed-feedback-modal-bg.jpg' | asset_url }}
+  {%- when 'feedback_reviews_bg' -%}{{ 'jadeed-feedback-reviews-bg.jpg' | asset_url }}
+  {%- else -%}{{ '' }}
+{%- endcase -%}

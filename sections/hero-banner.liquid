@@ -1,0 +1,37 @@
+{% liquid
+  assign hero_bg = ''
+  if section.settings.background_image != blank
+    assign hero_bg = section.settings.background_image | image_url: width: 1920
+  else
+    assign hero_bg = 'jadeed-hero-bg.jpg' | asset_url
+  endif
+%}
+<section class="jf-hero" style="background-image: url('{{ hero_bg }}');">
+  <div class="jf-container">
+    <div class="jf-hero__content">
+      <h1 class="jf-hero__title">{{ section.settings.title }}</h1>
+      {% if section.settings.subtitle != blank %}
+        <p class="jf-hero__subtitle">{{ section.settings.subtitle }}</p>
+      {% endif %}
+      {% if section.settings.button_label != blank %}
+        <a href="{{ section.settings.button_link | default: '#' }}" class="jf-btn" style="margin-top:32px;">{{ section.settings.button_label }}</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero banner",
+  "tag": "section",
+  "class": "section-jadeed-hero",
+  "settings": [
+    { "type": "image_picker", "id": "background_image", "label": "Background image" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Flavors Made to Be Remembered" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle" },
+    { "type": "text", "id": "button_label", "label": "Button label" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "Hero banner" }]
+}
+{% endschema %}

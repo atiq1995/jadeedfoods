@@ -1,0 +1,80 @@
+{% liquid
+  assign man_url = ''
+  assign woman_url = ''
+  if section.settings.image_man != blank
+    assign man_url = section.settings.image_man | image_url: width: 900
+  else
+    assign man_url = 'jadeed-about-pillars-man.jpg' | asset_url
+  endif
+  if section.settings.image_woman != blank
+    assign woman_url = section.settings.image_woman | image_url: width: 900
+  else
+    assign woman_url = 'jadeed-about-pillars-woman.jpg' | asset_url
+  endif
+%}
+
+<section class="jf-about-pillars">
+  <div class="jf-container jf-about-pillars__grid">
+    <div class="jf-about-pillars__media" aria-hidden="true">
+      <div class="jf-about-pillars__stack">
+        <span class="jf-about-pillars__dots"></span>
+        <img class="jf-about-pillars__img jf-about-pillars__img--man" src="{{ man_url }}" alt="" loading="lazy" width="420" height="480">
+        <img class="jf-about-pillars__img jf-about-pillars__img--woman" src="{{ woman_url }}" alt="" loading="lazy" width="420" height="480">
+      </div>
+    </div>
+    <div class="jf-about-pillars__content">
+      <p class="jf-about-pillars__eyebrow">{{ section.settings.lead_text }}</p>
+      <h2 class="jf-about-pillars__title">
+        <span>{{ section.settings.highlight_1 }}</span>,
+        <span>{{ section.settings.highlight_2 }}</span>,
+        {{ section.settings.and_text }}
+        <span>{{ section.settings.highlight_3 }}</span>
+      </h2>
+      <ul class="jf-about-pillars__list">
+        {% for block in section.blocks %}
+          <li {{ block.shopify_attributes }}>
+            <strong>{{ block.settings.title }}</strong>
+            {{ block.settings.text }}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About pillars",
+  "tag": "section",
+  "class": "section-jadeed-about-pillars",
+  "settings": [
+    { "type": "image_picker", "id": "image_man", "label": "Top photo override" },
+    { "type": "image_picker", "id": "image_woman", "label": "Bottom photo override" },
+    { "type": "text", "id": "lead_text", "label": "Lead text", "default": "We stand for" },
+    { "type": "text", "id": "highlight_1", "label": "Highlight 1", "default": "Purity" },
+    { "type": "text", "id": "highlight_2", "label": "Highlight 2", "default": "Innovation" },
+    { "type": "text", "id": "and_text", "label": "And text", "default": "and" },
+    { "type": "text", "id": "highlight_3", "label": "Highlight 3", "default": "Collaboration" }
+  ],
+  "blocks": [
+    {
+      "type": "pillar",
+      "name": "Pillar",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Purity" },
+        { "type": "textarea", "id": "text", "label": "Text", "default": "Sourcing the finest natural ingredients." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About pillars",
+      "blocks": [
+        { "type": "pillar", "settings": { "title": "Purity", "text": "Sourcing the finest natural ingredients." } },
+        { "type": "pillar", "settings": { "title": "Innovation", "text": "Consistent product improvement and process advancement." } },
+        { "type": "pillar", "settings": { "title": "Collaboration", "text": "Building trusted partnerships with distributors and retailers across markets." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

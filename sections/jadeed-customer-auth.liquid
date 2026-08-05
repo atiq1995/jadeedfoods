@@ -1,0 +1,31 @@
+{% liquid
+  assign auth_bg = ''
+  if section.settings.background_image != blank
+    assign auth_bg = section.settings.background_image | image_url: width: 2400
+  elsif section.settings.asset_key != blank
+    capture auth_bg
+      render 'jadeed-asset-url', key: section.settings.asset_key
+    endcapture
+    assign auth_bg = auth_bg | strip
+  endif
+%}
+
+<section class="jf-customer-auth-banner" {% if auth_bg != blank %}style="background-image:url('{{ auth_bg }}');"{% endif %}>
+  <div class="jf-container">
+    <h1>{{ section.settings.title }}</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Customer auth banner",
+  "tag": "section",
+  "class": "section-jadeed-customer-auth",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Login account" },
+    { "type": "image_picker", "id": "background_image", "label": "Background image override" },
+    { "type": "text", "id": "asset_key", "label": "Default asset key (optional; leave blank for solid red band)" }
+  ],
+  "presets": [{ "name": "Customer auth banner" }]
+}
+{% endschema %}

@@ -1,0 +1,19 @@
+<section class="jf-purity">
+  <p class="jf-purity__line jf-purity__line--2">{{ section.settings.word }}</p>
+  <p class="jf-purity__line jf-purity__line--1">{{ section.settings.line_before }}</p>
+  <p class="jf-purity__line jf-purity__line--3">{{ section.settings.line_after }}</p>
+</section>
+
+{% schema %}
+{
+  "name": "Purity banner",
+  "tag": "section",
+  "class": "section-jadeed-purity",
+  "settings": [
+    { "type": "text", "id": "word", "label": "Large word", "default": "PURITY" },
+    { "type": "text", "id": "line_before", "label": "Supporting line", "default": "you can trust," },
+    { "type": "text", "id": "line_after", "label": "Accent line", "default": "taste you'll love!" }
+  ],
+  "presets": [{ "name": "Purity banner" }]
+}
+{% endschema %}

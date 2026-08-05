@@ -1,0 +1,66 @@
+<section class="jf-about-stats">
+  <div class="jf-container">
+    <div class="jf-about-stats__grid">
+      {% for block in section.blocks %}
+        <div class="jf-about-stats__item" {{ block.shopify_attributes }}>
+          <div class="jf-about-stats__icon" aria-hidden="true">
+            {% case block.settings.icon %}
+              {% when 'store' %}
+                <svg viewBox="0 0 48 48" fill="none"><path d="M8 20h32v20H8V20z" stroke="currentColor" stroke-width="2"/><path d="M6 20l6-10h24l6 10" stroke="currentColor" stroke-width="2"/><path d="M18 40V28h12v12" stroke="currentColor" stroke-width="2"/><path d="M12 20v-4h6v4M30 20v-4h6v4" stroke="currentColor" stroke-width="2"/></svg>
+              {% when 'bag' %}
+                <svg viewBox="0 0 48 48" fill="none"><path d="M12 16h24l-2 24H14L12 16z" stroke="currentColor" stroke-width="2"/><path d="M18 16a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="2"/></svg>
+              {% when 'money' %}
+                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="22" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="25" r="6" stroke="currentColor" stroke-width="2"/><path d="M24 21v8M22 23h4M22 27h4" stroke="currentColor" stroke-width="2"/></svg>
+              {% else %}
+                <svg viewBox="0 0 48 48" fill="none"><path d="M12 18h24v20H12V18z" stroke="currentColor" stroke-width="2"/><path d="M12 18l4-6h16l4 6" stroke="currentColor" stroke-width="2"/><path d="M20 28h8" stroke="currentColor" stroke-width="2"/></svg>
+            {% endcase %}
+          </div>
+          <p class="jf-about-stats__value">{{ block.settings.value }}</p>
+          <p class="jf-about-stats__label">{{ block.settings.label }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About stats",
+  "tag": "section",
+  "class": "section-jadeed-about-stats",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "stat",
+      "name": "Stat",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "box", "label": "Box" },
+            { "value": "store", "label": "Store" },
+            { "value": "bag", "label": "Bag" },
+            { "value": "money", "label": "Money" }
+          ],
+          "default": "box"
+        },
+        { "type": "text", "id": "value", "label": "Value", "default": "45M" },
+        { "type": "text", "id": "label", "label": "Label", "default": "Products for sale" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About stats",
+      "blocks": [
+        { "type": "stat", "settings": { "icon": "box", "value": "45M", "label": "Products for sale" } },
+        { "type": "stat", "settings": { "icon": "store", "value": "1.8M", "label": "Sellers on Jadeed Foods" } },
+        { "type": "stat", "settings": { "icon": "bag", "value": "30.6M", "label": "Buyers on Jadeed Foods" } },
+        { "type": "stat", "settings": { "icon": "money", "value": "Rs 2.64M", "label": "Annual gross sales" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

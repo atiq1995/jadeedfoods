@@ -1,0 +1,22 @@
+<section class="jf-cart-title">
+  <div class="jf-container">
+    <h1 class="jf-cart-title__heading">{{ section.settings.title }}</h1>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jadeed cart title",
+  "tag": "section",
+  "class": "section-jadeed-cart-title",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Shopping Cart"
+    }
+  ],
+  "presets": [{ "name": "Jadeed cart title" }]
+}
+{% endschema %}

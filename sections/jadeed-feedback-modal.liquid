@@ -1,0 +1,127 @@
+{%- liquid
+  assign modal_bg = ''
+  if section.settings.background_image != blank
+    assign modal_bg = section.settings.background_image | image_url: width: 1200
+  else
+    capture modal_bg
+      render 'jadeed-asset-url', key: 'feedback_modal_bg'
+    endcapture
+    assign modal_bg = modal_bg | strip
+  endif
+-%}
+
+<div class="jf-feedback" data-jf-feedback>
+  <dialog class="jf-feedback__dialog" data-jf-feedback-dialog aria-label="Write a review">
+    <button type="button" class="jf-feedback__close" data-jf-feedback-close aria-label="Close">&times;</button>
+    <div class="jf-feedback__panel" {% if modal_bg != blank %}style="background-image:url('{{ modal_bg }}');"{% endif %}>
+      <form class="jf-feedback__form" method="post" action="/contact#contact_form" accept-charset="UTF-8">
+        <input type="hidden" name="form_type" value="contact">
+        <input type="hidden" name="utf8" value="✓">
+        <input type="hidden" name="contact[subject]" value="Product review — {{ product.title | escape }}">
+        <input type="hidden" name="contact[product]" value="{{ product.handle }}">
+        <input type="hidden" name="contact[rating]" value="" data-jf-feedback-rating-input>
+
+        <div class="jf-feedback__step is-active" data-jf-feedback-step="1">
+          <h2 class="jf-feedback__title">{{ section.settings.step1_title }}</h2>
+          <div class="jf-feedback__stars" role="group" aria-label="Rating">
+            {% for i in (1..5) %}
+              <button type="button" class="jf-feedback__star" data-jf-feedback-star="{{ i }}" aria-label="{{ i }} stars">★</button>
+            {% endfor %}
+          </div>
+          <label class="jf-feedback__label" for="jf-feedback-message">{{ section.settings.message_label }}</label>
+          <textarea id="jf-feedback-message" class="jf-feedback__input" name="contact[body]" rows="5" required placeholder="{{ section.settings.message_placeholder }}"></textarea>
+          <button type="button" class="jf-feedback__btn" data-jf-feedback-next>{{ section.settings.next_label }}</button>
+        </div>
+
+        <div class="jf-feedback__step" data-jf-feedback-step="2" hidden>
+          <h2 class="jf-feedback__title">{{ section.settings.step2_title }}</h2>
+          <label class="jf-feedback__label" for="jf-feedback-name">{{ section.settings.name_label }}</label>
+          <input id="jf-feedback-name" class="jf-feedback__input" type="text" name="contact[name]" required>
+          <label class="jf-feedback__label" for="jf-feedback-email">{{ section.settings.email_label }}</label>
+          <input id="jf-feedback-email" class="jf-feedback__input" type="email" name="contact[email]" required>
+          <button type="submit" class="jf-feedback__btn">{{ section.settings.submit_label }}</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+</div>
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-jf-feedback]');
+    if (!root) return;
+    var dialog = root.querySelector('[data-jf-feedback-dialog]');
+    var ratingInput = root.querySelector('[data-jf-feedback-rating-input]');
+    var step1 = root.querySelector('[data-jf-feedback-step="1"]');
+    var step2 = root.querySelector('[data-jf-feedback-step="2"]');
+    var stars = root.querySelectorAll('[data-jf-feedback-star]');
+
+    function openModal() {
+      if (dialog.showModal) dialog.showModal();
+      else dialog.setAttribute('open', '');
+    }
+    function closeModal() {
+      if (dialog.close) dialog.close();
+      else dialog.removeAttribute('open');
+    }
+
+    document.querySelectorAll('[data-jf-feedback-open]').forEach(function (btn) {
+      btn.addEventListener('click', function (e) {
+        e.preventDefault();
+        openModal();
+      });
+    });
+    root.querySelectorAll('[data-jf-feedback-close]').forEach(function (btn) {
+      btn.addEventListener('click', closeModal);
+    });
+    dialog.addEventListener('click', function (e) {
+      if (e.target === dialog) closeModal();
+    });
+
+    stars.forEach(function (star) {
+      star.addEventListener('click', function () {
+        var value = Number(star.getAttribute('data-jf-feedback-star'));
+        ratingInput.value = String(value);
+        stars.forEach(function (s) {
+          s.classList.toggle('is-active', Number(s.getAttribute('data-jf-feedback-star')) <= value);
+        });
+      });
+    });
+
+    var next = root.querySelector('[data-jf-feedback-next]');
+    if (next) {
+      next.addEventListener('click', function () {
+        var message = root.querySelector('#jf-feedback-message');
+        if (message && !message.value.trim()) {
+          message.focus();
+          return;
+        }
+        if (!ratingInput.value) ratingInput.value = '5';
+        step1.hidden = true;
+        step1.classList.remove('is-active');
+        step2.hidden = false;
+        step2.classList.add('is-active');
+      });
+    }
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Product feedback modal",
+  "tag": "section",
+  "class": "section-jadeed-feedback-modal",
+  "settings": [
+    { "type": "text", "id": "step1_title", "label": "Step 1 title", "default": "Write a review" },
+    { "type": "text", "id": "step2_title", "label": "Step 2 title", "default": "Almost done" },
+    { "type": "text", "id": "message_label", "label": "Message label", "default": "Your feedback" },
+    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Tell us what you think..." },
+    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
+    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email" },
+    { "type": "text", "id": "next_label", "label": "Next button", "default": "Continue" },
+    { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Submit review" },
+    { "type": "image_picker", "id": "background_image", "label": "Modal background override" }
+  ],
+  "presets": [{ "name": "Product feedback modal" }]
+}
+{% endschema %}

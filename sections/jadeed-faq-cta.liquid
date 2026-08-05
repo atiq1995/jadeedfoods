@@ -1,0 +1,24 @@
+<section class="jf-faq-cta">
+  <div class="jf-container">
+    <p class="jf-faq-cta__eyebrow">{{ section.settings.eyebrow }}</p>
+    <h2 class="jf-faq-cta__title">{{ section.settings.title }}</h2>
+    {% if section.settings.button_label != blank %}
+      <a href="{{ section.settings.button_link | default: routes.contact_url }}" class="jf-btn">{{ section.settings.button_label }}</a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "FAQ contact CTA",
+  "tag": "section",
+  "class": "section-jadeed-faq-cta",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "We're here to help!" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Contact us" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Contact us" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "presets": [{ "name": "FAQ contact CTA" }]
+}
+{% endschema %}

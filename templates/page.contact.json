@@ -1,0 +1,40 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero-image",
+      "settings": {
+        "title": "Contact Us",
+        "asset_key": "contact_hero",
+        "overlay": false
+      }
+    },
+    "map": {
+      "type": "jadeed-contact-map",
+      "settings": {
+        "heading": "Find a Jadeed verified location near you",
+        "button_label": "Open in maps"
+      }
+    },
+    "form": {
+      "type": "jadeed-contact-form",
+      "settings": {
+        "heading": "Get in touch",
+        "button_label": "Post comment"
+      }
+    },
+    "info_grid": {
+      "type": "jadeed-contact-grid",
+      "blocks": {
+        "i1": { "type": "info", "settings": { "title": "Contact directly", "content": "<p>web@jadeedfoods.com<br>+92-51-111-JADEED</p>" } },
+        "i2": { "type": "info", "settings": { "title": "Customer service", "content": "<p>support@jadeedfoods.com<br>+92-51-111-JADEED</p>" } },
+        "i3": { "type": "info", "settings": { "title": "Work with us", "content": "<p>careers@jadeedfoods.com</p>" } },
+        "i4": { "type": "info", "settings": { "title": "Media relations", "content": "<p>media@jadeedfoods.com</p>" } },
+        "i5": { "type": "info", "settings": { "title": "Head quarter", "content": "<p>53-C, Satellite Town, Chandni Chowk, Murree Road, Rawalpindi, Pakistan.</p>" } },
+        "i6": { "type": "info", "settings": { "title": "Vendor support", "content": "<p>vendor@jadeedfoods.com</p>" } }
+      },
+      "block_order": ["i1", "i2", "i3", "i4", "i5", "i6"],
+      "settings": {}
+    }
+  },
+  "order": ["hero", "map", "form", "info_grid"]
+}

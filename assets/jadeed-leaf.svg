@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600" fill="none" aria-hidden="true">
+  <path d="M200 20 C120 120 40 280 60 420 C80 540 160 580 200 580 C240 580 320 540 340 420 C360 280 280 120 200 20 Z" stroke="#FFFFFF" stroke-width="8" fill="none" opacity="0.85"/>
+  <path d="M200 80 L200 520" stroke="#FFFFFF" stroke-width="4" opacity="0.6"/>
+  <path d="M200 180 C160 200 120 240 100 280" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+  <path d="M200 260 C240 280 280 320 300 360" stroke="#FFFFFF" stroke-width="3" opacity="0.5"/>
+</svg>

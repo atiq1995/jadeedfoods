@@ -1,0 +1,39 @@
+<section class="jf-order-tracking-wrap">
+  <div class="jf-container">
+    <h1 class="jf-order-tracking-wrap__title">{{ section.settings.title }}</h1>
+    <div class="jf-order-tracking-wrap__card">
+      <p>{{ section.settings.instructions }}</p>
+      <form action="/apps/track" method="get" class="jf-order-tracking-form">
+        <div class="field">
+          <label for="JadeedOrderId">{{ section.settings.order_label }}</label>
+          <input id="JadeedOrderId" class="field__input" type="text" name="order_id" placeholder="{{ section.settings.order_placeholder }}" required>
+        </div>
+        <div class="field">
+          <label for="JadeedBillingEmail">{{ section.settings.email_label }}</label>
+          <input id="JadeedBillingEmail" class="field__input" type="email" name="billing_email" placeholder="{{ section.settings.email_placeholder }}" required>
+        </div>
+        <button type="submit" class="jf-btn">{{ section.settings.button_label }}</button>
+      </form>
+      <p class="jf-order-tracking-wrap__note">{{ section.settings.note }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Order tracking card",
+  "tag": "section",
+  "class": "section-jadeed-order-tracking-form",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Order tracking" },
+    { "type": "textarea", "id": "instructions", "label": "Instructions", "default": "To track your order, please enter your Order ID and billing email used at checkout." },
+    { "type": "text", "id": "order_label", "label": "Order field label", "default": "Order ID" },
+    { "type": "text", "id": "order_placeholder", "label": "Order field placeholder", "default": "Found in your order confirmation email." },
+    { "type": "text", "id": "email_label", "label": "Email field label", "default": "Billing email" },
+    { "type": "text", "id": "email_placeholder", "label": "Email field placeholder", "default": "Email used during checkout." },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Track your order" },
+    { "type": "text", "id": "note", "label": "Note", "default": "Connect this form to your order-tracking app endpoint." }
+  ],
+  "presets": [{ "name": "Order tracking card" }]
+}
+{% endschema %}

@@ -1,0 +1,42 @@
+{% liquid
+  assign map_image = ''
+  if section.settings.map_image != blank
+    assign map_image = section.settings.map_image | image_url: width: 2400
+  else
+    capture map_image
+      render 'jadeed-asset-url', key: 'contact_map'
+    endcapture
+    assign map_image = map_image | strip
+  endif
+%}
+
+<section class="jf-contact-map-wrap">
+  <div class="jf-container">
+    <h2 class="jf-contact-map__heading">{{ section.settings.heading }}</h2>
+    {% if map_image != blank %}
+      <div class="jf-contact-map">
+        <img src="{{ map_image }}" alt="" loading="lazy" width="1360" height="540">
+      </div>
+    {% endif %}
+    {% if section.settings.map_url != blank %}
+      <div class="jf-contact-map__actions">
+        <a href="{{ section.settings.map_url }}" class="jf-btn" target="_blank" rel="noopener">{{ section.settings.button_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact map",
+  "tag": "section",
+  "class": "section-jadeed-contact-map",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Find a Jadeed verified location near you" },
+    { "type": "image_picker", "id": "map_image", "label": "Map image override" },
+    { "type": "url", "id": "map_url", "label": "Map URL" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Open in maps" }
+  ],
+  "presets": [{ "name": "Contact map" }]
+}
+{% endschema %}

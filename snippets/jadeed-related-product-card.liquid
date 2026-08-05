@@ -1,0 +1,33 @@
+{%- comment -%}
+  Related product card for PDP carousel — Figma card with Buy Now.
+{%- endcomment -%}
+{%- if card_product and card_product != empty -%}
+  <article class="jf-pdp-related-card">
+    <a href="{{ card_product.url }}" class="jf-pdp-related-card__media">
+      {%- if card_product.featured_media -%}
+        {{
+          card_product.featured_media
+          | image_url: width: 600
+          | image_tag:
+            loading: 'lazy',
+            widths: '200, 300, 400, 600',
+            sizes: '260px',
+            alt: card_product.featured_media.alt | default: card_product.title | escape
+        }}
+      {%- else -%}
+        {{ 'product-apparel-2' | placeholder_svg_tag: 'placeholder-svg' }}
+      {%- endif -%}
+    </a>
+    <div class="jf-pdp-related-card__body">
+      <h3 class="jf-pdp-related-card__title">
+        <a href="{{ card_product.url }}">{{ card_product.title | escape }}</a>
+      </h3>
+      <p class="jf-pdp-related-card__price">
+        {%- render 'price', product: card_product, price_class: '', show_compare_at_price: true -%}
+      </p>
+      <a href="{{ card_product.url }}" class="jf-pdp-related-card__btn">
+        {{ button_label | default: 'Buy Now' }}
+      </a>
+    </div>
+  </article>
+{%- endif -%}

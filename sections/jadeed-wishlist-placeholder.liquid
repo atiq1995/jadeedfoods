@@ -1,0 +1,31 @@
+<section class="jf-wishlist-placeholder">
+  <div class="jf-container">
+    <h1 class="jf-wishlist-placeholder__title">{{ section.settings.title }}</h1>
+    <p class="jf-wishlist-placeholder__text">{{ section.settings.text }}</p>
+    <ol class="jf-wishlist-placeholder__steps">
+      <li>Install a Shopify wishlist app from the App Store.</li>
+      <li>Enable the app embed and add wishlist buttons to product cards/pages.</li>
+      <li>Link this page in navigation as your wishlist destination.</li>
+    </ol>
+    <a href="{{ routes.all_products_collection_url }}" class="jf-btn">{{ section.settings.button_label }}</a>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Wishlist placeholder",
+  "tag": "section",
+  "class": "section-jadeed-wishlist-placeholder",
+  "settings": [
+    { "type": "text", "id": "title", "label": "Title", "default": "Wishlist" },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Intro text",
+      "default": "Wishlist functionality requires a Shopify app. Your selected app can render live wishlist items here."
+    },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Continue shopping" }
+  ],
+  "presets": [{ "name": "Wishlist placeholder" }]
+}
+{% endschema %}

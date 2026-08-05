@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero",
+      "settings": { "title": "Feedback" }
+    },
+    "feedback": {
+      "type": "jadeed-feedback",
+      "settings": {
+        "heading": "Share your feedback",
+        "intro": "Tell us about your experience with Jadeed Foods products.",
+        "button_label": "Submit feedback"
+      }
+    }
+  },
+  "order": ["hero", "feedback"]
+}

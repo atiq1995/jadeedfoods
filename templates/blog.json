@@ -1,0 +1,15 @@
+{
+  "sections": {
+    "blog_listing": {
+      "type": "jadeed-blog-listing",
+      "settings": {
+        "heading": "Blogs",
+        "subheading": "Recipes, spice guides, and kitchen stories from Jadeed Foods.",
+        "per_page": 6,
+        "show_date": true,
+        "blog_note": ""
+      }
+    }
+  },
+  "order": ["blog_listing"]
+}

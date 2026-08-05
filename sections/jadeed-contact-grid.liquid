@@ -1,0 +1,44 @@
+<section class="jf-contact-grid-info">
+  <div class="jf-container">
+    <div class="jf-contact-grid-info__grid">
+      {% for block in section.blocks %}
+        <article class="jf-contact-grid-info__item" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.title }}</h3>
+          <div class="rte">{{ block.settings.content }}</div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Contact info grid",
+  "tag": "section",
+  "class": "section-jadeed-contact-grid-info",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "info",
+      "name": "Info card",
+      "settings": [
+        { "type": "text", "id": "title", "label": "Title", "default": "Contact directly" },
+        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>web@jadeedfoods.com<br>+92-51-111-JADEED</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact info grid",
+      "blocks": [
+        { "type": "info", "settings": { "title": "Contact directly", "content": "<p>web@jadeedfoods.com<br>+92-51-111-JADEED</p>" } },
+        { "type": "info", "settings": { "title": "Customer service", "content": "<p>support@jadeedfoods.com<br>+92-51-111-JADEED</p>" } },
+        { "type": "info", "settings": { "title": "Work with us", "content": "<p>careers@jadeedfoods.com</p>" } },
+        { "type": "info", "settings": { "title": "Media relations", "content": "<p>media@jadeedfoods.com</p>" } },
+        { "type": "info", "settings": { "title": "Head quarter", "content": "<p>53-C, Satellite Town, Murree Road, Rawalpindi, Pakistan.</p>" } },
+        { "type": "info", "settings": { "title": "Vendor support", "content": "<p>vendor@jadeedfoods.com</p>" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

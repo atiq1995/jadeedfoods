@@ -1,0 +1,122 @@
+{%- comment -%}
+  Jadeed blog listing — use on Shopify Blog template or page.blogs fallback.
+  When Shopify blog articles exist they render; otherwise section blocks (sample posts).
+{%- endcomment -%}
+
+<section class="jf-blog-page-hero">
+  <div class="jf-container">
+    <h1 class="jf-blog-page-hero__title">{{ section.settings.heading }}</h1>
+    {% if section.settings.subheading != blank %}
+      <p class="jf-blog-page-hero__sub">{{ section.settings.subheading }}</p>
+    {% endif %}
+  </div>
+</section>
+
+<section class="jf-blog-listing">
+  <div class="jf-container">
+    {% if blog != blank and blog.articles_count > 0 %}
+      {%- paginate blog.articles by section.settings.per_page -%}
+        <div class="jf-blog-listing__grid">
+          {% for article in blog.articles %}
+            {% liquid
+              assign article_bg = ''
+              if article.image != blank
+                assign article_bg = article.image | image_url: width: 900
+              endif
+            %}
+            <article class="jf-blog-listing__card">
+              <a href="{{ article.url }}" class="jf-blog-listing__media" {% if article_bg != blank %}style="background-image:url('{{ article_bg }}')"{% endif %}>
+                <span class="visually-hidden">{{ article.title }}</span>
+              </a>
+              <div class="jf-blog-listing__content">
+                {% if section.settings.show_date %}
+                  <time class="jf-blog-listing__date" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">{{ article.published_at | date: '%b %d, %Y' }}</time>
+                {% endif %}
+                <h2 class="jf-blog-listing__title"><a href="{{ article.url }}">{{ article.title }}</a></h2>
+                {% if article.excerpt != blank or article.content != blank %}
+                  <p class="jf-blog-listing__excerpt">
+                    {% if article.excerpt != blank %}
+                      {{ article.excerpt | strip_html | truncate: 140 }}
+                    {% else %}
+                      {{ article.content | strip_html | truncate: 140 }}
+                    {% endif %}
+                  </p>
+                {% endif %}
+                <a class="jf-blog-listing__link" href="{{ article.url }}">Read more</a>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+        {%- if paginate.pages > 1 -%}
+          <div class="jf-blog-listing__pagination">{%- render 'pagination', paginate: paginate -%}</div>
+        {%- endif -%}
+      {%- endpaginate -%}
+    {% else %}
+      <div class="jf-blog-listing__grid">
+        {% assign default_keys = 'blog_1,blog_2,blog_3,blog_4,blog_5,blog_6' | split: ',' %}
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_bg = ''
+            assign default_key = default_keys[forloop.index0]
+            if block.settings.image != blank
+              assign card_bg = block.settings.image | image_url: width: 900
+            elsif default_key != blank
+              capture card_bg
+                render 'jadeed-asset-url', key: default_key
+              endcapture
+              assign card_bg = card_bg | strip
+            endif
+            assign post_url = block.settings.link | default: '#'
+          %}
+          <article class="jf-blog-listing__card" {{ block.shopify_attributes }}>
+            <a href="{{ post_url }}" class="jf-blog-listing__media" {% if card_bg != blank %}style="background-image:url('{{ card_bg }}')"{% endif %}>
+              <span class="visually-hidden">{{ block.settings.title }}</span>
+            </a>
+            <div class="jf-blog-listing__content">
+              {% if block.settings.date != blank %}
+                <p class="jf-blog-listing__date">{{ block.settings.date }}</p>
+              {% endif %}
+              <h2 class="jf-blog-listing__title"><a href="{{ post_url }}">{{ block.settings.title }}</a></h2>
+              {% if block.settings.excerpt != blank %}
+                <p class="jf-blog-listing__excerpt">{{ block.settings.excerpt }}</p>
+              {% endif %}
+              <a class="jf-blog-listing__link" href="{{ post_url }}">Read more</a>
+            </div>
+          </article>
+        {% endfor %}
+      </div>
+      {% if section.settings.blog_note != blank %}
+        <p class="jf-blog-listing__note">{{ section.settings.blog_note }}</p>
+      {% endif %}
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jadeed blog listing",
+  "tag": "section",
+  "class": "section-jadeed-blog-listing",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Blogs" },
+    { "type": "textarea", "id": "subheading", "label": "Subheading", "default": "Recipes, spice guides, and kitchen stories from Jadeed Foods." },
+    { "type": "range", "id": "per_page", "label": "Articles per page (Shopify blog)", "min": 3, "max": 12, "step": 1, "default": 6 },
+    { "type": "checkbox", "id": "show_date", "label": "Show publish date", "default": true },
+    { "type": "textarea", "id": "blog_note", "label": "Note when using sample posts", "default": "Create a Shopify blog named News and publish articles to replace these sample posts automatically." }
+  ],
+  "blocks": [
+    {
+      "type": "post",
+      "name": "Sample post",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Cooking tips" },
+        { "type": "text", "id": "date", "label": "Date", "default": "Aug 1, 2025" },
+        { "type": "textarea", "id": "excerpt", "label": "Excerpt", "default": "Simple ways to bring more aroma and flavor to everyday Jadeed meals." },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Jadeed blog listing" }]
+}
+{% endschema %}

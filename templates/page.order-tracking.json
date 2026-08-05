@@ -1,0 +1,17 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero-image",
+      "settings": {
+        "title": "Order Tracking",
+        "asset_key": "order_tracking_hero",
+        "overlay": true
+      }
+    },
+    "tracking": {
+      "type": "jadeed-order-tracking-form",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "tracking"]
+}

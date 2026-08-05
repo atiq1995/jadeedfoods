@@ -1,0 +1,54 @@
+{
+  "sections": {
+    "jadeed-collection-hero": {
+      "type": "jadeed-collection-hero",
+      "settings": {
+        "title": "Flavors made to be remembered",
+        "subtitle": "Shop our premium range of rice, spices, and cooking oils."
+      }
+    },
+    "category-strip": {
+      "type": "jadeed-category-strip",
+      "blocks": {
+        "oil": {
+          "type": "category",
+          "settings": { "label": "Oil", "asset_key": "category_oil", "link": "/collections/all" }
+        },
+        "rice": {
+          "type": "category",
+          "settings": { "label": "Rice", "asset_key": "category_rice", "link": "/collections/all" }
+        },
+        "spices": {
+          "type": "category",
+          "settings": { "label": "Spices", "asset_key": "category_spices", "link": "/collections/all" }
+        }
+      },
+      "block_order": ["oil", "rice", "spices"]
+    },
+    "product-grid": {
+      "type": "main-collection-product-grid",
+      "settings": {
+        "products_per_page": 12,
+        "columns_desktop": 4,
+        "color_scheme": "scheme-1",
+        "image_ratio": "square",
+        "image_shape": "default",
+        "show_secondary_image": false,
+        "show_vendor": false,
+        "show_rating": false,
+        "quick_add": "standard",
+        "enable_filtering": true,
+        "filter_type": "horizontal",
+        "enable_sorting": true,
+        "columns_mobile": "2",
+        "padding_top": 0,
+        "padding_bottom": 48
+      }
+    }
+  },
+  "order": [
+    "jadeed-collection-hero",
+    "category-strip",
+    "product-grid"
+  ]
+}

@@ -1,0 +1,30 @@
+{%- liquid
+  assign banner_text = section.settings.text
+  if banner_text contains '[product]'
+    assign banner_text = banner_text | replace: '[product]', product.title
+  endif
+-%}
+
+<section class="jf-pdp-review-banner" aria-label="Review call to action">
+  <div class="jf-pdp-review-banner__inner">
+    <p class="jf-pdp-review-banner__text">{{ banner_text | escape }}</p>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Product review banner",
+  "tag": "section",
+  "class": "section-jadeed-product-review-banner",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Banner text",
+      "default": "To review \"[product]\" be the first to review",
+      "info": "Use [product] for the current product title."
+    }
+  ],
+  "presets": [{ "name": "Product review banner" }]
+}
+{% endschema %}

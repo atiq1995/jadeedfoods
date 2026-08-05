@@ -1,0 +1,76 @@
+<section class="jf-about-timeline">
+  <div class="jf-about-timeline__intro">
+    <p class="jf-about-timeline__discover">{{ section.settings.discover_label }}</p>
+    <div class="jf-about-timeline__banner">
+      <p class="jf-about-timeline__banner-text">
+        <span>{{ section.settings.banner_left }}</span>
+        <span class="jf-about-timeline__banner-accent">{{ section.settings.banner_accent }}</span>
+        <span>{{ section.settings.banner_right }}</span>
+      </p>
+    </div>
+  </div>
+
+  <div class="jf-container">
+    <div class="jf-about-timeline__grid">
+      {% assign defaults = 'about_timeline_1,about_timeline_2,about_timeline_3' | split: ',' %}
+      {% for block in section.blocks %}
+        {% liquid
+          assign image_url = ''
+          assign fallback_key = defaults[forloop.index0]
+          if block.settings.image != blank
+            assign image_url = block.settings.image | image_url: width: 700
+          else
+            capture image_url
+              render 'jadeed-asset-url', key: fallback_key
+            endcapture
+            assign image_url = image_url | strip
+          endif
+        %}
+        <article class="jf-about-timeline__item" {{ block.shopify_attributes }}>
+          <h3>{{ block.settings.date }}</h3>
+          <p>{{ block.settings.text }}</p>
+          {% if image_url != blank %}
+            <div class="jf-about-timeline__media">
+              <img src="{{ image_url }}" alt="" loading="lazy" width="280" height="280">
+            </div>
+          {% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "About timeline",
+  "tag": "section",
+  "class": "section-jadeed-about-timeline",
+  "settings": [
+    { "type": "text", "id": "discover_label", "label": "Discover label", "default": "Discover" },
+    { "type": "text", "id": "banner_left", "label": "Banner left", "default": "Foods" },
+    { "type": "text", "id": "banner_accent", "label": "Banner accent", "default": "Journey" },
+    { "type": "text", "id": "banner_right", "label": "Banner right", "default": "Jadeed Foods" }
+  ],
+  "blocks": [
+    {
+      "type": "milestone",
+      "name": "Milestone",
+      "settings": [
+        { "type": "text", "id": "date", "label": "Date", "default": "February 2012" },
+        { "type": "textarea", "id": "text", "label": "Description", "default": "Gets launched as online marketplace merchant by Suffwan in Pakistan." },
+        { "type": "image_picker", "id": "image", "label": "Image override" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About timeline",
+      "blocks": [
+        { "type": "milestone", "settings": { "date": "February 2012", "text": "Gets launched as online marketplace merchant by Suffwan in Pakistan." } },
+        { "type": "milestone", "settings": { "date": "July 2015", "text": "Starting Distribution network across the border and in Pakistan." } },
+        { "type": "milestone", "settings": { "date": "September 2015", "text": "Start operating in KSA." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

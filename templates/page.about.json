@@ -1,0 +1,98 @@
+{
+  "sections": {
+    "hero": {
+      "type": "jadeed-page-hero-image",
+      "settings": {
+        "title": "",
+        "asset_key": "about_hero",
+        "overlay": false
+      }
+    },
+    "story": {
+      "type": "jadeed-about-story",
+      "settings": {
+        "heading": "Our Story & Values",
+        "content": "<p>Jadeed Foods is a proud division of Jadeed Group of Companies, specializing in premium packaged foods rooted in Pakistan's strong agricultural heritage. Leveraging decades of expertise in farming, production, and exports, we are committed to delivering high-quality, Halal-certified, and naturally crafted food products that meet modern consumer standards.</p>"
+      }
+    },
+    "pillars": {
+      "type": "jadeed-about-pillars",
+      "blocks": {
+        "p1": {
+          "type": "pillar",
+          "settings": {
+            "title": "Purity",
+            "text": "Sourcing the finest natural ingredients."
+          }
+        },
+        "p2": {
+          "type": "pillar",
+          "settings": {
+            "title": "Innovation",
+            "text": "Consistent product improvement and process advancement."
+          }
+        },
+        "p3": {
+          "type": "pillar",
+          "settings": {
+            "title": "Collaboration",
+            "text": "Building trusted partnerships with distributors and retailers across markets."
+          }
+        }
+      },
+      "block_order": ["p1", "p2", "p3"],
+      "settings": {
+        "lead_text": "We stand for",
+        "highlight_1": "Purity",
+        "highlight_2": "Innovation",
+        "and_text": "and",
+        "highlight_3": "Collaboration"
+      }
+    },
+    "stats": {
+      "type": "jadeed-about-stats",
+      "blocks": {
+        "s1": { "type": "stat", "settings": { "icon": "box", "value": "45M", "label": "Products for sale" } },
+        "s2": { "type": "stat", "settings": { "icon": "store", "value": "1.8M", "label": "Sellers on Jadeed Foods" } },
+        "s3": { "type": "stat", "settings": { "icon": "bag", "value": "30.6M", "label": "Buyers on Jadeed Foods" } },
+        "s4": { "type": "stat", "settings": { "icon": "money", "value": "Rs 2.64M", "label": "Annual gross sales" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4"],
+      "settings": {}
+    },
+    "timeline": {
+      "type": "jadeed-about-timeline",
+      "blocks": {
+        "m1": {
+          "type": "milestone",
+          "settings": {
+            "date": "February 2012",
+            "text": "Gets launched as online marketplace merchant by Suffwan in Pakistan."
+          }
+        },
+        "m2": {
+          "type": "milestone",
+          "settings": {
+            "date": "July 2015",
+            "text": "Starting Distribution network across the border and in Pakistan."
+          }
+        },
+        "m3": {
+          "type": "milestone",
+          "settings": {
+            "date": "September 2015",
+            "text": "Start operating in KSA."
+          }
+        }
+      },
+      "block_order": ["m1", "m2", "m3"],
+      "settings": {
+        "discover_label": "Discover",
+        "banner_left": "Foods",
+        "banner_accent": "Journey",
+        "banner_right": "Jadeed Foods"
+      }
+    }
+  },
+  "order": ["hero", "story", "pillars", "stats", "timeline"]
+}

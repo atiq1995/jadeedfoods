@@ -1,0 +1,70 @@
+<section class="jf-section jf-section--cream">
+  <div class="jf-container">
+    <h2 class="jf-section__heading jf-section__heading--navy">{{ section.settings.heading }}</h2>
+    <div class="jf-deals-grid">
+      {% assign default_keys = 'deal_pepper,deal_flax,deal_pack' | split: ',' %}
+      {% for block in section.blocks %}
+        {% liquid
+          assign card_title = block.settings.title
+          assign card_link = block.settings.link
+          assign card_color = block.settings.color | default: '#203165'
+          assign card_bg_url = ''
+          assign default_key = default_keys[forloop.index0]
+
+          if block.settings.image != blank
+            assign card_bg_url = block.settings.image | image_url: width: 800
+          elsif default_key != blank
+            capture card_bg_url
+              render 'jadeed-asset-url', key: default_key
+            endcapture
+            assign card_bg_url = card_bg_url | strip
+          endif
+        %}
+        <a
+          href="{{ card_link | default: '#' }}"
+          class="jf-card jf-card--deal"
+          style="{% if card_bg_url != blank %}background-image:url('{{ card_bg_url }}');{% endif %} background-color: {{ card_color }};"
+          {{ block.shopify_attributes }}
+        >
+          <div class="jf-card__body">
+            <span class="jf-card__title">{{ card_title }}</span>
+            <span class="jf-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+    {% if section.settings.button_label != blank %}
+      <div class="jf-section__footer">
+        <a href="{{ section.settings.button_link | default: '#' }}" class="jf-btn">{{ section.settings.button_label }}</a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Special deals",
+  "tag": "section",
+  "class": "section-jadeed-deals",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Special Deals" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "See all products" },
+    { "type": "url", "id": "button_link", "label": "Button link" }
+  ],
+  "blocks": [
+    {
+      "type": "deal",
+      "name": "Deal card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image" },
+        { "type": "color", "id": "color", "label": "Fallback background color", "default": "#203165" },
+        { "type": "text", "id": "title", "label": "Title", "default": "BLACK PEPPER" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Special deals" }]
+}
+{% endschema %}

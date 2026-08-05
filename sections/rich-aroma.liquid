@@ -1,0 +1,41 @@
+{% liquid
+  assign image_url = ''
+  if section.settings.image != blank
+    assign image_url = section.settings.image | image_url: width: 900
+  else
+    assign image_url = 'jadeed-rich-aroma.jpg' | asset_url
+  endif
+%}
+<section class="jf-rich-aroma">
+  <div class="jf-container jf-rich-aroma__grid">
+    <div class="jf-rich-aroma__media">
+      <div class="jf-rich-aroma__circle" style="background-image:url('{{ image_url }}');"></div>
+      <img class="jf-rich-aroma__leaf" src="{{ 'jadeed-leaf.svg' | asset_url }}" alt="" width="120" height="180" loading="lazy">
+    </div>
+    <div class="jf-rich-aroma__content">
+      <h2 class="jf-rich-aroma__title">{{ section.settings.title }}</h2>
+      {% if section.settings.text != blank %}
+        <p class="jf-rich-aroma__text">{{ section.settings.text }}</p>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Rich aroma banner",
+  "tag": "section",
+  "class": "section-jadeed-rich-aroma",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Rich Aroma. Perfect Taste." },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Text",
+      "default": "From rich aroma to bold taste, our spices bring every dish to life with the perfect touch of tradition."
+    }
+  ],
+  "presets": [{ "name": "Rich aroma banner" }]
+}
+{% endschema %}

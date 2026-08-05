@@ -1,0 +1,86 @@
+<section class="jf-section jf-section--red">
+  <div class="jf-container">
+    <h2 class="jf-section__heading">{{ section.settings.heading }}</h2>
+    <div class="jf-category-grid">
+      {% assign default_keys = 'category_rice,category_spices,category_oil' | split: ',' %}
+      {% for block in section.blocks %}
+        {% liquid
+          assign card_title = block.settings.title
+          assign card_desc = block.settings.description
+          assign card_link = block.settings.link
+          assign card_image = blank
+          assign card_bg = '#821D21'
+          assign card_bg_url = ''
+          assign default_key = default_keys[forloop.index0]
+
+          if block.settings.collection != blank
+            assign col = block.settings.collection
+            if card_title == blank
+              assign card_title = col.title
+            endif
+            if card_link == blank
+              assign card_link = col.url
+            endif
+            if block.settings.image == blank and col.featured_image
+              assign card_image = col.featured_image
+            endif
+          endif
+
+          if block.settings.image != blank
+            assign card_image = block.settings.image
+          endif
+
+          if card_image != blank
+            assign card_bg_url = card_image | image_url: width: 800
+          elsif default_key != blank
+            capture card_bg_url
+              render 'jadeed-asset-url', key: default_key
+            endcapture
+            assign card_bg_url = card_bg_url | strip
+          endif
+        %}
+        <a
+          href="{{ card_link | default: '#' }}"
+          class="jf-card jf-card--category"
+          style="{% if card_bg_url != blank %}background-image:url('{{ card_bg_url }}');{% endif %} background-color: {{ card_bg }};"
+          {{ block.shopify_attributes }}
+        >
+          <div class="jf-card__body">
+            <span class="jf-card__title">{{ card_title }}</span>
+            {% if card_desc != blank %}
+              <span class="jf-card__text">{{ card_desc }}</span>
+            {% endif %}
+            <span class="jf-arrow-btn" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by category",
+  "tag": "section",
+  "class": "section-jadeed-category",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by Category" }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection (optional)" },
+        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "text", "id": "title", "label": "Title", "default": "RANGE OF RICE" },
+        { "type": "textarea", "id": "description", "label": "Description" },
+        { "type": "url", "id": "link", "label": "Link override" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Shop by category" }]
+}
+{% endschema %}

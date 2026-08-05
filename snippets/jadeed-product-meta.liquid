@@ -1,0 +1,28 @@
+{%- comment -%}
+  Category + stock status row — Figma PDP meta labels.
+{%- endcomment -%}
+<div class="jf-pdp-meta" {{ block.shopify_attributes }}>
+  {%- liquid
+    assign category_label = product.type
+    if category_label == blank
+      assign category_label = product.vendor
+    endif
+    if category_label == blank
+      assign category_label = block.settings.category_fallback
+    endif
+  -%}
+  <p class="jf-pdp-meta__item">
+    <span class="jf-pdp-meta__label">{{ block.settings.category_label | default: 'Category' }}:</span>
+    <span class="jf-pdp-meta__value">{{ category_label | escape }}</span>
+  </p>
+  <p class="jf-pdp-meta__item">
+    <span class="jf-pdp-meta__label">{{ block.settings.status_label | default: 'Status' }}:</span>
+    <span class="jf-pdp-meta__value">
+      {%- if product.selected_or_first_available_variant.available -%}
+        {{ block.settings.in_stock_text | default: 'In Stock' }}
+      {%- else -%}
+        {{ block.settings.out_of_stock_text | default: 'Out of Stock' }}
+      {%- endif -%}
+    </span>
+  </p>
+</div>
