@@ -1,6 +1,8 @@
 <section class="jf-wishlist-placeholder">
   <div class="jf-container">
-    <h1 class="jf-wishlist-placeholder__title">{{ section.settings.title }}</h1>
+    {% if section.settings.title != blank %}
+      <h2 class="jf-wishlist-placeholder__title">{{ section.settings.title }}</h2>
+    {% endif %}
     <p class="jf-wishlist-placeholder__text">{{ section.settings.text }}</p>
     <ol class="jf-wishlist-placeholder__steps">
       <li>Install a Shopify wishlist app from the App Store.</li>
@@ -17,7 +19,7 @@
   "tag": "section",
   "class": "section-jadeed-wishlist-placeholder",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Wishlist" },
+    { "type": "text", "id": "title", "label": "Title", "default": "" },
     {
       "type": "textarea",
       "id": "text",

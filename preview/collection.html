@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <title>Jadeed Foods — Collection</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Poppins:wght@400;500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/jadeed.css">
+  <style>
+    body { margin: 0; }
+    .preview-note { position: sticky; top: 0; z-index: 9999; background: #203165; color: #FFFBEB; text-align: center; font: 600 13px Inter,sans-serif; padding: 8px; }
+    .cart-demo{max-width:1100px;margin:40px auto;padding:0 24px}
+    .cart-demo table{width:100%;border-collapse:collapse;background:#fff}
+    .cart-demo th,.cart-demo td{padding:14px;border-bottom:1px solid #eee;text-align:left}
+  </style>
+</head>
+<body>
+  <div class="preview-note">Local preview — same header / navbar / footer on every page</div>
+  <div class="utility-bar">Welcome to Jadeed Foods Online Store!</div>
+  <div class="header-wrapper">
+    <header class="header header--middle-left">
+      <div class="jf-header-brand-row">
+        <a href="./index.html" class="header__heading-link"><img src="../assets/jadeed-logo.png" alt="Jadeed Foods" height="56" onerror="this.style.display='none';this.nextElementSibling.style.display='inline'"><span style="display:none">Jadeed Foods</span></a>
+        <div class="header__search-mock">Search for...</div>
+        <a href="./cart.html" class="header__icon--cart"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg> Rs.0.00 (0)</a>
+      </div>
+    </header>
+    <div class="jf-nav-bar">
+      <div class="jf-nav-bar__inner">
+        <nav class="header__inline-menu">
+          <ul class="list-menu list-menu--inline" style="list-style:none;display:flex;flex-wrap:wrap;gap:clamp(16px,2.2vw,32px);margin:0;padding:0">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html#shop-products">Jadeed Products</a></li>
+            <li><a href="./about.html">About Us</a></li>
+            <li><a href="./index.html#shop-products">Special Deals</a></li>
+            <li><a href="./index.html#blogs">Blog</a></li>
+            <li><a href="./contact.html">Contact</a></li>
+            <li><a href="./contact.html">Become a Vendor</a></li>
+          </ul>
+        </nav>
+        <div class="jf-nav-bar__delivery">
+          <div class="jf-delivery-badge jf-delivery-badge--lockup">
+            <img class="jf-delivery-badge__lockup" src="../assets/jadeed-free-delivery.svg" alt="FREE DELIVERY Upto Order of Rs. 4999" width="299" height="41">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main>
+    <section class="jf-collection-hero jf-collection-hero--photo" style="background-image:url('../assets/jadeed-collection-hero.jpg')" aria-label="Collection hero"></section>
+    <section class="jf-category-strip"><div class="jf-container"><div class="jf-category-strip__row">
+      <a class="jf-category-strip__item" href="#"><span class="jf-category-strip__label">Oil</span><span class="jf-category-strip__media"><img src="../assets/jadeed-category-oil.jpg" alt=""></span></a>
+      <a class="jf-category-strip__item" href="#"><span class="jf-category-strip__label">Rice</span><span class="jf-category-strip__media"><img src="../assets/jadeed-category-rice.jpg" alt=""></span></a>
+      <a class="jf-category-strip__item" href="#"><span class="jf-category-strip__label">Spices</span><span class="jf-category-strip__media"><img src="../assets/jadeed-category-spices.jpg" alt=""></span></a>
+    </div></div></section>
+    <div class="jf-container" style="background:#BC2026;color:#fff;padding:14px 20px;font:700 18px 'Barlow Condensed',sans-serif;text-transform:uppercase">Filter By</div>
+    <div class="jf-container"><div class="jf-plp-grid">
+      <a class="jf-plp-card" href="./product.html"><img src="../assets/jadeed-product-spices.jpg" alt=""><div class="jf-plp-card__meta"><span>Ajwain 100 grams</span><span>Rs 145</span></div><span class="jf-plp-buy">Buy Now</span></a>
+      <a class="jf-plp-card" href="./product.html"><img src="../assets/jadeed-product-rice.jpg" alt=""><div class="jf-plp-card__meta"><span>Best Selling Rice</span><span>Rs 890</span></div><span class="jf-plp-buy">Buy Now</span></a>
+      <a class="jf-plp-card" href="./product.html"><img src="../assets/jadeed-product-oil.jpg" alt=""><div class="jf-plp-card__meta"><span>Best Selling Oil</span><span>Rs 1,250</span></div><span class="jf-plp-buy">Buy Now</span></a>
+      <a class="jf-plp-card" href="./product.html"><img src="../assets/jadeed-product-spices.jpg" alt=""><div class="jf-plp-card__meta"><span>Garam Masala</span><span>Rs 320</span></div><span class="jf-plp-buy">Buy Now</span></a>
+    </div>
+    <div style="text-align:center;padding-bottom:48px"><a class="jf-btn" href="#">Load More</a></div></div>
+  </main>
+</body>
+</html>

@@ -8,23 +8,34 @@
     endcapture
     assign hero_bg = hero_bg | strip
   endif
+
+  assign hero_title = section.settings.title
+  if section.settings.use_collection_title and collection != blank
+    assign hero_title = collection.title
+  endif
+
+  assign show_text = false
+  if hero_title != blank or section.settings.subtitle != blank
+    assign show_text = true
+  endif
 %}
 
-<section class="jf-collection-hero" {% if hero_bg != blank %}style="background-image:url('{{ hero_bg }}');"{% endif %}>
-  <div class="jf-container jf-collection-hero__inner">
-    <div>
-      <h1>
-        {%- if section.settings.use_collection_title and collection != blank -%}
-          {{ collection.title }}
-        {%- else -%}
-          {{ section.settings.title }}
-        {%- endif -%}
-      </h1>
-      {% if section.settings.subtitle != blank %}
-        <p>{{ section.settings.subtitle }}</p>
-      {% endif %}
+<section
+  class="jf-collection-hero{% unless show_text %} jf-collection-hero--photo{% endunless %}"
+  {% if hero_bg != blank %}style="background-image:url('{{ hero_bg }}');"{% endif %}
+>
+  {% if show_text %}
+    <div class="jf-container jf-collection-hero__inner">
+      <div>
+        {% if hero_title != blank %}
+          <h1>{{ hero_title }}</h1>
+        {% endif %}
+        {% if section.settings.subtitle != blank %}
+          <p>{{ section.settings.subtitle }}</p>
+        {% endif %}
+      </div>
     </div>
-  </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -34,8 +45,8 @@
   "class": "section-jadeed-collection-hero",
   "settings": [
     { "type": "checkbox", "id": "use_collection_title", "label": "Use collection title", "default": false },
-    { "type": "text", "id": "title", "label": "Title", "default": "Flavors made to be remembered" },
-    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "Discover our premium range of rice, spices, and oils." },
+    { "type": "text", "id": "title", "label": "Title", "default": "" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "" },
     { "type": "image_picker", "id": "image", "label": "Background image override" }
   ],
   "presets": [{ "name": "Collection hero" }]

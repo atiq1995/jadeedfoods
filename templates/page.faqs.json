@@ -1,11 +1,9 @@
 {
   "sections": {
-    "hero": {
-      "type": "jadeed-page-hero-image",
+    "title": {
+      "type": "jadeed-cart-title",
       "settings": {
-        "title": "FAQs",
-        "asset_key": "faqs_hero",
-        "overlay": false
+        "title": "FAQs"
       }
     },
     "shipping": {
@@ -46,5 +44,5 @@
       }
     }
   },
-  "order": ["hero", "shipping", "payment", "orders_returns", "cta"]
+  "order": ["title", "shipping", "payment", "orders_returns", "cta"]
 }

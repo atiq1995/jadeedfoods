@@ -2549,6 +2549,10 @@ body.customer-logged-out main[data-template="login"] {
   display: flex;
   align-items: center;
 }
+.jf-collection-hero--photo {
+  min-height: clamp(360px, 42vw, 520px);
+  background-position: center top;
+}
 .jf-collection-hero__inner h1 {
   font-family: var(--jf-font-heading);
   text-transform: uppercase;
