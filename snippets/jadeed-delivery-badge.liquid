@@ -1,30 +1,14 @@
 {%- comment -%}
-  Free Delivery badge — Figma Group 8537 (full lockup SVG: truck + copy).
+  Free Delivery badge — always use the Figma lockup SVG.
+  Custom delivery_icon uploads (product photos) break the header layout.
 {%- endcomment -%}
-{% if section.settings.delivery_icon != blank %}
-  <div class="jf-delivery-badge">
-    <img
-      class="jf-delivery-badge__icon"
-      src="{{ section.settings.delivery_icon | image_url: width: 120 }}"
-      alt=""
-      width="53"
-      height="32"
-      loading="lazy"
-    >
-    <div class="jf-delivery-badge__text">
-      <span class="jf-delivery-badge__label">{{ section.settings.delivery_label | default: 'FREE DELIVERY' }}</span>
-      <span class="jf-delivery-badge__value">{{ section.settings.delivery_value | default: 'Upto Order of Rs. 4999' }}</span>
-    </div>
-  </div>
-{% else %}
-  <div class="jf-delivery-badge jf-delivery-badge--lockup">
-    <img
-      class="jf-delivery-badge__lockup"
-      src="{{ 'jadeed-free-delivery.svg' | asset_url }}"
-      alt="{{ section.settings.delivery_label | default: 'FREE DELIVERY' }} {{ section.settings.delivery_value | default: 'Upto Order of Rs. 4999' }}"
-      width="299"
-      height="41"
-      loading="lazy"
-    >
-  </div>
-{% endif %}
+<div class="jf-delivery-badge jf-delivery-badge--lockup">
+  <img
+    class="jf-delivery-badge__lockup"
+    src="{{ 'jadeed-free-delivery.svg' | asset_url }}"
+    alt="{{ section.settings.delivery_label | default: 'FREE DELIVERY' }} {{ section.settings.delivery_value | default: 'Upto Order of Rs. 4999' }}"
+    width="299"
+    height="41"
+    loading="eager"
+  >
+</div>

@@ -170,10 +170,35 @@ summary,
 }
 .header__heading-logo,
 .header__heading-link img {
+  max-height: 56px !important;
+  max-width: 160px !important;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  display: block;
+}
+
+/* Never let header/nav images blow out the chrome (e.g. product photo uploaded as icon) */
+.header-wrapper img,
+.jf-nav-bar img,
+.jf-delivery-badge img {
   max-height: 56px;
   width: auto;
   object-fit: contain;
+}
+.jf-delivery-badge__lockup {
   display: block;
+  width: min(299px, 32vw) !important;
+  max-width: 299px !important;
+  height: auto !important;
+  max-height: 41px !important;
+}
+.jf-delivery-badge__icon {
+  width: 40px !important;
+  max-width: 40px !important;
+  height: auto !important;
+  max-height: 32px !important;
+  flex-shrink: 0;
 }
 .header__icon {
   color: var(--jf-navy) !important;
@@ -469,19 +494,10 @@ summary,
 .jf-delivery-badge--lockup {
   gap: 0;
 }
-.jf-delivery-badge__lockup {
-  display: block;
-  width: min(299px, 30vw);
-  height: auto;
-  max-height: 41px;
-}
-.jf-delivery-badge__icon {
-  width: 40px;
-  height: auto;
-  flex-shrink: 0;
-}
-.jf-delivery-badge img {
-  display: block;
+.jf-delivery-badge__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
 }
 .jf-delivery-badge__label {
   display: block;
