@@ -1,17 +1,17 @@
 {
   "sections": {
-    "hero": {
-      "type": "jadeed-page-hero-image",
-      "settings": {
-        "title": "Order Tracking",
-        "asset_key": "order_tracking_hero",
-        "overlay": true
-      }
-    },
     "tracking": {
       "type": "jadeed-order-tracking-form",
-      "settings": {}
+      "settings": {
+        "title": "Order Tracking",
+        "instructions": "To track your order please enter your Order ID in the box below and press the \"Track\" button. This is given in your receipt and in the confirmation email you should have received.",
+        "order_label": "Order ID",
+        "order_placeholder": "Found in your order confirmation email.",
+        "email_label": "Billing email",
+        "email_placeholder": "Email you used during checkout.",
+        "button_label": "Track your order"
+      }
     }
   },
-  "order": ["hero", "tracking"]
+  "order": ["tracking"]
 }
