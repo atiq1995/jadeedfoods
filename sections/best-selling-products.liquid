@@ -13,6 +13,7 @@
           assign card_link = block.settings.link
           assign card_bg_url = ''
           assign default_key = default_keys[forloop.index0]
+          assign use_composite = false
 
           if block.settings.product != blank
             assign prod = block.settings.product
@@ -26,23 +27,25 @@
               assign card_desc = prod.description | strip_html | truncate: 120
             endif
             if block.settings.image == blank and prod.featured_media
-              assign card_bg_url = prod.featured_media.preview_image | image_url: width: 800
+              assign card_bg_url = prod.featured_media.preview_image | image_url: width: 1200
             endif
           endif
 
           if block.settings.image != blank
-            assign card_bg_url = block.settings.image | image_url: width: 800
+            assign card_bg_url = block.settings.image | image_url: width: 1200
           elsif card_bg_url == blank and default_key != blank
             capture card_bg_url
               render 'jadeed-asset-url', key: default_key
             endcapture
             assign card_bg_url = card_bg_url | strip
+            assign use_composite = true
           endif
         %}
         <a
           href="{{ card_link | default: '#' }}"
-          class="jf-card jf-card--product"
+          class="jf-card jf-card--product{% if use_composite %} jf-card--composite{% endif %}"
           style="{% if card_bg_url != blank %}background-image:url('{{ card_bg_url }}');{% endif %} background-color:#1a2a5c;"
+          aria-label="{{ card_title | escape }}"
           {{ block.shopify_attributes }}
         >
           <div class="jf-card__body">

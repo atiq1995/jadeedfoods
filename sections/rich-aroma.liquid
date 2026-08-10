@@ -1,7 +1,7 @@
 {% liquid
   assign image_url = ''
   if section.settings.image != blank
-    assign image_url = section.settings.image | image_url: width: 900
+    assign image_url = section.settings.image | image_url: width: 1400
   else
     assign image_url = 'jadeed-rich-aroma.jpg' | asset_url
   endif

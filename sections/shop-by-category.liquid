@@ -12,6 +12,7 @@
           assign card_bg = '#821D21'
           assign card_bg_url = ''
           assign default_key = default_keys[forloop.index0]
+          assign use_composite = false
 
           if block.settings.collection != blank
             assign col = block.settings.collection
@@ -31,18 +32,20 @@
           endif
 
           if card_image != blank
-            assign card_bg_url = card_image | image_url: width: 800
+            assign card_bg_url = card_image | image_url: width: 1200
           elsif default_key != blank
             capture card_bg_url
               render 'jadeed-asset-url', key: default_key
             endcapture
             assign card_bg_url = card_bg_url | strip
+            assign use_composite = true
           endif
         %}
         <a
           href="{{ card_link | default: '#' }}"
-          class="jf-card jf-card--category"
+          class="jf-card jf-card--category{% if use_composite %} jf-card--composite{% endif %}"
           style="{% if card_bg_url != blank %}background-image:url('{{ card_bg_url }}');{% endif %} background-color: {{ card_bg }};"
+          aria-label="{{ card_title | escape }}"
           {{ block.shopify_attributes }}
         >
           <div class="jf-card__body">

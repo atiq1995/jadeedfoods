@@ -3,7 +3,7 @@
     "hero": {
       "type": "hero-banner",
       "settings": {
-        "title": "Flavors Made to Be Remembered",
+        "title": "",
         "subtitle": "",
         "button_label": "",
         "button_link": "/collections/all"

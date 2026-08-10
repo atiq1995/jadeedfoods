@@ -1,15 +1,19 @@
 {% liquid
   assign hero_bg = ''
   if section.settings.background_image != blank
-    assign hero_bg = section.settings.background_image | image_url: width: 1920
+    assign hero_bg = section.settings.background_image | image_url: width: 2400
   else
     assign hero_bg = 'jadeed-hero-bg.jpg' | asset_url
   endif
 %}
-<section class="jf-hero" style="background-image: url('{{ hero_bg }}');">
+<section class="jf-hero" style="background-image: url('{{ hero_bg }}');"{% if section.settings.title != blank %} aria-label="{{ section.settings.title | escape }}"{% endif %}>
   <div class="jf-container">
     <div class="jf-hero__content">
-      <h1 class="jf-hero__title">{{ section.settings.title }}</h1>
+      {% if section.settings.title != blank %}
+        <h1 class="jf-hero__title">{{ section.settings.title }}</h1>
+      {% else %}
+        <h1 class="visually-hidden">Jadeed Foods</h1>
+      {% endif %}
       {% if section.settings.subtitle != blank %}
         <p class="jf-hero__subtitle">{{ section.settings.subtitle }}</p>
       {% endif %}
