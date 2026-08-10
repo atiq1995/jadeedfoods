@@ -119,6 +119,23 @@ summary,
 }
 
 /* ---- Dawn header → cream bar + centered brand row ---- */
+
+/* Sticky header must sit above page banners/cards when it reappears on scroll-up.
+   Static {% section 'header' %} is not in header-group, so Dawn's group z-index never applies. */
+#shopify-section-header.section-header,
+#shopify-section-header.shopify-section-header-sticky,
+.shopify-section.section-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  isolation: isolate;
+  background: var(--jf-cream);
+}
+#shopify-section-announcement-bar {
+  position: relative;
+  z-index: 1001;
+  background: var(--jf-navy);
+}
 .header-wrapper {
   background: var(--jf-cream) !important;
   border-bottom: none !important;
