@@ -238,18 +238,61 @@ summary,
 }
 
 /* Search pill — centered between logo and cart */
+.header__search {
+  line-height: normal;
+}
+
 .header__search .header__icon--search,
 .header__search summary.header__icon {
-  border: 1px solid rgba(0, 0, 0, 0.17);
-  border-radius: var(--jf-radius-pill);
-  padding: 0.65rem 1.4rem;
-  min-width: 200px;
-  width: 100%;
+  display: inline-flex !important;
+  align-items: center;
   justify-content: flex-start;
   gap: 0.6rem;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: var(--jf-radius-pill);
+  padding: 0.65rem 1.4rem !important;
+  min-width: 200px;
+  width: 100%;
+  height: auto !important;
+  min-height: 44px;
+  box-sizing: border-box;
   background: var(--jf-white);
-  height: auto;
+  text-decoration: none !important;
+  line-height: 1.4;
+  cursor: pointer;
 }
+
+.header__search summary.header__icon > span {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: auto !important;
+  height: auto !important;
+  flex: 0 0 auto;
+}
+
+.header__search summary.header__icon .svg-wrapper {
+  width: 18px;
+  height: 18px;
+}
+
+.header__search summary.header__icon .icon {
+  width: 18px;
+  height: 18px;
+}
+
+.header__search summary.header__icon::after {
+  content: "Search for...";
+  font-family: var(--jf-font-ui);
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: var(--jf-muted);
+  text-transform: none;
+  line-height: 1.4;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
 .header__search-mock {
   flex: 0 1 min(480px, 42vw);
   width: min(480px, 42vw);
@@ -289,14 +332,10 @@ summary,
     width: min(480px, 42vw);
     max-width: 480px;
   }
-  .header--middle-left .jf-header-brand-row > .header__search summary.header__icon::after,
-  .header--middle-left > .header__search summary.header__icon::after {
-    content: "Search for...";
-    font-family: var(--jf-font-ui);
-    font-size: 1.2rem;
-    font-weight: 400;
-    color: var(--jf-muted);
-    text-transform: none;
+  .header--middle-left .jf-header-brand-row > .header__search summary.header__icon,
+  .header--middle-left > .header__search summary.header__icon {
+    min-width: min(480px, 42vw);
+    width: 100%;
   }
   .header--middle-left header-drawer {
     position: absolute;
