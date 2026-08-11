@@ -1,7 +1,13 @@
-<section class="jf-purity">
-  <p class="jf-purity__line jf-purity__line--2">{{ section.settings.word }}</p>
-  <p class="jf-purity__line jf-purity__line--1">{{ section.settings.line_before }}</p>
-  <p class="jf-purity__line jf-purity__line--3">{{ section.settings.line_after }}</p>
+<section class="jf-purity" aria-label="{{ section.settings.word | escape }}">
+  <div class="jf-purity__track">
+    {% for i in (1..2) %}
+      <p class="jf-purity__line">
+        <span class="jf-purity__before">{{ section.settings.line_before }}</span>
+        <span class="jf-purity__word">{{ section.settings.word }}</span>
+        <span class="jf-purity__after">{{ section.settings.line_after }}</span>
+      </p>
+    {% endfor %}
+  </div>
 </section>
 
 {% schema %}

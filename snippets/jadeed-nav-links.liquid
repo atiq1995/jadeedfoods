@@ -1,0 +1,25 @@
+{% comment %}
+  HOMEPAGE.png desktop/mobile nav items.
+  Become a Vendor is appended separately in jadeed-header-nav.
+{% endcomment %}
+{%- assign jf_nav_items = 'Home|/,'
+  | append: 'Jadeed Products|/collections/all,'
+  | append: 'About Us|/pages/about-us,'
+  | append: 'Special Deals|/collections/all,'
+  | append: 'Blog|/blogs/news,'
+  | append: 'Contact|/pages/contact-us'
+-%}
+{%- assign jf_nav_pairs = jf_nav_items | split: ',' -%}
+{%- for pair in jf_nav_pairs -%}
+  {%- assign parts = pair | split: '|' -%}
+  {%- assign jf_label = parts[0] -%}
+  {%- assign jf_href = parts[1] -%}
+  <li>
+    <a
+      href="{{ jf_href }}"
+      class="header__menu-item list-menu__item link link--text focus-inset{% if request.path == jf_href %} list-menu__item--active{% endif %}"
+    >
+      <span{% if request.path == jf_href %} class="header__active-menu-item"{% endif %}>{{ jf_label }}</span>
+    </a>
+  </li>
+{%- endfor -%}

@@ -6,12 +6,9 @@
     assign image_url = 'jadeed-rich-aroma.jpg' | asset_url
   endif
 %}
-<section class="jf-rich-aroma">
+<section class="jf-rich-aroma" style="background-image:url('{{ image_url }}');">
   <div class="jf-container jf-rich-aroma__grid">
-    <div class="jf-rich-aroma__media">
-      <div class="jf-rich-aroma__circle" style="background-image:url('{{ image_url }}');" aria-hidden="true">&nbsp;</div>
-      <img class="jf-rich-aroma__leaf" src="{{ 'jadeed-leaf.svg' | asset_url }}" alt="" width="120" height="180" loading="lazy">
-    </div>
+    <div class="jf-rich-aroma__media" aria-hidden="true"></div>
     <div class="jf-rich-aroma__content">
       <h2 class="jf-rich-aroma__title">{{ section.settings.title }}</h2>
       {% if section.settings.text != blank %}

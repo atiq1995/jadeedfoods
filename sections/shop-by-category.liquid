@@ -1,6 +1,6 @@
-<section class="jf-section jf-section--red">
+<section class="jf-section jf-section--red jf-section--category" id="shop-by-category">
   <div class="jf-container">
-    <h2 class="jf-section__heading">{{ section.settings.heading }}</h2>
+    <h2 class="jf-section__heading jf-section__heading--left">{{ section.settings.heading }}</h2>
     <div class="jf-category-grid">
       {% assign default_keys = 'category_rice,category_spices,category_oil' | split: ',' %}
       {% for block in section.blocks %}

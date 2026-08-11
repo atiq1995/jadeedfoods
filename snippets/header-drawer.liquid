@@ -21,6 +21,36 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- assign jf_drawer_items = 'Home|/,'
+                | append: 'Jadeed Products|/collections/all,'
+                | append: 'About Us|/pages/about-us,'
+                | append: 'Special Deals|/collections/all,'
+                | append: 'Blog|/blogs/news,'
+                | append: 'Contact|/pages/contact-us'
+              -%}
+              {%- assign jf_drawer_pairs = jf_drawer_items | split: ',' -%}
+              {%- for pair in jf_drawer_pairs -%}
+                {%- assign parts = pair | split: '|' -%}
+                <li>
+                  <a
+                    href="{{ parts[1] }}"
+                    class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                  >
+                    {{ parts[0] }}
+                  </a>
+                </li>
+              {%- endfor -%}
+              {%- if section.settings.show_vendor_link -%}
+                <li>
+                  <a
+                    href="{{ section.settings.vendor_link_url | default: '#' }}"
+                    class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
+                  >
+                    {{ section.settings.vendor_link_label | escape }}
+                  </a>
+                </li>
+              {%- endif -%}
+              {%- unless true -%}
               {%- for link in section.settings.menu.links -%}
                 <li>
                   {%- if link.links != blank -%}
@@ -133,6 +163,7 @@
                   {%- endif -%}
                 </li>
               {%- endfor -%}
+              {%- endunless -%}
             </ul>
           </nav>
           <div class="menu-drawer__utility-links">

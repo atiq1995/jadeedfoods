@@ -16,24 +16,24 @@
           "type": "category",
           "settings": {
             "title": "RANGE OF RICE",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
-            "link": "/collections/all"
+            "description": "",
+            "link": "/collections/rice"
           }
         },
         "cat_spices": {
           "type": "category",
           "settings": {
             "title": "RANGE OF SPICE",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
-            "link": "/collections/all"
+            "description": "",
+            "link": "/collections/spices"
           }
         },
         "cat_oil": {
           "type": "category",
           "settings": {
             "title": "RANGE OF OIL",
-            "description": "The success of this range is attributed to Jadeed's strict adherence to its Vision and Mission.",
-            "link": "/collections/all"
+            "description": "",
+            "link": "/collections/oil"
           }
         }
       },
@@ -43,9 +43,9 @@
     "special_deals": {
       "type": "special-deals",
       "blocks": {
-        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165", "link": "/collections/all" } },
-        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165", "link": "/collections/all" } },
-        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165", "link": "/collections/all" } }
+        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165", "link": "/collections/spices" } },
+        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165", "link": "/collections/spices" } },
+        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165", "link": "/collections/oil" } }
       },
       "block_order": ["deal_pepper", "deal_flax", "deal_pack"],
       "settings": {
@@ -64,9 +64,9 @@
     "best_selling_products": {
       "type": "best-selling-products",
       "blocks": {
-        "prod_rice": { "type": "product_tile", "settings": { "title": "BEST SELLING RICE", "link": "/collections/all" } },
-        "prod_spices": { "type": "product_tile", "settings": { "title": "BEST SELLING SPICES", "link": "/collections/all" } },
-        "prod_oil": { "type": "product_tile", "settings": { "title": "BEST SELLING OIL", "link": "/collections/all" } }
+        "prod_rice": { "type": "product_tile", "settings": { "title": "BEST SELLING RICE", "link": "/collections/rice" } },
+        "prod_spices": { "type": "product_tile", "settings": { "title": "BEST SELLING SPICES", "link": "/collections/spices" } },
+        "prod_oil": { "type": "product_tile", "settings": { "title": "BEST SELLING OIL", "link": "/collections/oil" } }
       },
       "block_order": ["prod_rice", "prod_spices", "prod_oil"],
       "settings": { "heading": "Best Selling Products", "subheading": "" }
@@ -130,7 +130,7 @@
         "heading": "Blogs",
         "source": "manual",
         "article_limit": 6,
-        "button_label": "Read more",
+        "button_label": "See all blogs",
         "button_link": "/blogs/news"
       }
     },

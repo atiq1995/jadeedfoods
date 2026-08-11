@@ -47,7 +47,7 @@ Notes:
 
 ## 3. Navigation (header menu)
 
-Go to **Online Store → Navigation → Main menu**.
+Shopify moved this out of Online Store. Go to **Content → Menus** (left sidebar), then open **Main menu**.
 
 Recommended items (match the Figma header):
 
