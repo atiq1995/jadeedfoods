@@ -490,7 +490,7 @@ summary,
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: clamp(10px, 1.2vw, 20px);
   min-height: 0;
   max-width: var(--jf-container-max);
@@ -500,7 +500,7 @@ summary,
 .jf-nav-bar nav {
   display: flex;
   align-items: center;
-  flex: 1 1 auto;
+  flex: 0 1 auto;
   min-width: 0;
 }
 .jf-nav-bar nav ul {
