@@ -28,6 +28,12 @@
     <h2 class="jf-testimonial-banner__section-title">{{ section.settings.heading }}</h2>
 
     <div class="jf-testimonial" data-testimonial-carousel>
+      {% liquid
+        assign total_slides = section.blocks.size
+        if total_slides < 3
+          assign total_slides = 3
+        endif
+      %}
       {% for block in section.blocks %}
         <div class="jf-testimonial__slide" {% unless forloop.first %}hidden{% endunless %} {{ block.shopify_attributes }}>
           <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
@@ -37,11 +43,57 @@
           <p class="jf-testimonial__name">{{ block.settings.name }}</p>
         </div>
       {% endfor %}
+      {% if section.blocks.size == 0 %}
+        <div class="jf-testimonial__slide">
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">I absolutely love jadeed Cooking Oil! It's not only great for heart health but also perfect for those who are health-conscious. While it may be a bit pricier, your health is invaluable, and taking care of your body is essential—we only have one life to live.</p>
+          <p class="jf-testimonial__name">Gregory Huang</p>
+        </div>
+        <div class="jf-testimonial__slide" hidden>
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">From packaging to taste, everything feels premium. The aroma and consistency are exactly what we wanted for daily cooking at home.</p>
+          <p class="jf-testimonial__name">Ayesha Noor</p>
+        </div>
+        <div class="jf-testimonial__slide" hidden>
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">We switched recently and the difference is noticeable. Food tastes cleaner and lighter, and the quality has been very consistent.</p>
+          <p class="jf-testimonial__name">Usman Kaleem</p>
+        </div>
+      {% elsif section.blocks.size == 1 %}
+        <div class="jf-testimonial__slide" hidden>
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">From packaging to taste, everything feels premium. The aroma and consistency are exactly what we wanted for daily cooking at home.</p>
+          <p class="jf-testimonial__name">Ayesha Noor</p>
+        </div>
+        <div class="jf-testimonial__slide" hidden>
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">We switched recently and the difference is noticeable. Food tastes cleaner and lighter, and the quality has been very consistent.</p>
+          <p class="jf-testimonial__name">Usman Kaleem</p>
+        </div>
+      {% elsif section.blocks.size == 2 %}
+        <div class="jf-testimonial__slide" hidden>
+          <div class="jf-testimonial__stars" aria-label="5 out of 5 stars">
+            <span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span><span aria-hidden="true">★</span>
+          </div>
+          <p class="jf-testimonial__quote">We switched recently and the difference is noticeable. Food tastes cleaner and lighter, and the quality has been very consistent.</p>
+          <p class="jf-testimonial__name">Usman Kaleem</p>
+        </div>
+      {% endif %}
 
-      {% if section.blocks.size > 0 %}
+      {% if total_slides > 0 %}
         <div class="jf-testimonial__controls">
           <div class="jf-testimonial__dots" role="tablist" aria-label="Testimonials">
-            {% for block in section.blocks %}
+            {% for i in (1..total_slides) %}
               <button type="button" class="{% if forloop.first %}is-active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Show testimonial {{ forloop.index }}"></button>
             {% endfor %}
           </div>

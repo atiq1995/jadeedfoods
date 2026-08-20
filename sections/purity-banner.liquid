@@ -1,12 +1,16 @@
 <section class="jf-purity" aria-label="{{ section.settings.word | escape }}">
-  <div class="jf-purity__track">
-    {% for i in (1..2) %}
-      <p class="jf-purity__line">
-        <span class="jf-purity__before">{{ section.settings.line_before }}</span>
-        <span class="jf-purity__word">{{ section.settings.word }}</span>
-        <span class="jf-purity__after">{{ section.settings.line_after }}</span>
-      </p>
-    {% endfor %}
+  <div class="jf-purity__track" aria-live="polite">
+    <p class="jf-purity__line jf-purity__line--word">{{ section.settings.word | upcase }}</p>
+    <p class="jf-purity__line jf-purity__line--trust">
+      <span class="jf-purity__line-flow jf-purity__line-flow--left" data-text="{{ section.settings.line_before | upcase }}">
+        {{ section.settings.line_before | upcase }}
+      </span>
+    </p>
+    <p class="jf-purity__line jf-purity__line--taste">
+      <span class="jf-purity__line-flow jf-purity__line-flow--right" data-text="{{ section.settings.line_after | upcase }}">
+        {{ section.settings.line_after | upcase }}
+      </span>
+    </p>
   </div>
 </section>
 
