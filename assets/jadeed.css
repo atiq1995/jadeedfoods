@@ -1575,7 +1575,7 @@ summary,
   width: clamp(160px, 16.2vw, 280px);
   height: auto;
   background: transparent;
-  transform: translateY(clamp(12px, 1.45vw, 30px));
+  transform: translateY(43px);
 }
 .jf-testimonials-lockup__wordmark {
   position: relative;
