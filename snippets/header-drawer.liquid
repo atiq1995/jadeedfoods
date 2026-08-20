@@ -21,12 +21,15 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- liquid
+                assign jf_contact_href = pages['contact'].url | default: pages['contact-us'].url | default: '/pages/contact'
+              -%}
               {%- assign jf_drawer_items = 'Home|/,'
                 | append: 'Jadeed Products|/collections/all,'
                 | append: 'About Us|/pages/about-us,'
                 | append: 'Special Deals|/collections/all,'
                 | append: 'Blog|/blogs/news,'
-                | append: 'Contact|/pages/contact-us'
+                | append: 'Contact|' | append: jf_contact_href
               -%}
               {%- assign jf_drawer_pairs = jf_drawer_items | split: ',' -%}
               {%- for pair in jf_drawer_pairs -%}

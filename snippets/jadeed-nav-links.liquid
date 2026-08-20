@@ -2,12 +2,15 @@
   HOMEPAGE.png desktop/mobile nav items.
   Become a Vendor is appended separately in jadeed-header-nav.
 {% endcomment %}
+{%- liquid
+  assign jf_contact_href = pages['contact'].url | default: pages['contact-us'].url | default: '/pages/contact'
+-%}
 {%- assign jf_nav_items = 'Home|/,'
   | append: 'Jadeed Products|/collections/all,'
   | append: 'About Us|/pages/about-us,'
   | append: 'Special Deals|/collections/all,'
   | append: 'Blog|/blogs/news,'
-  | append: 'Contact|/pages/contact-us'
+  | append: 'Contact|' | append: jf_contact_href
 -%}
 {%- assign jf_nav_pairs = jf_nav_items | split: ',' -%}
 {%- for pair in jf_nav_pairs -%}
