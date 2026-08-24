@@ -16,20 +16,26 @@
         {% endif %}
 
         <div class="jf-contact-form-card__row">
-          <div class="field">
-            <input class="field__input" type="text" id="JadeedContactName" name="contact[name]" placeholder="Name*" value="{% if form.name %}{{ form.name }}{% endif %}" required>
+          <div class="jf-contact-field">
+            <label class="jf-contact-field__label" for="JadeedContactName">Name*</label>
+            <input class="jf-contact-field__input" type="text" id="JadeedContactName" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" required>
           </div>
-          <div class="field">
-            <input class="field__input" type="email" id="JadeedContactEmail" name="contact[email]" placeholder="Email*" value="{% if form.email %}{{ form.email }}{% endif %}" required>
+          <div class="jf-contact-field">
+            <label class="jf-contact-field__label" for="JadeedContactEmail">Email*</label>
+            <input class="jf-contact-field__input" type="email" id="JadeedContactEmail" name="contact[email]" autocomplete="email" value="{% if form.email %}{{ form.email }}{% endif %}" required>
           </div>
         </div>
-        <div class="field">
-          <input class="field__input" type="text" id="JadeedContactSubject" name="contact[subject]" placeholder="Subject (optional)">
+        <div class="jf-contact-field">
+          <label class="jf-contact-field__label" for="JadeedContactSubject">Subject (Optional)</label>
+          <input class="jf-contact-field__input" type="text" id="JadeedContactSubject" name="contact[subject]">
         </div>
-        <div class="field">
-          <textarea class="field__input" id="JadeedContactMessage" name="contact[body]" rows="8" placeholder="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+        <div class="jf-contact-field jf-contact-field--message">
+          <label class="jf-contact-field__label" for="JadeedContactMessage">Message</label>
+          <textarea class="jf-contact-field__input" id="JadeedContactMessage" name="contact[body]" rows="5" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
         </div>
-        <button type="submit" class="jf-btn">{{ section.settings.button_label }}</button>
+        <div class="jf-contact-form-card__actions">
+          <button type="submit" class="jf-btn jf-btn--navy">{{ section.settings.button_label }}</button>
+        </div>
       {%- endform -%}
     </div>
   </div>

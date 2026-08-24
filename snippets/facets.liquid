@@ -54,9 +54,14 @@
             {% endif %}
           >
             {%- if filter_type == 'horizontal' and results.filters != empty -%}
-              <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
-                {{ 'products.facets.filter_by_label' | t }}
-              </h2>
+              <div class="jf-facet-label">
+                <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
+                  {{ 'products.facets.filter_by_label' | t }}
+                </h2>
+              </div>
+            {%- endif -%}
+            {%- if filter_type == 'horizontal' -%}
+              <div class="jf-facet-pills">
             {%- endif -%}
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
             {%- if filter_type == 'vertical' -%}
@@ -339,6 +344,41 @@
                   </details>
               {% endcase %}
             {%- endfor -%}
+            {%- if filter_type == 'horizontal' -%}
+              {%- if enable_sorting -%}
+                <div class="facet-filters sorting caption">
+                  <div class="facet-filters__field">
+                    <h2 class="facet-filters__label caption-large text-body">
+                      <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
+                    </h2>
+                    <div class="select">
+                      {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+                      <select
+                        name="sort_by"
+                        class="facet-filters__sort select__select caption-large"
+                        id="SortBy"
+                        aria-describedby="a11y-refresh-page-message"
+                      >
+                        {%- for option in results.sort_options -%}
+                          <option
+                            value="{{ option.value | escape }}"
+                            {% if option.value == sort_by %}
+                              selected="selected"
+                            {% endif %}
+                          >
+                            {{ option.name | escape }}
+                          </option>
+                        {%- endfor -%}
+                      </select>
+                      <span class="svg-wrapper">
+                        {{- 'icon-caret.svg' | inline_asset_content -}}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              {%- endif -%}
+              </div>
+            {%- endif -%}
           </div>
           {% comment %} Pills after filtes on filter type horizontal {% endcomment %}
           {%- if filter_type == 'horizontal' -%}
@@ -389,39 +429,6 @@
         {% endif %}
 
         {%- if filter_type == 'horizontal' -%}
-          {% comment %} Sorting and product count are the last elements when filter type is horizontal {% endcomment %}
-          {%- if enable_sorting -%}
-            <div class="facet-filters sorting caption">
-              <div class="facet-filters__field">
-                <h2 class="facet-filters__label caption-large text-body">
-                  <label for="SortBy">{{ 'products.facets.sort_by_label' | t }}</label>
-                </h2>
-                <div class="select">
-                  {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
-                  <select
-                    name="sort_by"
-                    class="facet-filters__sort select__select caption-large"
-                    id="SortBy"
-                    aria-describedby="a11y-refresh-page-message"
-                  >
-                    {%- for option in results.sort_options -%}
-                      <option
-                        value="{{ option.value | escape }}"
-                        {% if option.value == sort_by %}
-                          selected="selected"
-                        {% endif %}
-                      >
-                        {{ option.name | escape }}
-                      </option>
-                    {%- endfor -%}
-                  </select>
-                  <span class="svg-wrapper">
-                    {{- 'icon-caret.svg' | inline_asset_content -}}
-                  </span>
-                </div>
-              </div>
-            </div>
-          {%- endif -%}
           <div class="product-count light" role="status">
             <h2 class="product-count__text text-body">
               <span id="ProductCountDesktop">

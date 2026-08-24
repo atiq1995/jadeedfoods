@@ -12,15 +12,15 @@
       "blocks": {
         "oil": {
           "type": "category",
-          "settings": { "label": "Oil", "asset_key": "category_oil", "link": "" }
+          "settings": { "label": "Oil", "icon": "oil", "asset_key": "plp_oil", "link": "/collections/oil" }
         },
         "rice": {
           "type": "category",
-          "settings": { "label": "Rice", "asset_key": "category_rice", "link": "" }
+          "settings": { "label": "Rice", "icon": "rice", "asset_key": "plp_rice", "link": "/collections/rice" }
         },
         "spices": {
           "type": "category",
-          "settings": { "label": "Spices", "asset_key": "category_spices", "link": "" }
+          "settings": { "label": "Spices", "icon": "spices", "asset_key": "plp_spices", "link": "/collections/spices" }
         }
       },
       "block_order": ["oil", "rice", "spices"]
@@ -30,7 +30,7 @@
       "settings": {
         "products_per_page": 12,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "color_scheme": "scheme-2",
         "image_ratio": "square",
         "image_shape": "default",
         "show_secondary_image": false,

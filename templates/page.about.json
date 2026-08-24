@@ -62,35 +62,12 @@
     },
     "timeline": {
       "type": "jadeed-about-timeline",
-      "blocks": {
-        "m1": {
-          "type": "milestone",
-          "settings": {
-            "date": "February 2012",
-            "text": "Gets launched as online marketplace merchant by Suffwan in Pakistan."
-          }
-        },
-        "m2": {
-          "type": "milestone",
-          "settings": {
-            "date": "July 2015",
-            "text": "Starting Distribution network across the border and in Pakistan."
-          }
-        },
-        "m3": {
-          "type": "milestone",
-          "settings": {
-            "date": "September 2015",
-            "text": "Start operating in KSA."
-          }
-        }
-      },
-      "block_order": ["m1", "m2", "m3"],
       "settings": {
         "discover_label": "Discover",
-        "banner_left": "Foods",
+        "banner_left": "Jadeed Foods",
         "banner_accent": "Journey",
-        "banner_right": "Jadeed Foods"
+        "banner_right": "Jadeed Foods Journey",
+        "image_alt": "Jadeed Foods journey timeline"
       }
     }
   },

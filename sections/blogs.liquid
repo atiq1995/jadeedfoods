@@ -12,7 +12,7 @@
           %}
           <a
             href="{{ article.url }}"
-            class="jf-blog-card{% if article.excerpt != blank %} jf-blog-card--featured{% endif %}"
+            class="jf-blog-card{% if article.excerpt != blank %} jf-blog-card--featured{% endif %}{% cycle ' jf-blog-card--from-left', ' jf-blog-card--from-top', ' jf-blog-card--from-right', ' jf-blog-card--from-left', ' jf-blog-card--from-bottom', ' jf-blog-card--from-right' %}"
             style="{% if article_bg != blank %}background-image:url('{{ article_bg }}');{% endif %}"
           >
             <div class="jf-blog-card__body">
@@ -47,7 +47,7 @@
           %}
           <a
             href="{{ card_link }}"
-            class="jf-blog-card{% if block.settings.excerpt != blank %} jf-blog-card--featured{% endif %}"
+            class="jf-blog-card{% if block.settings.excerpt != blank %} jf-blog-card--featured{% endif %}{% cycle ' jf-blog-card--from-left', ' jf-blog-card--from-top', ' jf-blog-card--from-right', ' jf-blog-card--from-left', ' jf-blog-card--from-bottom', ' jf-blog-card--from-right' %}"
             style="{% if card_bg != blank %}background-image:url('{{ card_bg }}');{% endif %}"
             {{ block.shopify_attributes }}
           >
@@ -71,6 +71,27 @@
     {% endif %}
   </div>
 </section>
+<script>
+  (function () {
+    var grid = document.querySelector('#blogs .jf-blog-grid');
+    if (!grid) return;
+    var cards = grid.querySelectorAll('.jf-blog-card');
+    if (!cards.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      cards.forEach(function (card) { card.classList.add('is-in'); });
+      return;
+    }
+    cards.forEach(function (card) { card.classList.add('jf-blog-card--enter'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      });
+    }, { threshold: 0.2, rootMargin: '0px 0px -8% 0px' });
+    cards.forEach(function (card) { io.observe(card); });
+  })();
+</script>
 
 {% schema %}
 {

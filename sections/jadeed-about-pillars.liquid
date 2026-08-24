@@ -4,12 +4,12 @@
   if section.settings.image_man != blank
     assign man_url = section.settings.image_man | image_url: width: 900
   else
-    assign man_url = 'jadeed-about-pillars-man.jpg' | asset_url
+    assign man_url = 'jadeed-about-pillars-man.png' | asset_url
   endif
   if section.settings.image_woman != blank
     assign woman_url = section.settings.image_woman | image_url: width: 900
   else
-    assign woman_url = 'jadeed-about-pillars-woman.jpg' | asset_url
+    assign woman_url = 'jadeed-about-pillars-woman.png' | asset_url
   endif
 %}
 
@@ -18,8 +18,8 @@
     <div class="jf-about-pillars__media" aria-hidden="true">
       <div class="jf-about-pillars__stack">
         <span class="jf-about-pillars__dots"></span>
-        <img class="jf-about-pillars__img jf-about-pillars__img--man" src="{{ man_url }}" alt="" loading="lazy" width="420" height="480">
-        <img class="jf-about-pillars__img jf-about-pillars__img--woman" src="{{ woman_url }}" alt="" loading="lazy" width="420" height="480">
+        <img class="jf-about-pillars__img jf-about-pillars__img--man" src="{{ man_url }}" alt="Person enjoying a Jadeed meal with Garam Masala" loading="lazy" width="620" height="420">
+        <img class="jf-about-pillars__img jf-about-pillars__img--woman" src="{{ woman_url }}" alt="Person enjoying a Jadeed meal" loading="lazy" width="480" height="560">
       </div>
     </div>
     <div class="jf-about-pillars__content">

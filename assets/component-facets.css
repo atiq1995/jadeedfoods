@@ -1255,3 +1255,57 @@ input.mobile-facets__checkbox {
     padding: 0 1rem 1rem;
   }
 }
+
+/* Jadeed collection filter bar */
+@media screen and (min-width: 750px) {
+  #FacetFiltersForm {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 6px 24px !important;
+    margin: 0 !important;
+    min-height: 0 !important;
+    grid-template-columns: none !important;
+  }
+  #FacetsWrapperDesktop {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    gap: 8px !important;
+    grid-column: auto !important;
+  }
+  #FacetsWrapperDesktop h2 {
+    margin: 0 12px 0 0 !important;
+    padding: 0 !important;
+    flex: 0 0 auto !important;
+    white-space: nowrap;
+  }
+  .jf-facet-pills {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    gap: 12px !important;
+    margin-left: auto !important;
+    width: auto !important;
+  }
+  .jf-facet-pills > details,
+  .jf-facet-pills > .facet-filters,
+  #FacetsWrapperDesktop > details {
+    display: block !important;
+    width: auto !important;
+    max-width: none !important;
+    flex: 0 0 auto !important;
+    margin: 0 !important;
+  }
+  #FacetFiltersForm > .facet-filters,
+  #FacetFiltersForm > .product-count {
+    display: none !important;
+  }
+}

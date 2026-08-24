@@ -1,14 +1,52 @@
 {% liquid
-  assign image_url = ''
   if section.settings.image != blank
-    assign image_url = section.settings.image | image_url: width: 1400
+    assign slide_1 = section.settings.image | image_url: width: 1800
   else
-    assign image_url = 'jadeed-rich-aroma.jpg' | asset_url
+    assign slide_1 = 'jadeed-rich-aroma.jpg' | asset_url
+  endif
+  if section.settings.image_2 != blank
+    assign slide_2 = section.settings.image_2 | image_url: width: 1800
+  else
+    assign slide_2 = 'jadeed-rich-aroma-v2.png' | asset_url
+  endif
+  if section.settings.image_3 != blank
+    assign slide_3 = section.settings.image_3 | image_url: width: 1800
+  else
+    assign slide_3 = 'jadeed-rich-aroma-v3.png' | asset_url
   endif
 %}
-<section class="jf-rich-aroma" style="background-image:url('{{ image_url }}');">
+<section
+  class="jf-rich-aroma"
+  data-jf-aroma-slider
+  data-interval="{{ section.settings.interval | default: 5 | times: 1000 }}"
+  aria-roledescription="carousel"
+  aria-label="{{ section.settings.title | escape }}"
+>
+  <div class="jf-rich-aroma__slides">
+    <img
+      class="jf-rich-aroma__slide is-active"
+      src="{{ slide_1 }}"
+      alt=""
+      width="1729"
+      height="967"
+    >
+    <img
+      class="jf-rich-aroma__slide"
+      src="{{ slide_2 }}"
+      alt=""
+      width="1729"
+      height="967"
+    >
+    <img
+      class="jf-rich-aroma__slide"
+      src="{{ slide_3 }}"
+      alt=""
+      width="1729"
+      height="967"
+    >
+  </div>
   <div class="jf-container jf-rich-aroma__grid">
-    <div class="jf-rich-aroma__media" aria-hidden="true"></div>
+    <div class="jf-rich-aroma__media" aria-hidden="true">&nbsp;</div>
     <div class="jf-rich-aroma__content">
       <h2 class="jf-rich-aroma__title">{{ section.settings.title | replace: '. ', '.<br>' }}</h2>
       {% if section.settings.text != blank %}
@@ -18,13 +56,41 @@
   </div>
 </section>
 
+<script>
+  (function () {
+    var root = document.querySelector('#shopify-section-{{ section.id }} [data-jf-aroma-slider]');
+    if (!root) return;
+    var slides = root.querySelectorAll('.jf-rich-aroma__slide');
+    if (slides.length < 2) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var i = 0;
+    var ms = parseInt(root.getAttribute('data-interval'), 10) || 5000;
+    setInterval(function () {
+      slides[i].classList.remove('is-active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('is-active');
+    }, ms);
+  })();
+</script>
+
 {% schema %}
 {
   "name": "Rich aroma banner",
   "tag": "section",
   "class": "section-jadeed-rich-aroma",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image", "label": "Image 1 (man with curry)" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2 (woman with rice)" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3 (man with bowl)" },
+    {
+      "type": "range",
+      "id": "interval",
+      "label": "Seconds between images",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "default": 5
+    },
     { "type": "text", "id": "title", "label": "Title", "default": "Rich Aroma. Perfect Taste." },
     {
       "type": "textarea",

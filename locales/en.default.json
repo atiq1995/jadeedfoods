@@ -107,6 +107,7 @@
   "products": {
     "product": {
       "add_to_cart": "Add to cart",
+      "buy_now": "Buy Now",
       "choose_options": "Choose options",
       "choose_product_options": "Choose options for {{ product_name }}",
       "description": "Description",
@@ -191,7 +192,7 @@
       "clear_all": "Remove all",
       "from": "From",
       "filter_and_sort": "Filter and sort",
-      "filter_by_label": "Filter:",
+      "filter_by_label": "Filter by",
       "filter_button": "Filter",
       "filters_selected": {
         "one": "{{ count }} selected",

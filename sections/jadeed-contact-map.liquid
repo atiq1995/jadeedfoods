@@ -1,28 +1,49 @@
 {% liquid
-  assign map_image = ''
-  if section.settings.map_image != blank
-    assign map_image = section.settings.map_image | image_url: width: 2400
-  else
-    capture map_image
-      render 'jadeed-asset-url', key: 'contact_map'
-    endcapture
-    assign map_image = map_image | strip
+  assign map_url = section.settings.map_url
+  if map_url == blank
+    assign map_url = 'https://maps.google.com/?q=53-C,+Satellite+Town,+Chandni+Chowk,+Murree+Road,+Rawalpindi,+Pakistan'
   endif
+
+  assign map_query = section.settings.map_query | default: '53-C, Satellite Town, Chandni Chowk, Murree Road, Rawalpindi, Pakistan'
+  assign lat = section.settings.latitude | default: '33.6261'
+  assign lng = section.settings.longitude | default: '73.0715'
+  assign zoom = section.settings.zoom | default: 15
+  assign embed_url = section.settings.embed_url | strip
+  assign provider = section.settings.map_provider | default: 'google'
 %}
+
+{% if embed_url == blank %}
+  {% if provider == 'osm' %}
+    {% capture embed_url %}https://www.openstreetmap.org/export/embed.html?bbox={{ lng | minus: 0.04 }}%2C{{ lat | minus: 0.03 }}%2C{{ lng | plus: 0.04 }}%2C{{ lat | plus: 0.03 }}&layer=mapnik&marker={{ lat }}%2C{{ lng }}{% endcapture %}
+  {% else %}
+    {% capture embed_url %}https://www.google.com/maps?q={{ lat }},{{ lng }}&hl=en&z={{ zoom }}&output=embed{% endcapture %}
+  {% endif %}
+{% endif %}
 
 <section class="jf-contact-map-wrap">
   <div class="jf-container">
     <h2 class="jf-contact-map__heading">{{ section.settings.heading }}</h2>
-    {% if map_image != blank %}
-      <div class="jf-contact-map">
-        <img src="{{ map_image }}" alt="" loading="lazy" width="1360" height="540">
-      </div>
-    {% endif %}
-    {% if section.settings.map_url != blank %}
-      <div class="jf-contact-map__actions">
-        <a href="{{ section.settings.map_url }}" class="jf-btn" target="_blank" rel="noopener">{{ section.settings.button_label }}</a>
-      </div>
-    {% endif %}
+
+    <div class="jf-contact-map">
+      <iframe
+        class="jf-contact-map__iframe"
+        title="Jadeed Foods location map — {{ map_query | escape }}"
+        src="{{ embed_url | strip }}"
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        allowfullscreen
+      ></iframe>
+    </div>
+
+    <div class="jf-contact-map__actions">
+      <a href="{{ map_url }}" class="jf-btn jf-btn--navy jf-contact-map__btn" target="_blank" rel="noopener">
+        {{ section.settings.button_label }}
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+          <path d="M7 17L17 7"/>
+          <path d="M8 7h9v9"/>
+        </svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -33,8 +54,50 @@
   "class": "section-jadeed-contact-map",
   "settings": [
     { "type": "text", "id": "heading", "label": "Heading", "default": "Find a Jadeed verified location near you" },
-    { "type": "image_picker", "id": "map_image", "label": "Map image override" },
-    { "type": "url", "id": "map_url", "label": "Map URL" },
+    {
+      "type": "select",
+      "id": "map_provider",
+      "label": "Map provider",
+      "default": "google",
+      "options": [
+        { "value": "google", "label": "Google Maps" },
+        { "value": "osm", "label": "OpenStreetMap" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "map_query",
+      "label": "Address label",
+      "default": "53-C, Satellite Town, Chandni Chowk, Murree Road, Rawalpindi, Pakistan"
+    },
+    {
+      "type": "text",
+      "id": "latitude",
+      "label": "Latitude",
+      "default": "33.6261"
+    },
+    {
+      "type": "text",
+      "id": "longitude",
+      "label": "Longitude",
+      "default": "73.0715"
+    },
+    {
+      "type": "range",
+      "id": "zoom",
+      "label": "Zoom level",
+      "min": 10,
+      "max": 18,
+      "step": 1,
+      "default": 15
+    },
+    {
+      "type": "text",
+      "id": "embed_url",
+      "label": "Custom embed URL (optional)",
+      "info": "Paste from Google Maps → Share → Embed a map for the most accurate pin."
+    },
+    { "type": "url", "id": "map_url", "label": "Open in Maps link" },
     { "type": "text", "id": "button_label", "label": "Button label", "default": "Open in maps" }
   ],
   "presets": [{ "name": "Contact map" }]
