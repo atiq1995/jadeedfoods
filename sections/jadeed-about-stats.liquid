@@ -1,19 +1,36 @@
 <section class="jf-about-stats">
-  <div class="jf-container">
+  <div class="jf-about-stats__inner">
     <div class="jf-about-stats__grid">
       {% for block in section.blocks %}
+        {%- liquid
+          assign icon_key = 'stat_box'
+          assign icon_w = 100
+          assign icon_h = 94
+          case block.settings.icon
+            when 'store'
+              assign icon_key = 'stat_store'
+              assign icon_w = 89
+              assign icon_h = 80
+            when 'bag'
+              assign icon_key = 'stat_bag'
+              assign icon_w = 96
+              assign icon_h = 81
+            when 'money'
+              assign icon_key = 'stat_money'
+              assign icon_w = 95
+              assign icon_h = 80
+          endcase
+        -%}
+        {%- capture icon_url -%}{% render 'jadeed-asset-url', key: icon_key %}{%- endcapture -%}
         <div class="jf-about-stats__item" {{ block.shopify_attributes }}>
-          <div class="jf-about-stats__icon" aria-hidden="true">
-            {% case block.settings.icon %}
-              {% when 'store' %}
-                <svg viewBox="0 0 48 48" fill="none"><path d="M8 20h32v20H8V20z" stroke="currentColor" stroke-width="2"/><path d="M6 20l6-10h24l6 10" stroke="currentColor" stroke-width="2"/><path d="M18 40V28h12v12" stroke="currentColor" stroke-width="2"/><path d="M12 20v-4h6v4M30 20v-4h6v4" stroke="currentColor" stroke-width="2"/></svg>
-              {% when 'bag' %}
-                <svg viewBox="0 0 48 48" fill="none"><path d="M12 16h24l-2 24H14L12 16z" stroke="currentColor" stroke-width="2"/><path d="M18 16a6 6 0 0 1 12 0" stroke="currentColor" stroke-width="2"/></svg>
-              {% when 'money' %}
-                <svg viewBox="0 0 48 48" fill="none"><rect x="8" y="14" width="32" height="22" rx="3" stroke="currentColor" stroke-width="2"/><circle cx="24" cy="25" r="6" stroke="currentColor" stroke-width="2"/><path d="M24 21v8M22 23h4M22 27h4" stroke="currentColor" stroke-width="2"/></svg>
-              {% else %}
-                <svg viewBox="0 0 48 48" fill="none"><path d="M12 18h24v20H12V18z" stroke="currentColor" stroke-width="2"/><path d="M12 18l4-6h16l4 6" stroke="currentColor" stroke-width="2"/><path d="M20 28h8" stroke="currentColor" stroke-width="2"/></svg>
-            {% endcase %}
+          <div class="jf-about-stats__icon jf-about-stats__icon--{{ block.settings.icon }}" aria-hidden="true">
+            <img
+              src="{{ icon_url | strip }}"
+              alt=""
+              width="{{ icon_w }}"
+              height="{{ icon_h }}"
+              loading="lazy"
+            >
           </div>
           <p class="jf-about-stats__value">{{ block.settings.value }}</p>
           <p class="jf-about-stats__label">{{ block.settings.label }}</p>

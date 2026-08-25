@@ -3,10 +3,17 @@
   if section.settings.background_image != blank
     assign hero_bg = section.settings.background_image | image_url: width: 2400
   else
-    assign hero_bg = 'jadeed-hero-bg.jpg' | asset_url
+    assign hero_bg = 'jadeed-hero-bg.png' | asset_url
   endif
 %}
-<section class="jf-hero" style="background-image: url('{{ hero_bg }}');"{% if section.settings.title != blank %} aria-label="{{ section.settings.title | escape }}"{% endif %}>
+<section class="jf-hero"{% if section.settings.title != blank %} aria-label="{{ section.settings.title | escape }}"{% endif %}>
+  <img
+    class="jf-hero__media"
+    src="{{ hero_bg }}"
+    alt=""
+    width="1729"
+    height="797"
+  >
   <div class="jf-container">
     <div class="jf-hero__content">
       {% if section.settings.title != blank %}
@@ -23,8 +30,8 @@
     </div>
   </div>
   <div class="jf-hero__notch" aria-hidden="true">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" focusable="false">
-      <path d="M0 28 C380 28 520 92 720 92 C920 92 1060 28 1440 28 V120 H0 Z"></path>
+    <svg viewBox="0 0 1729 125.032" preserveAspectRatio="none" focusable="false">
+      <path d="M0 0 H633.725 C659.523 0 684.763 7.502 706.372 21.593 L806.556 86.921 C842.077 110.084 887.925 110.084 923.446 86.921 L1023.63 21.593 C1045.24 7.502 1070.48 0 1096.28 0 H1729 V125.032 H0 Z"></path>
     </svg>
   </div>
   <a class="jf-hero__scroll" href="#shop-by-category" aria-label="Scroll to shop by category">

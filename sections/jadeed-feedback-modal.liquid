@@ -1,44 +1,78 @@
 {%- liquid
-  assign modal_bg = ''
-  if section.settings.background_image != blank
-    assign modal_bg = section.settings.background_image | image_url: width: 1200
-  else
-    capture modal_bg
-      render 'jadeed-asset-url', key: 'feedback_modal_bg'
-    endcapture
-    assign modal_bg = modal_bg | strip
-  endif
+  assign product_title = product.title | default: 'Product'
 -%}
 
 <div class="jf-feedback" data-jf-feedback>
-  <dialog class="jf-feedback__dialog" data-jf-feedback-dialog aria-label="Write a review">
-    <button type="button" class="jf-feedback__close" data-jf-feedback-close aria-label="Close">&times;</button>
-    <div class="jf-feedback__panel" {% if modal_bg != blank %}style="background-image:url('{{ modal_bg }}');"{% endif %}>
-      <form class="jf-feedback__form" method="post" action="/contact#contact_form" accept-charset="UTF-8">
+  <dialog class="jf-feedback__dialog" data-jf-feedback-dialog aria-labelledby="jf-feedback-heading">
+    <div class="jf-feedback__panel">
+      <button type="button" class="jf-feedback__close" data-jf-feedback-close aria-label="Close">
+        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </button>
+
+      <form class="jf-feedback__form" method="post" action="/contact#contact_form" accept-charset="UTF-8" novalidate>
         <input type="hidden" name="form_type" value="contact">
         <input type="hidden" name="utf8" value="✓">
-        <input type="hidden" name="contact[subject]" value="Product review — {{ product.title | escape }}">
+        <input type="hidden" name="contact[subject]" value="Product review — {{ product_title | escape }}">
         <input type="hidden" name="contact[product]" value="{{ product.handle }}">
         <input type="hidden" name="contact[rating]" value="" data-jf-feedback-rating-input>
 
         <div class="jf-feedback__step is-active" data-jf-feedback-step="1">
-          <h2 class="jf-feedback__title">{{ section.settings.step1_title }}</h2>
-          <div class="jf-feedback__stars" role="group" aria-label="Rating">
+          <h2 class="jf-feedback__title" id="jf-feedback-heading">{{ section.settings.step1_title }}</h2>
+          <div class="jf-feedback__stars" role="radiogroup" aria-label="Rating">
             {% for i in (1..5) %}
-              <button type="button" class="jf-feedback__star" data-jf-feedback-star="{{ i }}" aria-label="{{ i }} stars">★</button>
+              <button type="button" class="jf-feedback__star" data-jf-feedback-star="{{ i }}" aria-label="{{ i }} stars">
+                <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true">
+                  <path d="M12 2.6l2.7 6.6 7.1.6-5.4 4.6 1.7 6.9L12 17.8 5.9 21.3l1.7-6.9L2.2 9.8l7.1-.6L12 2.6z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+                </svg>
+              </button>
             {% endfor %}
           </div>
           <label class="jf-feedback__label" for="jf-feedback-message">{{ section.settings.message_label }}</label>
-          <textarea id="jf-feedback-message" class="jf-feedback__input" name="contact[body]" rows="5" required placeholder="{{ section.settings.message_placeholder }}"></textarea>
+          <textarea
+            id="jf-feedback-message"
+            class="jf-feedback__input jf-feedback__input--area"
+            name="contact[body]"
+            rows="5"
+            required
+            placeholder="{{ section.settings.message_placeholder }}"
+          ></textarea>
+          <label class="jf-feedback__upload">
+            <input type="file" accept=".gif,.jpg,.jpeg,.png,image/gif,image/jpeg,image/png" data-jf-feedback-file hidden>
+            <span data-jf-feedback-file-label>{{ section.settings.upload_label }}</span>
+          </label>
           <button type="button" class="jf-feedback__btn" data-jf-feedback-next>{{ section.settings.next_label }}</button>
         </div>
 
         <div class="jf-feedback__step" data-jf-feedback-step="2" hidden>
-          <h2 class="jf-feedback__title">{{ section.settings.step2_title }}</h2>
+          <div class="jf-feedback__step2-head">
+            <button type="button" class="jf-feedback__back" data-jf-feedback-back aria-label="Back">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6"/>
+              </svg>
+            </button>
+            <h2 class="jf-feedback__product" id="jf-feedback-heading-2">{{ product_title }}</h2>
+          </div>
           <label class="jf-feedback__label" for="jf-feedback-name">{{ section.settings.name_label }}</label>
-          <input id="jf-feedback-name" class="jf-feedback__input" type="text" name="contact[name]" required>
+          <input
+            id="jf-feedback-name"
+            class="jf-feedback__input jf-feedback__input--pill"
+            type="text"
+            name="contact[name]"
+            placeholder="{{ section.settings.name_placeholder }}"
+            autocomplete="name"
+          >
           <label class="jf-feedback__label" for="jf-feedback-email">{{ section.settings.email_label }}</label>
-          <input id="jf-feedback-email" class="jf-feedback__input" type="email" name="contact[email]" required>
+          <input
+            id="jf-feedback-email"
+            class="jf-feedback__input jf-feedback__input--pill"
+            type="email"
+            name="contact[email]"
+            placeholder="{{ section.settings.email_placeholder }}"
+            autocomplete="email"
+          >
+          <p class="jf-feedback__legal">{{ section.settings.legal_text }}</p>
           <button type="submit" class="jf-feedback__btn">{{ section.settings.submit_label }}</button>
         </div>
       </form>
@@ -55,14 +89,31 @@
     var step1 = root.querySelector('[data-jf-feedback-step="1"]');
     var step2 = root.querySelector('[data-jf-feedback-step="2"]');
     var stars = root.querySelectorAll('[data-jf-feedback-star]');
+    var nameField = root.querySelector('#jf-feedback-name');
+    var emailField = root.querySelector('#jf-feedback-email');
+    var fileInput = root.querySelector('[data-jf-feedback-file]');
+    var fileLabel = root.querySelector('[data-jf-feedback-file-label]');
+    var fileLabelDefault = fileLabel ? fileLabel.textContent : '';
+
+    function showStep(n) {
+      var first = n === 1;
+      step1.hidden = !first;
+      step2.hidden = first;
+      step1.classList.toggle('is-active', first);
+      step2.classList.toggle('is-active', !first);
+      if (nameField) nameField.required = !first;
+      if (emailField) emailField.required = !first;
+    }
 
     function openModal() {
+      showStep(1);
       if (dialog.showModal) dialog.showModal();
       else dialog.setAttribute('open', '');
     }
     function closeModal() {
       if (dialog.close) dialog.close();
       else dialog.removeAttribute('open');
+      showStep(1);
     }
 
     document.querySelectorAll('[data-jf-feedback-open]').forEach(function (btn) {
@@ -88,6 +139,23 @@
       });
     });
 
+    if (fileInput && fileLabel) {
+      fileInput.addEventListener('change', function () {
+        var file = fileInput.files && fileInput.files[0];
+        if (!file) {
+          fileLabel.textContent = fileLabelDefault;
+          return;
+        }
+        if (file.size > 5 * 1024 * 1024) {
+          fileInput.value = '';
+          fileLabel.textContent = fileLabelDefault;
+          alert('Please choose an image under 5MB.');
+          return;
+        }
+        fileLabel.textContent = file.name;
+      });
+    }
+
     var next = root.querySelector('[data-jf-feedback-next]');
     if (next) {
       next.addEventListener('click', function () {
@@ -97,12 +165,28 @@
           return;
         }
         if (!ratingInput.value) ratingInput.value = '5';
-        step1.hidden = true;
-        step1.classList.remove('is-active');
-        step2.hidden = false;
-        step2.classList.add('is-active');
+        showStep(2);
+        if (nameField) nameField.focus();
       });
     }
+
+    var back = root.querySelector('[data-jf-feedback-back]');
+    if (back) {
+      back.addEventListener('click', function () {
+        showStep(1);
+      });
+    }
+
+    root.querySelector('.jf-feedback__form').addEventListener('submit', function (e) {
+      if (step2.hidden) {
+        e.preventDefault();
+        return;
+      }
+      if (!nameField.value.trim() || !emailField.value.trim()) {
+        e.preventDefault();
+        (nameField.value.trim() ? emailField : nameField).focus();
+      }
+    });
   })();
 </script>
 
@@ -112,15 +196,17 @@
   "tag": "section",
   "class": "section-jadeed-feedback-modal",
   "settings": [
-    { "type": "text", "id": "step1_title", "label": "Step 1 title", "default": "Write a review" },
-    { "type": "text", "id": "step2_title", "label": "Step 2 title", "default": "Almost done" },
-    { "type": "text", "id": "message_label", "label": "Message label", "default": "Your feedback" },
-    { "type": "text", "id": "message_placeholder", "label": "Message placeholder", "default": "Tell us what you think..." },
-    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name" },
-    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email" },
-    { "type": "text", "id": "next_label", "label": "Next button", "default": "Continue" },
-    { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Submit review" },
-    { "type": "image_picker", "id": "background_image", "label": "Modal background override" }
+    { "type": "text", "id": "step1_title", "label": "Step 1 title", "default": "How do you like this item?" },
+    { "type": "text", "id": "message_label", "label": "Feedback label", "default": "Feedback*" },
+    { "type": "text", "id": "message_placeholder", "label": "Feedback placeholder", "default": "Write your feedback here..." },
+    { "type": "text", "id": "upload_label", "label": "Upload label", "default": "Upload here (gifs, jpg, png and 5MB Limit)" },
+    { "type": "text", "id": "next_label", "label": "Next button", "default": "Next" },
+    { "type": "text", "id": "name_label", "label": "Name label", "default": "Name*" },
+    { "type": "text", "id": "name_placeholder", "label": "Name placeholder", "default": "Write your full name" },
+    { "type": "text", "id": "email_label", "label": "Email label", "default": "Email*" },
+    { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "Write your email address" },
+    { "type": "textarea", "id": "legal_text", "label": "Privacy text", "default": "By submitting, I acknowledge the privacy and that my reviews will be publicly posted and shared online" },
+    { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Submit" }
   ],
   "presets": [{ "name": "Product feedback modal" }]
 }

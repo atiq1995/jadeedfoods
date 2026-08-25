@@ -6,10 +6,27 @@
     assign bg_url = 'jadeed-lifestyle-clean.png' | asset_url
   endif
 %}
-<section class="jf-lifestyle" style="background-image:url('{{ bg_url }}');" aria-label="{{ section.settings.heading | escape }}">
+<section class="jf-lifestyle" aria-label="{{ section.settings.heading | escape }}">
   {% if section.settings.heading != blank %}
     <h2 class="visually-hidden">{{ section.settings.heading }}</h2>
   {% endif %}
+  <img
+    class="jf-lifestyle__base"
+    src="{{ bg_url }}"
+    alt=""
+    width="1727"
+    height="931"
+    decoding="async"
+  >
+  <img
+    class="jf-lifestyle__leaf"
+    src="{{ 'jadeed-lifestyle-curve.png' | asset_url }}"
+    alt=""
+    width="1024"
+    height="766"
+    decoding="async"
+    aria-hidden="true"
+  >
 </section>
 
 {% schema %}

@@ -1,10 +1,18 @@
+{%- liquid
+  if section.settings.button_link != blank
+    assign faq_contact_href = section.settings.button_link
+  elsif pages.contact.url != blank
+    assign faq_contact_href = pages.contact.url | append: '#contact-form'
+  else
+    assign faq_contact_href = '/pages/contact#contact-form'
+  endif
+-%}
 <section class="jf-faq-cta">
   <div class="jf-container">
-    <p class="jf-faq-cta__eyebrow">{{ section.settings.eyebrow }}</p>
-    <h2 class="jf-faq-cta__title">{{ section.settings.title }}</h2>
-    {% if section.settings.button_label != blank %}
-      <a href="{{ section.settings.button_link | default: routes.contact_url }}" class="jf-btn">{{ section.settings.button_label }}</a>
+    {% if section.settings.eyebrow != blank %}
+      <p class="jf-faq-cta__eyebrow">{{ section.settings.eyebrow }}</p>
     {% endif %}
+    <a href="{{ faq_contact_href }}" class="jf-faq-cta__title">{{ section.settings.title }}</a>
   </div>
 </section>
 

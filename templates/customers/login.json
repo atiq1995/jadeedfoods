@@ -1,23 +1,14 @@
 {
   "sections": {
-    "banner": {
-      "type": "jadeed-customer-auth",
+    "login": {
+      "type": "jadeed-login",
       "settings": {
-        "title": "Login Account",
-        "asset_key": ""
-      }
-    },
-    "main": {
-      "type": "main-login",
-      "settings": {
-        "enable_shop_login_button": false,
-        "padding_top": 0,
-        "padding_bottom": 48
+        "heading": "Login account",
+        "card_heading": "Log in your account",
+        "recover_heading": "Reset password",
+        "button_label": "Login now"
       }
     }
   },
-  "order": [
-    "banner",
-    "main"
-  ]
+  "order": ["login"]
 }

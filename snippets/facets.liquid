@@ -15,6 +15,66 @@
 {{ 'component-show-more.css' | asset_url | stylesheet_tag }}
 {{ 'component-swatch-input.css' | asset_url | stylesheet_tag }}
 {{ 'component-swatch.css' | asset_url | stylesheet_tag }}
+<style>
+  #main-collection-filters {
+    --jf-facet-inset: clamp(56px, 12vw, 208px);
+    position: static !important;
+    display: block !important;
+    width: 100vw !important;
+    max-width: none !important;
+  }
+  .facets-container,
+  .facets-container facet-filters-form,
+  #FacetFiltersForm.facets__form {
+    position: relative !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    grid-template-columns: none !important;
+  }
+  #FacetsWrapperDesktop.facets__wrapper,
+  #FacetsWrapperDesktop.jf-facet-bar {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 12px 0 !important;
+    float: none !important;
+  }
+  .jf-facet-bar-inner {
+    position: static !important;
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+    min-height: 52px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .jf-facet-label {
+    position: absolute !important;
+    left: var(--jf-facet-inset) !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin: 0 !important;
+    z-index: 2 !important;
+  }
+  .jf-facet-pills {
+    position: absolute !important;
+    right: var(--jf-facet-inset) !important;
+    left: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center !important;
+    justify-content: flex-end !important;
+    gap: 12px !important;
+    margin: 0 !important;
+    width: auto !important;
+    z-index: 2 !important;
+  }
+</style>
 
 {%- liquid
   assign sort_by = results.sort_by | default: results.default_sort_by
@@ -39,6 +99,7 @@
       <form
         id="FacetFiltersForm"
         class="{% if filter_type == 'horizontal' %}facets__form{% else %}facets__form-vertical{% endif %}"
+        style="display:block;width:100%;max-width:none;margin:0;padding:0;"
       >
         {%- if results.terms -%}
           <input type="hidden" name="q" value="{{ results.terms | escape }}">
@@ -50,18 +111,25 @@
           <div
             id="FacetsWrapperDesktop"
             {% if filter_type == 'horizontal' %}
-              class="facets__wrapper"
+              class="facets__wrapper jf-facet-bar"
             {% endif %}
+            style="display:block;width:100%;position:static;"
           >
+            {%- if filter_type == 'horizontal' -%}
+              <div
+                class="jf-facet-bar-inner"
+                style="display:block;width:100%;min-height:52px;margin:0;padding:0;position:static;"
+              >
+            {%- endif -%}
             {%- if filter_type == 'horizontal' and results.filters != empty -%}
-              <div class="jf-facet-label">
+              <div class="jf-facet-label" style="position:absolute;left:clamp(56px,12vw,208px);top:50%;transform:translateY(-50%);z-index:2;">
                 <h2 class="facets__heading caption-large text-body" id="verticalTitle" tabindex="-1">
                   {{ 'products.facets.filter_by_label' | t }}
                 </h2>
               </div>
             {%- endif -%}
             {%- if filter_type == 'horizontal' -%}
-              <div class="jf-facet-pills">
+              <div class="jf-facet-pills" style="position:absolute;right:clamp(56px,12vw,208px);top:50%;transform:translateY(-50%);display:flex;justify-content:flex-end;gap:12px;width:auto;margin:0;z-index:2;">
             {%- endif -%}
             {% comment %} Pills are right below the title for filter type vertical {% endcomment %}
             {%- if filter_type == 'vertical' -%}
@@ -377,6 +445,7 @@
                   </div>
                 </div>
               {%- endif -%}
+              </div>
               </div>
             {%- endif -%}
           </div>

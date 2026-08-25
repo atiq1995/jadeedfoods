@@ -1,4 +1,4 @@
-<section class="jf-contact-form-wrap">
+<section class="jf-contact-form-wrap" id="contact-form">
   <div class="jf-container">
     <h2 class="jf-contact-form__heading">{{ section.settings.heading }}</h2>
     <div class="jf-contact-form-card">
@@ -17,21 +17,21 @@
 
         <div class="jf-contact-form-card__row">
           <div class="jf-contact-field">
-            <label class="jf-contact-field__label" for="JadeedContactName">Name*</label>
-            <input class="jf-contact-field__input" type="text" id="JadeedContactName" name="contact[name]" value="{% if form.name %}{{ form.name }}{% endif %}" required>
+            <label class="visually-hidden" for="JadeedContactName">Name</label>
+            <input class="jf-contact-field__input" type="text" id="JadeedContactName" name="contact[name]" placeholder="Name*" autocomplete="name" value="{% if form.name %}{{ form.name }}{% endif %}" required>
           </div>
           <div class="jf-contact-field">
-            <label class="jf-contact-field__label" for="JadeedContactEmail">Email*</label>
-            <input class="jf-contact-field__input" type="email" id="JadeedContactEmail" name="contact[email]" autocomplete="email" value="{% if form.email %}{{ form.email }}{% endif %}" required>
+            <label class="visually-hidden" for="JadeedContactEmail">Email</label>
+            <input class="jf-contact-field__input" type="email" id="JadeedContactEmail" name="contact[email]" placeholder="Email*" autocomplete="email" value="{% if form.email %}{{ form.email }}{% endif %}" required>
           </div>
         </div>
         <div class="jf-contact-field">
-          <label class="jf-contact-field__label" for="JadeedContactSubject">Subject (Optional)</label>
-          <input class="jf-contact-field__input" type="text" id="JadeedContactSubject" name="contact[subject]">
+          <label class="visually-hidden" for="JadeedContactSubject">Subject (optional)</label>
+          <input class="jf-contact-field__input" type="text" id="JadeedContactSubject" name="contact[subject]" placeholder="Subject (Optional)">
         </div>
         <div class="jf-contact-field jf-contact-field--message">
-          <label class="jf-contact-field__label" for="JadeedContactMessage">Message</label>
-          <textarea class="jf-contact-field__input" id="JadeedContactMessage" name="contact[body]" rows="5" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
+          <label class="visually-hidden" for="JadeedContactMessage">Message</label>
+          <textarea class="jf-contact-field__input" id="JadeedContactMessage" name="contact[body]" rows="8" placeholder="Message" required>{% if form.body %}{{ form.body }}{% endif %}</textarea>
         </div>
         <div class="jf-contact-form-card__actions">
           <button type="submit" class="jf-btn jf-btn--navy">{{ section.settings.button_label }}</button>

@@ -1,0 +1,100 @@
+<section class="jf-login" id="jadeed-login">
+  <div class="jf-login__inner">
+    <h1 class="jf-login__page-title">{{ section.settings.heading }}</h1>
+
+    <div class="jf-login__card">
+      <div id="recover" class="jf-login__panel jf-login__panel--recover">
+        <h2 class="jf-login__card-title">{{ section.settings.recover_heading }}</h2>
+        <p class="jf-login__hint">{{ 'customer.recover_password.subtext' | t }}</p>
+        {%- form 'recover_customer_password', class: 'jf-login__form' -%}
+          {% assign recover_success = form.posted_successfully? %}
+          {%- if form.errors -%}
+            <div class="jf-login__errors" tabindex="-1">{{ form.errors | default_errors }}</div>
+          {%- endif -%}
+          <label class="visually-hidden" for="RecoverEmail">{{ 'customer.login_page.email' | t }}</label>
+          <input
+            class="jf-login__input"
+            type="email"
+            value=""
+            name="email"
+            id="RecoverEmail"
+            autocorrect="off"
+            autocapitalize="off"
+            autocomplete="email"
+            placeholder="Username or email address"
+          >
+          <button type="submit" class="jf-login__submit">{{ 'customer.login_page.submit' | t }}</button>
+          <a class="jf-login__forgot" href="#login">{{ 'customer.login_page.cancel' | t }}</a>
+        {%- endform -%}
+      </div>
+
+      <div id="login" class="jf-login__panel">
+        <h2 class="jf-login__card-title">{{ section.settings.card_heading }}</h2>
+        {%- if recover_success == true -%}
+          <p class="jf-login__success">{{ 'customer.recover_password.success' | t }}</p>
+        {%- endif -%}
+        {%- form 'customer_login', novalidate: 'novalidate', class: 'jf-login__form' -%}
+          {%- if form.errors -%}
+            <div class="jf-login__errors" tabindex="-1" autofocus>
+              {{ form.errors | default_errors }}
+            </div>
+          {%- endif -%}
+
+          <label class="visually-hidden" for="CustomerEmail">Username or email address</label>
+          <input
+            class="jf-login__input"
+            type="email"
+            name="customer[email]"
+            id="CustomerEmail"
+            autocomplete="email"
+            autocorrect="off"
+            autocapitalize="off"
+            placeholder="Username or email address"
+            required
+          >
+
+          {%- if form.password_needed -%}
+            <label class="visually-hidden" for="CustomerPassword">Password</label>
+            <input
+              class="jf-login__input"
+              type="password"
+              value=""
+              name="customer[password]"
+              id="CustomerPassword"
+              autocomplete="current-password"
+              placeholder="Password"
+              required
+            >
+          {%- endif -%}
+
+          <div class="jf-login__row">
+            <label class="jf-login__remember">
+              <input type="checkbox" class="jf-login__check">
+              <span>Remember me</span>
+            </label>
+            {%- if form.password_needed -%}
+              <a class="jf-login__forgot" href="#recover">Forgot your password?</a>
+            {%- endif -%}
+          </div>
+
+          <button type="submit" class="jf-login__submit">{{ section.settings.button_label }}</button>
+        {%- endform -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Jadeed login",
+  "tag": "section",
+  "class": "section-jadeed-login",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Page heading", "default": "Login account" },
+    { "type": "text", "id": "card_heading", "label": "Card heading", "default": "Log in your account" },
+    { "type": "text", "id": "recover_heading", "label": "Recover heading", "default": "Reset password" },
+    { "type": "text", "id": "button_label", "label": "Button", "default": "Login now" }
+  ],
+  "presets": [{ "name": "Jadeed login" }]
+}
+{% endschema %}

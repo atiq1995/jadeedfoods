@@ -30,9 +30,11 @@
       "blocks": {
         "q1": { "type": "faq", "settings": { "question": "How do I place an order?", "answer": "<p>Add products to your cart and proceed to checkout.</p>", "open_by_default": true } },
         "q2": { "type": "faq", "settings": { "question": "How can I cancel or change my order?", "answer": "<p>Contact support immediately after placing your order for modifications.</p>" } },
-        "q3": { "type": "faq", "settings": { "question": "How do I track my order?", "answer": "<p>Use the Order Tracking page with your Order ID and billing email.</p>" } }
+        "q3": { "type": "faq", "settings": { "question": "Do I need an account to place an order?", "answer": "<p>You can check out as a guest. Creating an account lets you track orders and save addresses.</p>" } },
+        "q4": { "type": "faq", "settings": { "question": "How do I track my order?", "answer": "<p>Use the Order Tracking page with your Order ID and billing email.</p>" } },
+        "q5": { "type": "faq", "settings": { "question": "How can I return a product?", "answer": "<p>Contact us with your order details and we will guide you through the return process.</p>" } }
       },
-      "block_order": ["q1", "q2", "q3"],
+      "block_order": ["q1", "q2", "q3", "q4", "q5"],
       "settings": { "heading": "Order & Returns" }
     },
     "cta": {
@@ -40,7 +42,8 @@
       "settings": {
         "eyebrow": "We're here to help!",
         "title": "Contact us",
-        "button_label": "Contact us"
+        "button_label": "",
+        "button_link": "/pages/contact#contact-form"
       }
     }
   },

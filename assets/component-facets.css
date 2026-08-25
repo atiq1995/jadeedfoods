@@ -1309,3 +1309,47 @@ input.mobile-facets__checkbox {
     display: none !important;
   }
 }
+
+/* PLP filter bar: label left, pills right, inner row centered (Figma 1:319) */
+@media screen and (min-width: 750px) {
+  main[data-template="collection"] .facets-container,
+  main[data-template="collection"] facet-filters-form {
+    display: block !important;
+    width: 100% !important;
+    max-width: none !important;
+  }
+  main[data-template="collection"] #FacetFiltersForm {
+    display: flex !important;
+    justify-content: center !important;
+    width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    grid-template-columns: none !important;
+  }
+  main[data-template="collection"] #FacetsWrapperDesktop,
+  main[data-template="collection"] .jf-facet-bar {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    align-self: stretch !important;
+    flex: 1 1 100% !important;
+    width: min(1410px, calc(100% - 48px)) !important;
+    max-width: 1410px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    gap: 24px !important;
+  }
+  main[data-template="collection"] .jf-facet-label {
+    margin-right: auto !important;
+    flex: 0 0 auto !important;
+  }
+  main[data-template="collection"] .jf-facet-pills {
+    display: flex !important;
+    justify-content: flex-end !important;
+    margin-left: auto !important;
+    margin-right: 0 !important;
+    flex: 0 0 auto !important;
+    width: auto !important;
+  }
+}

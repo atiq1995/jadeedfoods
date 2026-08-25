@@ -3,7 +3,7 @@
     "hero": {
       "type": "jadeed-page-hero-image",
       "settings": {
-        "title": "Contact Us",
+        "title": "",
         "asset_key": "contact_hero",
         "overlay": false
       }
