@@ -3,7 +3,8 @@
   Usage: {% render 'jadeed-asset-url', key: 'category_rice' %}
 {%- endcomment -%}
 {%- case key -%}
-  {%- when 'hero' -%}{{ 'jadeed-hero-bg.png' | asset_url }}
+  {%- when 'hero' -%}{{ 'jadeed-web-banner.png' | asset_url }}
+  {%- when 'web_banner' -%}{{ 'jadeed-web-banner.png' | asset_url }}
   {%- when 'category_rice' -%}{{ 'jadeed-category-rice.jpg' | asset_url }}
   {%- when 'category_spices' -%}{{ 'jadeed-category-spices.jpg' | asset_url }}
   {%- when 'category_oil' -%}{{ 'jadeed-category-oil.jpg' | asset_url }}

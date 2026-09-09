@@ -2,17 +2,22 @@
   if section.settings.image != blank
     assign slide_1 = section.settings.image | image_url: width: 1800
   else
-    assign slide_1 = 'jadeed-rich-aroma.jpg' | asset_url
+    assign slide_1 = 'jadeed-rich-aroma1.webp' | asset_url
   endif
   if section.settings.image_2 != blank
     assign slide_2 = section.settings.image_2 | image_url: width: 1800
   else
-    assign slide_2 = 'jadeed-rich-aroma-v2.png' | asset_url
+    assign slide_2 = 'jadeed-rich-aroma-3.jpg' | asset_url
   endif
   if section.settings.image_3 != blank
     assign slide_3 = section.settings.image_3 | image_url: width: 1800
   else
-    assign slide_3 = 'jadeed-rich-aroma-v3.png' | asset_url
+    assign slide_3 = 'jadeed-rich-aroma.jpg' | asset_url
+  endif
+  if section.settings.image_4 != blank
+    assign slide_4 = section.settings.image_4 | image_url: width: 1800
+  else
+    assign slide_4 = 'jadeed-rich-aroma.jpg' | asset_url
   endif
 %}
 <section
@@ -27,22 +32,29 @@
       class="jf-rich-aroma__slide is-active"
       src="{{ slide_1 }}"
       alt=""
-      width="1729"
-      height="967"
+      width="2400"
+      height="1342"
     >
     <img
       class="jf-rich-aroma__slide"
       src="{{ slide_2 }}"
       alt=""
-      width="1729"
-      height="967"
+      width="2400"
+      height="1342"
     >
     <img
       class="jf-rich-aroma__slide"
       src="{{ slide_3 }}"
       alt=""
-      width="1729"
-      height="967"
+      width="2400"
+      height="1342"
+    >
+    <img
+      class="jf-rich-aroma__slide"
+      src="{{ slide_4 }}"
+      alt=""
+      width="2400"
+      height="1342"
     >
   </div>
   <div class="jf-container jf-rich-aroma__grid">
@@ -79,9 +91,10 @@
   "tag": "section",
   "class": "section-jadeed-rich-aroma",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image 1 (man with curry)" },
-    { "type": "image_picker", "id": "image_2", "label": "Image 2 (woman with rice)" },
-    { "type": "image_picker", "id": "image_3", "label": "Image 3 (man with bowl)" },
+    { "type": "image_picker", "id": "image", "label": "Image 1" },
+    { "type": "image_picker", "id": "image_2", "label": "Image 2" },
+    { "type": "image_picker", "id": "image_3", "label": "Image 3" },
+    { "type": "image_picker", "id": "image_4", "label": "Image 4" },
     {
       "type": "range",
       "id": "interval",
