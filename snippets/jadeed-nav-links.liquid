@@ -18,45 +18,40 @@
   </a>
 </li>
 
-<li>
-  <header-menu>
-    <details id="Details-HeaderMenu-OurProducts">
-      <summary
-        id="HeaderMenu-our-products"
-        class="header__menu-item list-menu__item link focus-inset jf-nav-dropdown-trigger"
-      >
-        <span>Our Products</span>
-        {{- 'icon-caret.svg' | inline_asset_content -}}
-      </summary>
-      <ul
-        id="HeaderMenu-MenuList-OurProducts"
-        class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup jf-nav-dropdown"
-        role="list"
-        tabindex="-1"
-      >
-        <li>
-          <a href="{{ routes.collections_url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
-            All Products
-          </a>
-        </li>
-        <li>
-          <a href="{{ jf_oil_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
-            Oil
-          </a>
-        </li>
-        <li>
-          <a href="{{ jf_rice_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
-            Rice
-          </a>
-        </li>
-        <li>
-          <a href="{{ jf_spices_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
-            Spices
-          </a>
-        </li>
-      </ul>
-    </details>
-  </header-menu>
+<li class="jf-nav-item jf-nav-item--dropdown">
+  <a
+    href="{{ routes.collections_url }}"
+    id="HeaderMenu-our-products"
+    class="header__menu-item list-menu__item link link--text focus-inset jf-nav-dropdown-trigger"
+  >
+    <span>Our Products</span>
+  </a>
+  <ul
+    id="HeaderMenu-MenuList-OurProducts"
+    class="jf-nav-dropdown"
+    role="list"
+  >
+    <li>
+      <a href="{{ routes.collections_url }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        All Products
+      </a>
+    </li>
+    <li>
+      <a href="{{ jf_oil_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        Oil
+      </a>
+    </li>
+    <li>
+      <a href="{{ jf_rice_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        Rice
+      </a>
+    </li>
+    <li>
+      <a href="{{ jf_spices_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        Spices
+      </a>
+    </li>
+  </ul>
 </li>
 
 <li>
