@@ -1,28 +1,96 @@
 {% comment %}
-  HOMEPAGE.png desktop/mobile nav items.
-  Become a Vendor is appended separately in jadeed-header-nav.
+  Desktop nav items for jf-nav-bar.
+  Our Products opens a dropdown; Special Deals gets a flash highlight.
 {% endcomment %}
 {%- liquid
   assign jf_contact_href = pages['contact'].url | default: pages['contact-us'].url | default: '/pages/contact'
+  assign jf_oil_href = collections['oil'].url | default: '/collections/oil'
+  assign jf_rice_href = collections['rice'].url | default: '/collections/rice'
+  assign jf_spices_href = collections['spices'].url | default: '/collections/spices'
 -%}
-{%- assign jf_nav_items = 'Home|/,'
-  | append: 'Jadeed Products|/collections/all,'
-  | append: 'About Us|/pages/about-us,'
-  | append: 'Special Deals|/collections/all,'
-  | append: 'Blog|/blogs/news,'
-  | append: 'Contact|' | append: jf_contact_href
--%}
-{%- assign jf_nav_pairs = jf_nav_items | split: ',' -%}
-{%- for pair in jf_nav_pairs -%}
-  {%- assign parts = pair | split: '|' -%}
-  {%- assign jf_label = parts[0] -%}
-  {%- assign jf_href = parts[1] -%}
-  <li>
-    <a
-      href="{{ jf_href }}"
-      class="header__menu-item list-menu__item link link--text focus-inset{% if request.path == jf_href %} list-menu__item--active{% endif %}"
-    >
-      <span{% if request.path == jf_href %} class="header__active-menu-item"{% endif %}>{{ jf_label }}</span>
-    </a>
-  </li>
-{%- endfor -%}
+
+<li>
+  <a
+    href="{{ routes.root_url }}"
+    class="header__menu-item list-menu__item link link--text focus-inset{% if request.page_type == 'index' %} list-menu__item--active{% endif %}"
+  >
+    <span{% if request.page_type == 'index' %} class="header__active-menu-item"{% endif %}>Home</span>
+  </a>
+</li>
+
+<li>
+  <header-menu>
+    <details id="Details-HeaderMenu-OurProducts">
+      <summary
+        id="HeaderMenu-our-products"
+        class="header__menu-item list-menu__item link focus-inset jf-nav-dropdown-trigger"
+      >
+        <span>Our Products</span>
+        {{- 'icon-caret.svg' | inline_asset_content -}}
+      </summary>
+      <ul
+        id="HeaderMenu-MenuList-OurProducts"
+        class="header__submenu list-menu list-menu--disclosure color-{{ section.settings.menu_color_scheme }} gradient caption-large motion-reduce global-settings-popup jf-nav-dropdown"
+        role="list"
+        tabindex="-1"
+      >
+        <li>
+          <a href="{{ routes.collections_url }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
+            All Products
+          </a>
+        </li>
+        <li>
+          <a href="{{ jf_oil_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
+            Oil
+          </a>
+        </li>
+        <li>
+          <a href="{{ jf_rice_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
+            Rice
+          </a>
+        </li>
+        <li>
+          <a href="{{ jf_spices_href }}" class="header__menu-item list-menu__item link link--text focus-inset caption-large">
+            Spices
+          </a>
+        </li>
+      </ul>
+    </details>
+  </header-menu>
+</li>
+
+<li>
+  <a
+    href="/pages/about-us"
+    class="header__menu-item list-menu__item link link--text focus-inset{% if request.path == '/pages/about-us' %} list-menu__item--active{% endif %}"
+  >
+    <span{% if request.path == '/pages/about-us' %} class="header__active-menu-item"{% endif %}>About Us</span>
+  </a>
+</li>
+
+<li>
+  <a
+    href="{{ routes.root_url }}#special-deals"
+    class="header__menu-item list-menu__item link link--text focus-inset jf-nav-flash"
+  >
+    <span>Special Deals</span>
+  </a>
+</li>
+
+<li>
+  <a
+    href="{{ blogs['news'].url | default: '/blogs/news' }}"
+    class="header__menu-item list-menu__item link link--text focus-inset"
+  >
+    <span>Blog</span>
+  </a>
+</li>
+
+<li>
+  <a
+    href="{{ jf_contact_href }}"
+    class="header__menu-item list-menu__item link link--text focus-inset{% if request.path == jf_contact_href %} list-menu__item--active{% endif %}"
+  >
+    <span{% if request.path == jf_contact_href %} class="header__active-menu-item"{% endif %}>Contact</span>
+  </a>
+</li>

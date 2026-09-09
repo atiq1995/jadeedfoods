@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" fill="#FFFFFF" aria-hidden="true">
+  <!-- Horizontal band: 2 staggered rows of diagonal seed/leaves (Figma) -->
+  <g transform="rotate(40 20 22)"><ellipse cx="20" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 52 22)"><ellipse cx="52" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 84 22)"><ellipse cx="84" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 116 22)"><ellipse cx="116" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 148 22)"><ellipse cx="148" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 180 22)"><ellipse cx="180" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 212 22)"><ellipse cx="212" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 244 22)"><ellipse cx="244" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 276 22)"><ellipse cx="276" cy="22" rx="7" ry="15"/></g>
+  <g transform="rotate(40 308 22)"><ellipse cx="308" cy="22" rx="7" ry="15"/></g>
+
+  <g transform="rotate(40 36 56)"><ellipse cx="36" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 68 56)"><ellipse cx="68" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 100 56)"><ellipse cx="100" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 132 56)"><ellipse cx="132" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 164 56)"><ellipse cx="164" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 196 56)"><ellipse cx="196" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 228 56)"><ellipse cx="228" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 260 56)"><ellipse cx="260" cy="56" rx="7" ry="15"/></g>
+  <g transform="rotate(40 292 56)"><ellipse cx="292" cy="56" rx="7" ry="15"/></g>
+</svg>

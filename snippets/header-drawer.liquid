@@ -23,26 +23,74 @@
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- liquid
                 assign jf_contact_href = pages['contact'].url | default: pages['contact-us'].url | default: '/pages/contact'
+                assign jf_oil_href = collections['oil'].url | default: '/collections/oil'
+                assign jf_rice_href = collections['rice'].url | default: '/collections/rice'
+                assign jf_spices_href = collections['spices'].url | default: '/collections/spices'
               -%}
-              {%- assign jf_drawer_items = 'Home|/,'
-                | append: 'Jadeed Products|/collections/all,'
-                | append: 'About Us|/pages/about-us,'
-                | append: 'Special Deals|/collections/all,'
-                | append: 'Blog|/blogs/news,'
-                | append: 'Contact|' | append: jf_contact_href
-              -%}
-              {%- assign jf_drawer_pairs = jf_drawer_items | split: ',' -%}
-              {%- for pair in jf_drawer_pairs -%}
-                {%- assign parts = pair | split: '|' -%}
-                <li>
-                  <a
-                    href="{{ parts[1] }}"
-                    class="menu-drawer__menu-item list-menu__item link link--text focus-inset"
-                  >
-                    {{ parts[0] }}
-                  </a>
-                </li>
-              {%- endfor -%}
+              <li>
+                <a href="{{ routes.root_url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Home
+                </a>
+              </li>
+              <li>
+                <details id="Details-menu-drawer-our-products">
+                  <summary class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                    Our Products
+                    <span class="svg-wrapper">
+                      {{- 'icon-caret.svg' | inline_asset_content -}}
+                    </span>
+                  </summary>
+                  <div class="menu-drawer__submenu has-submenu gradient motion-reduce" tabindex="-1">
+                    <div class="menu-drawer__inner-submenu">
+                      <ul class="menu-drawer__menu list-menu" role="list" tabindex="-1">
+                        <li>
+                          <a href="{{ routes.collections_url }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                            All Products
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ jf_oil_href }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                            Oil
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ jf_rice_href }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                            Rice
+                          </a>
+                        </li>
+                        <li>
+                          <a href="{{ jf_spices_href }}" class="menu-drawer__menu-item link link--text list-menu__item focus-inset">
+                            Spices
+                          </a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </details>
+              </li>
+              <li>
+                <a href="/pages/about-us" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  About Us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="{{ routes.root_url }}#special-deals"
+                  class="menu-drawer__menu-item list-menu__item link link--text focus-inset jf-nav-flash"
+                >
+                  Special Deals
+                </a>
+              </li>
+              <li>
+                <a href="{{ blogs['news'].url | default: '/blogs/news' }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Blog
+                </a>
+              </li>
+              <li>
+                <a href="{{ jf_contact_href }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset">
+                  Contact
+                </a>
+              </li>
               {%- if section.settings.show_vendor_link -%}
                 <li>
                   <a

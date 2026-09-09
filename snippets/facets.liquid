@@ -74,6 +74,18 @@
     width: auto !important;
     z-index: 2 !important;
   }
+  /* Desktop facet bar is .small-hide — keep it hidden on mobile so it
+     does not overlap Dawn’s native “Filter and sort” control. */
+  @media screen and (max-width: 749px) {
+    #main-collection-filters {
+      width: 100% !important;
+    }
+    .facets-container facet-filters-form.facets.small-hide,
+    facet-filters-form.facets.small-hide,
+    .facets.small-hide {
+      display: none !important;
+    }
+  }
 </style>
 
 {%- liquid

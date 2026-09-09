@@ -9,19 +9,24 @@
     </p>
   </div>
 
-  <div class="jf-about-timeline__figure-wrap">
-    {% liquid
-      assign timeline_url = ''
-      if section.settings.image != blank
-        assign timeline_url = section.settings.image | image_url: width: 2400
-      else
-        capture timeline_url
-          render 'jadeed-asset-url', key: 'about_timeline'
-        endcapture
-        assign timeline_url = timeline_url | strip
-      endif
-    %}
-    {% if timeline_url != blank %}
+  {% liquid
+    assign timeline_url = ''
+    if section.settings.image != blank
+      assign timeline_url = section.settings.image | image_url: width: 2400
+    else
+      capture timeline_url
+        render 'jadeed-asset-url', key: 'about_timeline'
+      endcapture
+      assign timeline_url = timeline_url | strip
+    endif
+  %}
+
+  {% if timeline_url != blank %}
+    {%- comment -%}
+      Desktop: full Figma graphic (cards + path) for pixel match.
+      Mobile: three clipped slices of the same graphic, stacked vertically.
+    {%- endcomment -%}
+    <div class="jf-about-timeline__figure-wrap jf-about-timeline__figure-wrap--desktop">
       <figure class="jf-about-timeline__figure">
         <img
           src="{{ timeline_url }}"
@@ -31,8 +36,31 @@
           height="555"
         >
       </figure>
-    {% endif %}
-  </div>
+    </div>
+
+    <div
+      class="jf-about-timeline__cards jf-about-timeline__cards--mobile"
+      style="--jf-timeline-src: url('{{ timeline_url }}');"
+      role="list"
+      aria-label="{{ section.settings.image_alt | escape }}"
+    >
+      <div
+        class="jf-about-timeline__slice jf-about-timeline__slice--1"
+        role="listitem"
+        aria-label="February 2012"
+      ></div>
+      <div
+        class="jf-about-timeline__slice jf-about-timeline__slice--2"
+        role="listitem"
+        aria-label="July 2015"
+      ></div>
+      <div
+        class="jf-about-timeline__slice jf-about-timeline__slice--3"
+        role="listitem"
+        aria-label="September 2015"
+      ></div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
