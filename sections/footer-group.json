@@ -28,7 +28,7 @@
         },
         "company_about": {
           "type": "company_link",
-          "settings": { "label": "About Us", "url": "/pages/about-us" }
+          "settings": { "label": "About Us", "url": "https://www.jadeedgroup.com/about.html" }
         },
         "company_contact": {
           "type": "company_link",

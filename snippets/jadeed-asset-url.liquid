@@ -3,14 +3,17 @@
   Usage: {% render 'jadeed-asset-url', key: 'category_rice' %}
 {%- endcomment -%}
 {%- case key -%}
-  {%- when 'hero' -%}{{ 'jadeed-web-banner.png' | asset_url }}
-  {%- when 'web_banner' -%}{{ 'jadeed-web-banner.png' | asset_url }}
+  {%- when 'hero' -%}{{ 'Web-banner-full-range.png' | asset_url }}
+  {%- when 'web_banner' -%}{{ 'Web-banner-full-range.png' | asset_url }}
   {%- when 'category_rice' -%}{{ 'jadeed-category-rice.jpg' | asset_url }}
   {%- when 'category_spices' -%}{{ 'jadeed-category-spices.jpg' | asset_url }}
   {%- when 'category_oil' -%}{{ 'jadeed-category-oil.jpg' | asset_url }}
-  {%- when 'deal_pepper' -%}{{ 'jadeed-deal-pepper.jpg' | asset_url }}
-  {%- when 'deal_flax' -%}{{ 'jadeed-deal-flax.jpg' | asset_url }}
-  {%- when 'deal_pack' -%}{{ 'jadeed-deal-pack.jpg' | asset_url }}
+  {%- when 'deal_pepper' -%}{{ 'But-5-get-1.png' | asset_url }}
+  {%- when 'deal_flax' -%}{{ 'Jadeed-10-off-free-delivery.png' | asset_url }}
+  {%- when 'deal_pack' -%}{{ 'Voucher-500.png' | asset_url }}
+  {%- when 'deal_buy5' -%}{{ 'But-5-get-1.png' | asset_url }}
+  {%- when 'deal_delivery' -%}{{ 'Jadeed-10-off-free-delivery.png' | asset_url }}
+  {%- when 'deal_voucher' -%}{{ 'Voucher-500.png' | asset_url }}
   {%- when 'rich_aroma' -%}{{ 'jadeed-rich-aroma.jpg' | asset_url }}
   {%- when 'product_rice' -%}{{ 'jadeed-product-rice.jpg' | asset_url }}
   {%- when 'product_spices' -%}{{ 'jadeed-product-spices.jpg' | asset_url }}
@@ -54,6 +57,9 @@
   {%- when 'order_tracking_hero' -%}{{ 'jadeed-order-tracking-hero.jpg' | asset_url }}
   {%- when 'login_hero' -%}{{ 'jadeed-login-hero.jpg' | asset_url }}
   {%- when 'collection_hero' -%}{{ 'jadeed-collection-hero.jpg' | asset_url }}
+  {%- when 'collection_hero_rice' -%}{{ 'Web-banner-rice-2.png' | asset_url }}
+  {%- when 'collection_hero_spices' -%}{{ 'Web-banner-spices.png' | asset_url }}
+  {%- when 'collection_hero_oil' -%}{{ 'Web-banner.png' | asset_url }}
   {%- when 'product_review_cta' -%}{{ 'jadeed-product-review-cta.jpg' | asset_url }}
   {%- when 'legal_bg' -%}{{ 'jadeed-legal-bg.jpg' | asset_url }}
   {%- when 'terms_bg' -%}{{ 'jadeed-terms-bg.jpg' | asset_url }}

@@ -32,11 +32,6 @@
     role="list"
   >
     <li>
-      <a href="{{ routes.collections_url }}" class="header__menu-item list-menu__item link link--text focus-inset">
-        All Products
-      </a>
-    </li>
-    <li>
       <a href="{{ jf_oil_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
         Oil
       </a>
@@ -56,10 +51,12 @@
 
 <li>
   <a
-    href="/pages/about-us"
-    class="header__menu-item list-menu__item link link--text focus-inset{% if request.path == '/pages/about-us' %} list-menu__item--active{% endif %}"
+    href="https://www.jadeedgroup.com/about.html"
+    class="header__menu-item list-menu__item link link--text focus-inset"
+    target="_blank"
+    rel="noopener noreferrer"
   >
-    <span{% if request.path == '/pages/about-us' %} class="header__active-menu-item"{% endif %}>About Us</span>
+    <span>About Us</span>
   </a>
 </li>
 

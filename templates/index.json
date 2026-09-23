@@ -43,9 +43,9 @@
     "special_deals": {
       "type": "special-deals",
       "blocks": {
-        "deal_pepper": { "type": "deal", "settings": { "title": "BLACK PEPPER", "color": "#203165", "link": "/collections/spices" } },
-        "deal_flax": { "type": "deal", "settings": { "title": "FLAX SEED", "color": "#203165", "link": "/collections/spices" } },
-        "deal_pack": { "type": "deal", "settings": { "title": "PACK OF TWO", "color": "#203165", "link": "/collections/oil" } }
+        "deal_pepper": { "type": "deal", "settings": { "title": "Buy 5 Get 1 Free — Spice Packs", "color": "#203165", "link": "/collections/spices" } },
+        "deal_flax": { "type": "deal", "settings": { "title": "Free Delivery + 10% Off", "color": "#BC2026", "link": "/collections/all" } },
+        "deal_pack": { "type": "deal", "settings": { "title": "Rs. 500 Voucher on Rs. 10,000+", "color": "#253A78", "link": "/collections/all" } }
       },
       "block_order": ["deal_pepper", "deal_flax", "deal_pack"],
       "settings": {

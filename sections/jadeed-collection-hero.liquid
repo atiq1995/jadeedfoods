@@ -1,7 +1,16 @@
 {% liquid
   assign hero_bg = ''
+  assign collection_handle = collection.handle | default: ''
+
   if section.settings.image != blank
     assign hero_bg = section.settings.image | image_url: width: 2400
+  elsif collection_handle == 'rice'
+    assign hero_bg = 'Web-banner-rice-2.png' | asset_url
+  elsif collection_handle == 'spices' or collection_handle == 'spice'
+    assign hero_bg = 'Web-banner-spices.png' | asset_url
+  elsif collection_handle == 'oil'
+    # Temporary until client delivers the Oil banner
+    assign hero_bg = 'Web-banner.png' | asset_url
   else
     capture hero_bg
       render 'jadeed-asset-url', key: 'collection_hero'
@@ -18,11 +27,17 @@
   if hero_title != blank or section.settings.subtitle != blank
     assign show_text = true
   endif
+
+  assign is_category_banner = false
+  if collection_handle == 'rice' or collection_handle == 'spices' or collection_handle == 'spice' or collection_handle == 'oil'
+    assign is_category_banner = true
+  endif
 %}
 
 <section
-  class="jf-collection-hero{% unless show_text %} jf-collection-hero--photo{% endunless %}"
+  class="jf-collection-hero{% unless show_text %} jf-collection-hero--photo{% endunless %}{% if is_category_banner %} jf-collection-hero--web-banner{% endif %}"
   {% if hero_bg != blank %}style="background-image:url('{{ hero_bg }}');"{% endif %}
+  {% if collection != blank %}aria-label="{{ collection.title | escape }}"{% endif %}
 >
   {% if show_text %}
     <div class="jf-container jf-collection-hero__inner">

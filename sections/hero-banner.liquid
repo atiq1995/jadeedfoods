@@ -3,7 +3,7 @@
   if section.settings.background_image != blank
     assign hero_bg = section.settings.background_image | image_url: width: 2400
   else
-    assign hero_bg = 'jadeed-web-banner.png' | asset_url
+    assign hero_bg = 'Web-banner-full-range.png' | asset_url
   endif
 %}
 <section class="jf-hero jf-hero--web-banner"{% if section.settings.title != blank %} aria-label="{{ section.settings.title | escape }}"{% endif %}>
@@ -11,8 +11,8 @@
     class="jf-hero__media"
     src="{{ hero_bg }}"
     alt="Jadeed Foods products"
-    width="2400"
-    height="1078"
+    width="3458"
+    height="1553"
   >
   <div class="jf-container">
     <div class="jf-hero__content">
