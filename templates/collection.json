@@ -7,24 +7,6 @@
         "subtitle": ""
       }
     },
-    "category-strip": {
-      "type": "jadeed-category-strip",
-      "blocks": {
-        "oil": {
-          "type": "category",
-          "settings": { "label": "Oil", "icon": "oil", "asset_key": "plp_oil", "link": "/collections/oil" }
-        },
-        "rice": {
-          "type": "category",
-          "settings": { "label": "Rice", "icon": "rice", "asset_key": "plp_rice", "link": "/collections/rice" }
-        },
-        "spices": {
-          "type": "category",
-          "settings": { "label": "Spices", "icon": "spices", "asset_key": "plp_spices", "link": "/collections/spices" }
-        }
-      },
-      "block_order": ["oil", "rice", "spices"]
-    },
     "product-grid": {
       "type": "main-collection-product-grid",
       "settings": {
@@ -48,7 +30,6 @@
   },
   "order": [
     "jadeed-collection-hero",
-    "category-strip",
     "product-grid"
   ]
 }

@@ -5443,9 +5443,9 @@ main[data-template="collection"] #FacetFiltersForm {
   gap: 0;
   width: 100%;
   margin: 0;
-  padding: 8px 0;
+  padding: 4px 0;
   background: var(--jf-red);
-  min-height: 52px;
+  min-height: 0;
   box-sizing: border-box;
   grid-template-columns: none !important;
 }
@@ -5663,6 +5663,7 @@ main[data-template="collection"] .media.media--transparent,
 main[data-template="search"] .card--standard .card__inner,
 main[data-template="search"] .card__media {
   background: #fffbeb !important;
+  background-color: #fffbeb !important;
   border-radius: 0 !important;
 }
 main[data-template="collection"] .product-grid,
@@ -5698,7 +5699,7 @@ main[data-template="search"] .card--standard > .card__content {
 }
 main[data-template="collection"] .card .card__inner.ratio:before,
 main[data-template="search"] .card .card__inner.ratio:before {
-  padding-bottom: calc(432 / 360 * 100%) !important;
+  padding-bottom: calc(420 / 360 * 100%) !important;
 }
 main[data-template="collection"] .card__media,
 main[data-template="search"] .card__media {
@@ -5708,9 +5709,9 @@ main[data-template="collection"] .card__media::after,
 main[data-template="search"] .card__media::after {
   content: '';
   position: absolute;
-  left: 18%;
-  right: 18%;
-  bottom: 9%;
+  left: 16%;
+  right: 16%;
+  bottom: 8%;
   height: 3.33cqi;
   background: rgba(0, 0, 0, 0.13);
   border-radius: 9999px;
@@ -5720,18 +5721,20 @@ main[data-template="search"] .card__media::after {
 }
 main[data-template="collection"] .card__media img,
 main[data-template="search"] .card__media img {
-  width: 77% !important;
-  height: 100% !important;
-  max-width: 77% !important;
-  max-height: 100% !important;
+  width: 112% !important;
+  height: 112% !important;
+  max-width: 112% !important;
+  max-height: 112% !important;
   left: 50% !important;
   right: auto !important;
-  top: 0 !important;
-  transform: translateX(-50%);
-  transform-origin: 50% 70%;
+  top: 50% !important;
+  transform: translate(-50%, -50%);
+  transform-origin: center center;
   object-fit: contain !important;
-  object-position: center 62%;
+  object-position: center center;
   background: transparent !important;
+  /* Knock out white studio backgrounds so cream card shows through */
+  mix-blend-mode: multiply !important;
   z-index: 2;
   transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), filter 0.35s ease;
 }
@@ -5749,20 +5752,15 @@ main[data-template="collection"] .card-wrapper:hover .card__media img,
 main[data-template="search"] .card-wrapper:hover .card__media img,
 main[data-template="collection"] .card-wrapper:hover .media.media--hover-effect > img:first-child:only-child,
 main[data-template="search"] .card-wrapper:hover .media.media--hover-effect > img:first-child:only-child {
-  mix-blend-mode: darken !important;
-  transform: translateX(-50%) rotate(13deg) !important;
-  filter: drop-shadow(-8px 14px 12px rgba(0, 0, 0, 0.28));
-}
-main[data-template="collection"] .card--standard .card__inner,
-main[data-template="collection"] .card__media,
-main[data-template="search"] .card--standard .card__inner,
-main[data-template="search"] .card__media {
-  transition: background-color 0.3s ease;
+  /* Keep same blend as rest state so colors don't shift on hover */
+  mix-blend-mode: multiply !important;
+  transform: translate(-50%, -50%) rotate(10deg) !important;
+  filter: drop-shadow(-8px 14px 12px rgba(0, 0, 0, 0.22));
 }
 @media (prefers-reduced-motion: reduce) {
   main[data-template="collection"] .card-wrapper:hover .card__media img,
   main[data-template="search"] .card-wrapper:hover .card__media img {
-    transform: translateX(-50%) !important;
+    transform: translate(-50%, -50%) !important;
     filter: none;
   }
 }
@@ -5773,11 +5771,12 @@ main[data-template="search"] .card--standard > .card__content {
 }
 main[data-template="collection"] .card--standard > .card__content .card__information,
 main[data-template="search"] .card--standard > .card__content .card__information {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) max-content;
-  align-items: baseline;
-  column-gap: 3.33cqi;
-  padding: 1.11cqi 8.33cqi 2.22cqi !important;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 12px 8.33cqi 10px !important;
   background: #ffffff;
   min-height: 0;
   border: 0 !important;
@@ -5786,7 +5785,8 @@ main[data-template="collection"] .card__heading,
 main[data-template="search"] .card__heading {
   margin: 0;
   min-width: 0;
-  width: auto;
+  width: 100%;
+  order: 1;
 }
 main[data-template="collection"] .card__heading a,
 main[data-template="search"] .card__heading a,
@@ -5795,30 +5795,90 @@ main[data-template="search"] .card__heading.h5 a {
   color: #000000 !important;
   font-family: var(--jf-font-heading) !important;
   text-transform: uppercase;
-  font-size: clamp(16px, 6.67cqi, 24px);
+  font-size: clamp(15px, 5.2cqi, 20px);
   font-weight: 600 !important;
-  line-height: 1.15;
+  line-height: 1.2;
   letter-spacing: 0;
   text-decoration: none !important;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  min-height: 0;
+  min-height: calc(1.2em * 2);
+  max-height: calc(1.2em * 2);
   white-space: normal;
-  word-break: normal;
-  overflow-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: anywhere;
 }
 main[data-template="collection"] .card-information,
+main[data-template="search"] .card-information {
+  order: 2;
+  width: 100% !important;
+  max-width: none;
+  text-align: left;
+  flex: none;
+  margin: 0 !important;
+}
+main[data-template="collection"] .card-information > .caption-large,
+main[data-template="search"] .card-information > .caption-large {
+  display: none !important;
+}
 main[data-template="collection"] .price,
 main[data-template="collection"] .price__container,
-main[data-template="search"] .card-information,
 main[data-template="search"] .price,
 main[data-template="search"] .price__container {
-  width: auto !important;
+  width: 100% !important;
   max-width: none;
-  text-align: right;
-  flex: none;
+  text-align: left;
+  margin: 0 !important;
+  overflow: visible;
+}
+main[data-template="collection"] .price--on-sale .price__regular,
+main[data-template="search"] .price--on-sale .price__regular {
+  display: none !important;
+}
+main[data-template="collection"] .price:not(.price--on-sale) .price__sale,
+main[data-template="search"] .price:not(.price--on-sale) .price__sale {
+  display: none !important;
+}
+main[data-template="collection"] .price:not(.price--on-sale) .price__regular,
+main[data-template="search"] .price:not(.price--on-sale) .price__regular {
+  display: block !important;
+}
+main[data-template="collection"] .price__container,
+main[data-template="search"] .price__container {
+  display: block;
+}
+main[data-template="collection"] .price--on-sale .price__sale,
+main[data-template="search"] .price--on-sale .price__sale {
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  visibility: visible !important;
+}
+main[data-template="collection"] .price--on-sale .price__sale > span,
+main[data-template="search"] .price--on-sale .price__sale > span {
+  display: inline !important;
+}
+main[data-template="collection"] .price--on-sale s.price-item--regular,
+main[data-template="collection"] .price--on-sale .price__sale .price-item--regular,
+main[data-template="search"] .price--on-sale s.price-item--regular,
+main[data-template="search"] .price--on-sale .price__sale .price-item--regular {
+  opacity: 0.55;
+  text-decoration: line-through;
+  color: #000000 !important;
+}
+main[data-template="collection"] .price--on-sale .price-item--sale,
+main[data-template="collection"] .price--on-sale .price-item--last,
+main[data-template="search"] .price--on-sale .price-item--sale,
+main[data-template="search"] .price--on-sale .price-item--last {
+  display: inline-block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: #000000 !important;
+  text-decoration: none !important;
+  font-weight: 700 !important;
 }
 main[data-template="collection"] .price,
 main[data-template="collection"] .price .price-item,
@@ -5827,9 +5887,10 @@ main[data-template="search"] .price .price-item {
   color: #000000 !important;
   font-family: var(--jf-font-heading) !important;
   font-weight: 600 !important;
-  font-size: clamp(16px, 6.67cqi, 24px);
-  line-height: 1.15;
+  font-size: clamp(14px, 4.8cqi, 18px);
+  line-height: 1.25;
   text-transform: uppercase;
+  white-space: normal;
 }
 main[data-template="collection"] .quick-add,
 main[data-template="search"] .quick-add {
@@ -5982,8 +6043,7 @@ main[data-template="collection"] a.pagination__item.link {
   }
   main[data-template="collection"] .card--standard > .card__content .card__information,
   main[data-template="search"] .card--standard > .card__content .card__information {
-    grid-template-columns: 1fr;
-    row-gap: 4px;
+    gap: 4px;
     padding: 10px 12px 8px !important;
   }
   main[data-template="collection"] .card-information,
@@ -5994,6 +6054,16 @@ main[data-template="collection"] a.pagination__item.link {
   main[data-template="search"] .price__container {
     text-align: left;
   }
+  main[data-template="collection"] .card__heading a,
+  main[data-template="search"] .card__heading a {
+    font-size: clamp(14px, 4.2vw, 17px);
+  }
+  main[data-template="collection"] .price,
+  main[data-template="collection"] .price .price-item,
+  main[data-template="search"] .price,
+  main[data-template="search"] .price .price-item {
+    font-size: clamp(13px, 3.8vw, 16px);
+  }
 }
 
 #FacetFiltersForm {
@@ -6001,8 +6071,8 @@ main[data-template="collection"] a.pagination__item.link {
   align-items: center !important;
   justify-content: center !important;
   gap: 0 !important;
-  padding: 8px 0 !important;
-  min-height: 52px !important;
+  padding: 4px 0 !important;
+  min-height: 0 !important;
   margin-bottom: 0 !important;
   grid-template-columns: none !important;
 }
