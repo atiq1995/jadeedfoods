@@ -1151,6 +1151,34 @@ summary,
 
 #shop-by-category .jf-card--category {
   aspect-ratio: 400 / 540;
+  padding: 28px;
+  text-align: left;
+  background-position: center center;
+  background-size: cover;
+}
+#shop-by-category .jf-card--category .jf-card__body {
+  width: 100%;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  text-align: left;
+}
+#shop-by-category .jf-card--category .jf-card__title {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: clamp(18px, 1.6vw, 26px);
+  line-height: 1.05;
+  white-space: nowrap;
+}
+#shop-by-category .jf-card--category .jf-arrow-btn {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+}
+#shop-by-category .jf-card--category .jf-arrow-btn svg {
+  width: 18px;
+  height: 18px;
 }
 
 .jf-btn--sm {
