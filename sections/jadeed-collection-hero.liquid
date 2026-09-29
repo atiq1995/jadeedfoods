@@ -9,8 +9,7 @@
   elsif collection_handle == 'spices' or collection_handle == 'spice'
     assign hero_bg = 'Web-banner-spices.png' | asset_url
   elsif collection_handle == 'oil'
-    # Temporary until client delivers the Oil banner
-    assign hero_bg = 'Web-banner.png' | asset_url
+    assign hero_bg = 'EdibleOil.jpeg' | asset_url
   else
     capture hero_bg
       render 'jadeed-asset-url', key: 'collection_hero'

@@ -78,5 +78,5 @@
       "settings": {}
     }
   },
-  "order": ["hero", "map", "form", "info_grid"]
+  "order": ["hero", "form", "map", "info_grid"]
 }
