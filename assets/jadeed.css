@@ -5810,11 +5810,19 @@ main[data-template="search"] .card--standard > .card__content .card__information
   border: 0 !important;
 }
 main[data-template="collection"] .card__heading,
-main[data-template="search"] .card__heading {
+main[data-template="search"] .card__heading,
+main[data-template="collection"] .card__heading.h5,
+main[data-template="search"] .card__heading.h5 {
   margin: 0;
   min-width: 0;
   width: 100%;
   order: 1;
+  font-family: var(--jf-font-heading) !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1.15 !important;
+  text-transform: uppercase;
 }
 main[data-template="collection"] .card__heading a,
 main[data-template="search"] .card__heading a,
@@ -5822,18 +5830,19 @@ main[data-template="collection"] .card__heading.h5 a,
 main[data-template="search"] .card__heading.h5 a {
   color: #000000 !important;
   font-family: var(--jf-font-heading) !important;
+  font-style: normal !important;
   text-transform: uppercase;
-  font-size: clamp(15px, 5.2cqi, 20px);
+  font-size: 5.2cqi !important;
   font-weight: 600 !important;
-  line-height: 1.2;
-  letter-spacing: 0;
+  line-height: 1.15 !important;
+  letter-spacing: 0.02em !important;
   text-decoration: none !important;
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
-  min-height: calc(1.2em * 2);
-  max-height: calc(1.2em * 2);
+  min-height: calc(1.15em * 2);
+  max-height: calc(1.15em * 2);
   white-space: normal;
   word-break: break-word;
   overflow-wrap: anywhere;
@@ -5915,8 +5924,9 @@ main[data-template="search"] .price .price-item {
   color: #000000 !important;
   font-family: var(--jf-font-heading) !important;
   font-weight: 600 !important;
-  font-size: clamp(14px, 4.8cqi, 18px);
+  font-size: 5.2cqi !important;
   line-height: 1.25;
+  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: normal;
 }
@@ -5928,8 +5938,10 @@ main[data-template="search"] .quick-add {
   border: 0 !important;
 }
 main[data-template="collection"] .quick-add__submit,
+main[data-template="collection"] a.quick-add__submit,
 main[data-template="collection"] .card .button,
 main[data-template="search"] .quick-add__submit,
+main[data-template="search"] a.quick-add__submit,
 main[data-template="search"] .card .button {
   background: #253a78 !important;
   color: #fffbeb !important;
@@ -5950,6 +5962,10 @@ main[data-template="search"] .card .button {
   transition: background-color 0.3s ease, color 0.3s ease;
   position: relative;
   z-index: 5;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none !important;
   --color-button: 37, 58, 120;
   --color-button-text: 255, 255, 255;
   --alpha-button-background: 1;
@@ -6084,13 +6100,13 @@ main[data-template="collection"] a.pagination__item.link {
   }
   main[data-template="collection"] .card__heading a,
   main[data-template="search"] .card__heading a {
-    font-size: clamp(14px, 4.2vw, 17px);
+    font-size: clamp(14px, 4.8cqi, 18px) !important;
   }
   main[data-template="collection"] .price,
   main[data-template="collection"] .price .price-item,
   main[data-template="search"] .price,
   main[data-template="search"] .price .price-item {
-    font-size: clamp(13px, 3.8vw, 16px);
+    font-size: clamp(13px, 4.8cqi, 17px) !important;
   }
 }
 
@@ -6262,4 +6278,71 @@ main[data-template="collection"] a.pagination__item.link {
   .jf-footer__grid {
     grid-template-columns: 1fr !important;
   }
+}
+
+/* PDP Size radios (required) */
+.jf-pdp .jf-size-picker {
+  margin: 0 0 1.2rem;
+}
+.jf-pdp .jf-size-picker .form__label {
+  font-family: var(--jf-font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.6rem;
+}
+.jf-pdp .jf-size-picker__req {
+  color: var(--jf-red);
+  margin-left: 2px;
+}
+.jf-pdp .jf-size-picker__hint {
+  margin: 0 0 0.75rem;
+  font-size: 1.3rem;
+  color: var(--jf-red);
+}
+.jf-pdp .product-form__input--pill input[type='radio'] {
+  clip: rect(0, 0, 0, 0);
+  overflow: hidden;
+  position: absolute;
+  height: 1px;
+  width: 1px;
+}
+.jf-pdp .product-form__input--pill label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1.5px solid rgba(32, 49, 101, 0.35);
+  border-radius: 999px;
+  padding: 0.65rem 1.15rem 0.65rem 0.85rem;
+  margin: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+  background: #fff;
+  color: var(--jf-navy, #203165);
+  font-family: var(--jf-font-heading);
+  font-weight: 700;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+.jf-pdp .product-form__input--pill label::before {
+  content: '';
+  width: 1.1rem;
+  height: 1.1rem;
+  border-radius: 50%;
+  border: 2px solid rgba(32, 49, 101, 0.45);
+  box-sizing: border-box;
+  background: #fff;
+  flex: 0 0 auto;
+}
+.jf-pdp .product-form__input--pill input[type='radio']:checked + label {
+  border-color: var(--jf-red);
+  color: var(--jf-red);
+  box-shadow: inset 0 0 0 1px var(--jf-red);
+}
+.jf-pdp .product-form__input--pill input[type='radio']:checked + label::before {
+  border-color: var(--jf-red);
+  background: radial-gradient(circle at center, var(--jf-red) 0 45%, #fff 48%);
+}
+.jf-pdp .product-form__input--pill input[type='radio'].disabled + label {
+  opacity: 0.45;
+  cursor: not-allowed;
 }

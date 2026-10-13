@@ -50,8 +50,13 @@
           %}
         </fieldset>
       {%- elsif picker_type == 'button' -%}
-        <fieldset class="js product-form__input product-form__input--pill">
-          <legend class="form__label">{{ option.name }}</legend>
+        <fieldset class="js product-form__input product-form__input--pill jf-size-picker{% if option.name == 'Size' %} jf-size-picker--required{% endif %}">
+          <legend class="form__label">
+            {{ option.name }}{% if option.name == 'Size' %}<span class="jf-size-picker__req" aria-hidden="true">*</span>{% endif %}
+          </legend>
+          {% if option.name == 'Size' %}
+            <p class="jf-size-picker__hint" data-size-hint hidden>Please select a size</p>
+          {% endif %}
           {% render 'product-variant-options',
             product: product,
             option: option,

@@ -6,6 +6,13 @@
         "title": { "type": "title" },
         "meta": { "type": "jadeed_meta", "settings": {} },
         "price": { "type": "price" },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {
+            "picker_type": "button",
+            "swatch_shape": "circle"
+          }
+        },
         "quantity_selector": { "type": "quantity_selector" },
         "buy_buttons": {
           "type": "buy_buttons",
@@ -39,6 +46,7 @@
         "title",
         "meta",
         "price",
+        "variant_picker",
         "quantity_selector",
         "buy_buttons",
         "info_heading",

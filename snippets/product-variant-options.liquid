@@ -18,6 +18,25 @@
 {% endcomment %}
 {%- liquid
   assign product_form_id = 'product-form-' | append: section.id
+  assign jf_lowest_size_value = nil
+  assign jf_lowest_size_price = nil
+  if option.name == 'Size'
+    for variant in product.variants
+      if variant.available
+        if option.position == 1
+          assign size_opt = variant.option1
+        elsif option.position == 2
+          assign size_opt = variant.option2
+        else
+          assign size_opt = variant.option3
+        endif
+        if jf_lowest_size_price == nil or variant.price < jf_lowest_size_price
+          assign jf_lowest_size_price = variant.price
+          assign jf_lowest_size_value = size_opt
+        endif
+      endif
+    endfor
+  endif
 -%}
 
 {%- for value in option.values -%}
@@ -36,6 +55,33 @@
     assign option_disabled = true
     if value.available
       assign option_disabled = false
+    endif
+
+    assign jf_variant_price = nil
+    if option.name == 'Size'
+      for variant in product.variants
+        if option.position == 1
+          assign size_opt = variant.option1
+        elsif option.position == 2
+          assign size_opt = variant.option2
+        else
+          assign size_opt = variant.option3
+        endif
+        if size_opt == value and variant.available
+          if jf_variant_price == nil or variant.price < jf_variant_price
+            assign jf_variant_price = variant.price
+          endif
+        endif
+      endfor
+    endif
+
+    assign jf_size_checked = false
+    if option.name == 'Size'
+      if value.selected
+        assign jf_size_checked = true
+      elsif product.selected_variant == nil and jf_lowest_size_value != blank and value == jf_lowest_size_value
+        assign jf_size_checked = true
+      endif
     endif
   -%}
 
@@ -87,7 +133,15 @@
       name="{{ input_name | escape }}"
       value="{{ escaped_value }}"
       form="{{ product_form_id }}"
-      {% if value.selected %}
+      {% if option.name == 'Size' %}
+        required
+        {% if jf_variant_price != nil %}
+          data-variant-price="{{ jf_variant_price }}"
+        {% endif %}
+        {% if jf_size_checked %}
+          checked
+        {% endif %}
+      {% elsif value.selected %}
         checked
       {% endif %}
       {% if option_disabled %}

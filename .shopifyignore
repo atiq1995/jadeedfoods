@@ -1,0 +1,5 @@
+# Local-only paths (not theme assets)
+mockups/
+mockups/**
+.cursor/
+assets/jadeed-hero-bg.backup.png
