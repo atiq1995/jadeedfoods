@@ -38,9 +38,29 @@
   if target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
+
+  assign jf_coming_soon = false
+  if placeholder == blank
+    if use_variant
+      if target == blank or target.price == blank or target.price == 0
+        assign jf_coming_soon = true
+      endif
+    elsif product != blank
+      if product.price_max == blank or product.price_max == 0
+        assign jf_coming_soon = true
+      endif
+    endif
+  endif
 -%}
 
 {%- unless target == null and placeholder == null -%}
+  {%- if jf_coming_soon -%}
+    <div class="price price--coming-soon{% if price_class %} {{ price_class }}{% endif %}">
+      <div class="price__container">
+        <span class="price-item price-item--regular jf-coming-soon">Coming Soon</span>
+      </div>
+    </div>
+  {%- else -%}
   <div
     class="
       price
@@ -122,4 +142,5 @@
       </span>
     {%- endif -%}
   </div>
+  {%- endif -%}
 {% endunless %}

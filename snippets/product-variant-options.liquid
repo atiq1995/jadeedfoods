@@ -22,7 +22,7 @@
   assign jf_lowest_size_price = nil
   if option.name == 'Size'
     for variant in product.variants
-      if variant.available
+      if variant.available and variant.price > 0
         if option.position == 1
           assign size_opt = variant.option1
         elsif option.position == 2
@@ -36,6 +36,23 @@
         endif
       endif
     endfor
+    if jf_lowest_size_value == blank
+      for variant in product.variants
+        if variant.available
+          if option.position == 1
+            assign size_opt = variant.option1
+          elsif option.position == 2
+            assign size_opt = variant.option2
+          else
+            assign size_opt = variant.option3
+          endif
+          if jf_lowest_size_price == nil or variant.price < jf_lowest_size_price
+            assign jf_lowest_size_price = variant.price
+            assign jf_lowest_size_value = size_opt
+          endif
+        endif
+      endfor
+    endif
   endif
 -%}
 

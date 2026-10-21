@@ -22,8 +22,28 @@
       if block.settings.show_dynamic_checkout and gift_card_recipient_feature_active == false
         assign show_dynamic_checkout = true
       endif
+
+      assign jf_coming_soon = false
+      if product.selected_or_first_available_variant == blank
+        assign jf_coming_soon = true
+      elsif product.selected_or_first_available_variant.price == blank or product.selected_or_first_available_variant.price == 0
+        assign jf_coming_soon = true
+      endif
     -%}
 
+    {%- if jf_coming_soon -%}
+      <div class="product-form">
+        <div class="product-form__buttons form">
+          <button
+            type="button"
+            class="product-form__submit button button--full-width button--primary"
+            disabled
+          >
+            Coming Soon
+          </button>
+        </div>
+      </div>
+    {%- else -%}
     <product-form
       class="product-form"
       data-hide-errors="{{ gift_card_recipient_feature_active }}"
@@ -99,6 +119,7 @@
         </div>
       {%- endform -%}
     </product-form>
+    {%- endif -%}
   {%- else -%}
     <div class="product-form">
       <div class="product-form__buttons form">

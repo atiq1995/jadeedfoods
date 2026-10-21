@@ -40,14 +40,28 @@
       assign ratio = 1
     endif
 
+    assign jf_coming_soon = false
+    if card_product.price_max == blank or card_product.price_max == 0
+      assign jf_coming_soon = true
+    endif
+
     assign jf_card_buy_variant = nil
     for variant in card_product.variants
-      if variant.available
+      if variant.available and variant.price > 0
         if jf_card_buy_variant == nil or variant.price < jf_card_buy_variant.price
           assign jf_card_buy_variant = variant
         endif
       endif
     endfor
+    if jf_card_buy_variant == nil
+      for variant in card_product.variants
+        if variant.available
+          if jf_card_buy_variant == nil or variant.price < jf_card_buy_variant.price
+            assign jf_card_buy_variant = variant
+          endif
+        endif
+      endfor
+    endif
     if jf_card_buy_variant == nil
       assign jf_card_buy_variant = card_product.selected_or_first_available_variant
     endif
@@ -312,7 +326,15 @@
                   assign qty_rules = true
                 endif
               -%}
-              {%- if card_product.variants_count > 1 or qty_rules -%}
+              {%- if jf_coming_soon -%}
+                <span
+                  id="{{ product_form_id }}-submit"
+                  class="quick-add__submit button button--full-width button--secondary quick-add__submit--coming-soon{% if horizontal_quick_add %} card--horizontal__quick-add{% endif %}"
+                  aria-disabled="true"
+                >
+                  Coming Soon
+                </span>
+              {%- elsif card_product.variants_count > 1 or qty_rules -%}
                 <a
                   id="{{ product_form_id }}-submit"
                   href="{{ jf_card_product_url }}"

@@ -39,9 +39,15 @@
         const available = radios.filter((radio) => !radio.classList.contains('disabled') && !radio.disabled);
         if (!available.length) return null;
 
-        let best = available[0];
+        const priced = available.filter((radio) => {
+          const price = Number(radio.dataset.variantPrice);
+          return !Number.isNaN(price) && price > 0;
+        });
+        const pool = priced.length ? priced : available;
+
+        let best = pool[0];
         let bestPrice = Number(best.dataset.variantPrice || Number.POSITIVE_INFINITY);
-        available.forEach((radio) => {
+        pool.forEach((radio) => {
           const price = Number(radio.dataset.variantPrice);
           if (!Number.isNaN(price) && price < bestPrice) {
             best = radio;

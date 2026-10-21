@@ -102,6 +102,17 @@ summary,
   letter-spacing: -0.01em;
 }
 
+/* Cart drawer must sit above sticky header / announcement (1000–1001) */
+cart-drawer.drawer,
+.drawer.cart-drawer,
+cart-drawer {
+  z-index: 1200 !important;
+}
+cart-drawer .cart-drawer__overlay,
+.cart-drawer__overlay {
+  z-index: 1199 !important;
+}
+
 /* ---- Announcement bar — Figma 1:253 / 1:255 (#253a78, 39px, Inter 16px, #fff) ---- */
 #shopify-section-announcement-bar {
   position: relative;
@@ -4551,6 +4562,18 @@ main[data-template="product"] .jf-pdp .price--large .price-item {
   font-weight: 700;
   color: var(--jf-ink);
 }
+main[data-template="product"] .jf-pdp .price--large .price-item--sale,
+main[data-template="product"] .jf-pdp .price--large .price-item--last {
+  font-size: clamp(28px, 3vw, 40px);
+  font-weight: 700;
+}
+main[data-template="product"] .jf-pdp .price--large s.price-item--regular,
+main[data-template="product"] .jf-pdp .price--large .price__sale .price-item--regular {
+  font-size: clamp(16px, 1.6vw, 22px) !important;
+  font-weight: 500 !important;
+  opacity: 0.55;
+  color: var(--jf-muted) !important;
+}
 main[data-template="product"] .jf-pdp .product-form__quantity {
   grid-column: 2;
   margin: 0;
@@ -5937,6 +5960,21 @@ main[data-template="search"] .quick-add {
   background: #ffffff;
   border: 0 !important;
 }
+main[data-template="collection"] .quick-add__submit--coming-soon,
+main[data-template="search"] .quick-add__submit--coming-soon,
+.jf-coming-soon {
+  pointer-events: none;
+  cursor: default;
+  opacity: 0.85;
+}
+main[data-template="collection"] .price--coming-soon .jf-coming-soon,
+main[data-template="search"] .price--coming-soon .jf-coming-soon,
+main[data-template="product"] .price--coming-soon .jf-coming-soon {
+  color: var(--jf-navy) !important;
+  font-family: var(--jf-font-heading) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase;
+}
 main[data-template="collection"] .quick-add__submit,
 main[data-template="collection"] a.quick-add__submit,
 main[data-template="collection"] .card .button,
@@ -6316,8 +6354,8 @@ main[data-template="collection"] a.pagination__item.link {
   padding: 0.65rem 1.15rem 0.65rem 0.85rem;
   margin: 0 0.5rem 0.5rem 0;
   cursor: pointer;
-  background: #fff;
-  color: var(--jf-navy, #203165);
+  background: #fff !important;
+  color: var(--jf-red) !important;
   font-family: var(--jf-font-heading);
   font-weight: 700;
   font-size: 1.4rem;
@@ -6334,13 +6372,14 @@ main[data-template="collection"] a.pagination__item.link {
   flex: 0 0 auto;
 }
 .jf-pdp .product-form__input--pill input[type='radio']:checked + label {
-  border-color: var(--jf-red);
-  color: var(--jf-red);
-  box-shadow: inset 0 0 0 1px var(--jf-red);
+  background-color: #ffffff !important;
+  border-color: var(--jf-navy) !important;
+  color: var(--jf-navy) !important;
+  box-shadow: inset 0 0 0 1px var(--jf-navy);
 }
 .jf-pdp .product-form__input--pill input[type='radio']:checked + label::before {
-  border-color: var(--jf-red);
-  background: radial-gradient(circle at center, var(--jf-red) 0 45%, #fff 48%);
+  border-color: var(--jf-navy) !important;
+  background: radial-gradient(circle at center, var(--jf-navy) 0 45%, #fff 48%) !important;
 }
 .jf-pdp .product-form__input--pill input[type='radio'].disabled + label {
   opacity: 0.45;
