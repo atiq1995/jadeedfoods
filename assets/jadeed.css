@@ -5778,21 +5778,14 @@ main[data-template="collection"] .card > .card__content > .card__badge,
 main[data-template="search"] .card > .card__content > .card__badge {
   display: none;
 }
-/* Banaspati carton: larger fill, sharp edges; skip multiply (dark green muddies) */
+/* Banaspati carton: same scale as other boxes; skip multiply (dark green muddies) */
 main[data-template="collection"] .card-wrapper[data-product-handle="jadeed-banaspati"] .card__media img,
 main[data-template="search"] .card-wrapper[data-product-handle="jadeed-banaspati"] .card__media img {
-  width: 128% !important;
-  height: 128% !important;
-  max-width: 128% !important;
-  max-height: 128% !important;
-  object-fit: contain !important;
   mix-blend-mode: normal !important;
-  image-rendering: auto;
 }
 main[data-template="collection"] .card-wrapper[data-product-handle="jadeed-banaspati"]:hover .card__media img,
 main[data-template="search"] .card-wrapper[data-product-handle="jadeed-banaspati"]:hover .card__media img {
   mix-blend-mode: normal !important;
-  transform: translate(-50%, -50%) rotate(6deg) !important;
 }
 main[data-template="collection"] .card__media::after,
 main[data-template="search"] .card__media::after {
