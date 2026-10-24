@@ -264,7 +264,7 @@
         {% else %}
           <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
         {% endif %}
-        <span class="jf-cart-total small-hide medium-hide">{{ cart.total_price | money }} ({{ cart.item_count }})</span>
+        <span class="jf-cart-total small-hide medium-hide">{{ cart.total_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS ' }} ({{ cart.item_count }})</span>
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
           <div class="cart-count-bubble">

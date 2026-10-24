@@ -169,18 +169,18 @@
                                 {{ 'products.product.price.regular_price' | t }}
                               </span>
                               <s class="cart-item__old-price product-option">
-                                {{- item.original_price | money -}}
+                                {{- item.original_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS ' -}}
                               </s>
                               <span class="visually-hidden">
                                 {{ 'products.product.price.sale_price' | t }}
                               </span>
                               <strong class="cart-item__final-price product-option">
-                                {{ item.final_price | money }}
+                                {{ item.final_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS ' }}
                               </strong>
                             </div>
                           {%- else -%}
                             <div class="product-option">
-                              {{ item.original_price | money }}
+                              {{ item.original_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS ' }}
                             </div>
                           {%- endif -%}
 
@@ -528,7 +528,7 @@
 
           <div class="totals" role="status">
             <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-            <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+            <p class="totals__total-value">{{ cart.total_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS ' }}</p>
           </div>
 
           <small class="tax-note caption-large rte">

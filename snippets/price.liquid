@@ -13,7 +13,9 @@
   {% render 'price', product: product %}
 {% endcomment %}
 {%- liquid
-  if use_variant
+  if target_variant != blank
+    assign target = target_variant
+  elsif use_variant
     assign target = product.selected_or_first_available_variant
   elsif placeholder
     assign target = null
@@ -26,22 +28,22 @@
   assign price_min = product.price_min
   assign price_max = product.price_max
   assign available = target.available | default: false
-  assign money_price = price | money
-  assign money_price_min = price_min | money
-  assign money_price_max = price_max | money
-  if settings.currency_code_enabled
-    assign money_price = price | money_with_currency
-    assign money_price_min = price_min | money_with_currency
-    assign money_price_max = price_max | money_with_currency
+  assign money_price = price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS '
+  assign money_price_min = price_min | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS '
+  assign money_price_max = price_max | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS '
+  assign money_compare = ''
+  if compare_at_price
+    assign money_compare = compare_at_price | money_without_trailing_zeros | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS '
   endif
 
-  if target == product and product.price_varies
+  # When a hero size variant is passed (5kg / 5L), show that price — never "From" min
+  if target_variant == blank and target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
   endif
 
   assign jf_coming_soon = false
   if placeholder == blank
-    if use_variant
+    if target_variant != blank or use_variant
       if target == blank or target.price == blank or target.price == 0
         assign jf_coming_soon = true
       endif
@@ -87,11 +89,7 @@
               </span>
               <span>
                 <s class="price-item price-item--regular variant-item__old-price">
-                  {% if settings.currency_code_enabled %}
-                    {{ compare_at_price | money_with_currency }}
-                  {% else %}
-                    {{ compare_at_price | money }}
-                  {% endif %}
+                  {{ money_compare }}
                 </s>
               </span>
             {%- endunless -%}
@@ -115,11 +113,7 @@
           <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
           <span>
             <s class="price-item price-item--regular">
-              {% if settings.currency_code_enabled %}
-                {{ compare_at_price | money_with_currency }}
-              {% else %}
-                {{ compare_at_price | money }}
-              {% endif %}
+              {{ money_compare }}
             </s>
           </span>
         {%- endunless -%}

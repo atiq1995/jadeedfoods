@@ -21,8 +21,9 @@
   assign jf_lowest_size_value = nil
   assign jf_lowest_size_price = nil
   if option.name == 'Size'
-    for variant in product.variants
-      if variant.available and variant.price > 0
+    # Prefer hero sizes on PDP (5kg rice / 5 Liter bottles) when no ?variant= is set
+    unless product.selected_variant
+      for variant in product.variants
         if option.position == 1
           assign size_opt = variant.option1
         elsif option.position == 2
@@ -30,12 +31,31 @@
         else
           assign size_opt = variant.option3
         endif
-        if jf_lowest_size_price == nil or variant.price < jf_lowest_size_price
-          assign jf_lowest_size_price = variant.price
+        assign jf_size_lc = size_opt | downcase | strip
+        if jf_size_lc == '5kg' or jf_size_lc == '5 kg' or jf_size_lc == '5 liter' or jf_size_lc == '5 litre'
           assign jf_lowest_size_value = size_opt
+          assign jf_lowest_size_price = variant.price
+          break
         endif
-      endif
-    endfor
+      endfor
+    endunless
+    if jf_lowest_size_value == blank
+      for variant in product.variants
+        if variant.available and variant.price > 0
+          if option.position == 1
+            assign size_opt = variant.option1
+          elsif option.position == 2
+            assign size_opt = variant.option2
+          else
+            assign size_opt = variant.option3
+          endif
+          if jf_lowest_size_price == nil or variant.price < jf_lowest_size_price
+            assign jf_lowest_size_price = variant.price
+            assign jf_lowest_size_value = size_opt
+          endif
+        endif
+      endfor
+    endif
     if jf_lowest_size_value == blank
       for variant in product.variants
         if variant.available

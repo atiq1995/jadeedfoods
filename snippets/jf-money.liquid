@@ -1,0 +1,10 @@
+{%- comment -%}
+  Jadeed money format: "RS 200" (space after RS, no period).
+  Accepts: amount {Number} price in shop subunit
+{%- endcomment -%}
+{%- liquid
+  assign jf_raw = amount | money_without_trailing_zeros
+  assign jf_fmt = jf_raw | replace: 'Rs.', 'RS ' | replace: 'Rs ', 'RS ' | replace: 'RS.', 'RS '
+  assign jf_fmt = jf_fmt | replace: 'rs.', 'RS ' | replace: 'rs ', 'RS '
+-%}
+{{- jf_fmt | strip -}}

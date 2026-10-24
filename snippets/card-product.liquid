@@ -45,14 +45,33 @@
       assign jf_coming_soon = true
     endif
 
+    # Prefer catalog hero sizes: 5kg (rice) / 5 Liter (bottles); else lowest price
     assign jf_card_buy_variant = nil
     for variant in card_product.variants
-      if variant.available and variant.price > 0
-        if jf_card_buy_variant == nil or variant.price < jf_card_buy_variant.price
-          assign jf_card_buy_variant = variant
-        endif
+      assign jf_vt = variant.title | downcase | strip
+      if jf_vt == '5kg' or jf_vt == '5 kg' or jf_vt contains '5kg' or jf_vt contains '5 kg'
+        assign jf_card_buy_variant = variant
+        break
       endif
     endfor
+    if jf_card_buy_variant == nil
+      for variant in card_product.variants
+        assign jf_vt = variant.title | downcase | strip
+        if jf_vt == '5 liter' or jf_vt == '5 litre' or jf_vt == '5l' or jf_vt contains '5 liter' or jf_vt contains '5 litre'
+          assign jf_card_buy_variant = variant
+          break
+        endif
+      endfor
+    endif
+    if jf_card_buy_variant == nil
+      for variant in card_product.variants
+        if variant.available and variant.price > 0
+          if jf_card_buy_variant == nil or variant.price < jf_card_buy_variant.price
+            assign jf_card_buy_variant = variant
+          endif
+        endif
+      endfor
+    endif
     if jf_card_buy_variant == nil
       for variant in card_product.variants
         if variant.available
@@ -69,7 +88,7 @@
   -%}
 
   <product-component view-event-payload="{{ card_product | standard_event_data: 'view', context: product_view_context | escape }}">
-    <div class="card-wrapper product-card-wrapper underline-links-hover">
+    <div class="card-wrapper product-card-wrapper underline-links-hover" data-product-handle="{{ card_product.handle }}">
       <div
         class="
           card card--{{ settings.card_style }}
@@ -133,6 +152,11 @@
                   >
                 {%- endif -%}
               </div>
+              {%- if card_product.available == false -%}
+                <span class="jf-card-soldout-badge badge color-{{ settings.sold_out_badge_color_scheme }}">
+                  {{- 'products.product.sold_out' | t -}}
+                </span>
+              {%- endif -%}
             </div>
           {%- endif -%}
           <div class="card__content">
@@ -233,7 +257,7 @@
                 </p>
               {%- endif -%}
 
-              {% render 'price', product: card_product, price_class: '', show_compare_at_price: true %}
+              {% render 'price', product: card_product, target_variant: jf_card_buy_variant, price_class: '', show_compare_at_price: true %}
               {%- if card_product.quantity_price_breaks_configured? -%}
                 {% if card_product.variants_count == 1 and quick_add == 'bulk' %}
                   {% liquid
