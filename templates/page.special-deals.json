@@ -1,0 +1,87 @@
+{
+  "sections": {
+    "bundle_offers": {
+      "type": "bundle-offers",
+      "blocks": {
+        "b1": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-basmati-savings-1.jpg",
+            "title": "Basmati Savings Bundle #1",
+            "description": "Basmati Rice + Dhania powder + Garam masala powder + Lal mirch whole + Sabudana + Khashkhash",
+            "compare_price": "3,280",
+            "sale_price": "2,980",
+            "product_handle": "basmati-savings-bundle-1",
+            "variant_id": "46248722202693"
+          }
+        },
+        "b2": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-basmati-savings-2.jpg",
+            "title": "Basmati Savings Bundle #2",
+            "description": "Basmati Rice + Salan masala + Kala namak + Lal mirch whole + Kalaunji + Methi dana",
+            "compare_price": "3,420",
+            "sale_price": "3,100",
+            "product_handle": "basmati-savings-bundle-2",
+            "variant_id": "46248740487237"
+          }
+        },
+        "b3": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-sela-savings-1.jpg",
+            "title": "Sela Savings Bundle #1",
+            "description": "Sela Rice + Haldi powder + Lal mirch powder + Dhara mirch + Meetha soda + Darchini powder",
+            "compare_price": "3,290",
+            "sale_price": "2,980",
+            "product_handle": "sela-savings-bundle-1",
+            "variant_id": "46248740716613"
+          }
+        },
+        "b4": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-sela-savings-2.jpg",
+            "title": "Sela Savings Bundle #2",
+            "description": "Sela Rice + Lal mirch powder + Zeera powder + Dhara mirch + Sabudana + Kalaunji",
+            "compare_price": "3,235",
+            "sale_price": "2,935",
+            "product_handle": "sela-savings-bundle-2",
+            "variant_id": "46248741077061"
+          }
+        },
+        "b5": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-tabletop-savings.jpg",
+            "title": "Table top Savings Bundle",
+            "description": "Pink salt grinder + Black pepper grinder",
+            "compare_price": "1,750",
+            "sale_price": "1,490",
+            "product_handle": "tabletop-savings-bundle",
+            "variant_id": "46248741208133"
+          }
+        },
+        "b6": {
+          "type": "bundle",
+          "settings": {
+            "asset_file": "bundle-spice-savings.jpg",
+            "title": "Spice Savings Bundle",
+            "description": "Lal mirch powder + Haldi powder + Darchini powder + Zeera powder + Curry powder + Kalaunji",
+            "compare_price": "1,145",
+            "sale_price": "980",
+            "product_handle": "spice-savings-bundle",
+            "variant_id": "46248742060101"
+          }
+        }
+      },
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"],
+      "settings": {
+        "heading": "Bundle Offers",
+        "button_label": "Add to cart"
+      }
+    }
+  },
+  "order": ["bundle_offers"]
+}

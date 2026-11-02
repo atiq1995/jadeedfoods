@@ -1,0 +1,131 @@
+{{ 'jadeed.css' | asset_url | stylesheet_tag }}
+
+<section id="special-deals" class="jf-bundle-offers" data-section-id="{{ section.id }}">
+  <div class="jf-bundle-offers__inner page-width">
+    <h1 class="jf-bundle-offers__heading">{{ section.settings.heading }}</h1>
+
+    <div class="jf-bundle-offers__grid">
+      {% for block in section.blocks %}
+        {% liquid
+          assign card_title = block.settings.title
+          assign card_desc = block.settings.description
+          assign compare_price = block.settings.compare_price
+          assign sale_price = block.settings.sale_price
+          assign variant_id = block.settings.variant_id | strip
+          assign product_handle = block.settings.product_handle | strip
+          assign img_url = ''
+
+          if block.settings.image != blank
+            assign img_url = block.settings.image | image_url: width: 1200
+          elsif block.settings.asset_file != blank
+            assign img_url = block.settings.asset_file | asset_url
+          endif
+
+          if product_handle != blank
+            assign bundle_product = all_products[product_handle]
+            if bundle_product != blank
+              if img_url == blank and bundle_product.featured_media
+                assign img_url = bundle_product.featured_media | image_url: width: 1200
+              endif
+              if variant_id == blank
+                assign variant_id = bundle_product.selected_or_first_available_variant.id
+              endif
+              if sale_price == blank
+                assign sale_price = bundle_product.selected_or_first_available_variant.price | money_without_trailing_zeros | replace: 'Rs.', '' | replace: 'Rs', '' | replace: 'RS.', '' | replace: 'RS', '' | strip
+              endif
+              if compare_price == blank and bundle_product.selected_or_first_available_variant.compare_at_price > bundle_product.selected_or_first_available_variant.price
+                assign compare_price = bundle_product.selected_or_first_available_variant.compare_at_price | money_without_trailing_zeros | replace: 'Rs.', '' | replace: 'Rs', '' | replace: 'RS.', '' | replace: 'RS', '' | strip
+              endif
+            endif
+          endif
+        %}
+
+        <article class="jf-bundle-card" {{ block.shopify_attributes }}>
+          <div class="jf-bundle-card__media">
+            {% if img_url != blank %}
+              <img
+                src="{{ img_url }}"
+                alt="{{ card_title | escape }}"
+                width="819"
+                height="1024"
+                loading="{% if forloop.index > 3 %}lazy{% else %}eager{% endif %}"
+              >
+            {% else %}
+              <span class="visually-hidden">{{ card_title | escape }}</span>
+            {% endif %}
+          </div>
+
+          {% if variant_id != blank %}
+            <form
+              method="post"
+              action="{{ routes.cart_add_url }}"
+              accept-charset="UTF-8"
+              class="jf-bundle-card__form-el"
+              enctype="multipart/form-data"
+            >
+              <input type="hidden" name="form_type" value="product">
+              <input type="hidden" name="utf8" value="✓">
+              <input type="hidden" name="id" value="{{ variant_id }}">
+              <input type="hidden" name="quantity" value="1">
+              <button
+                type="submit"
+                name="add"
+                class="jf-bundle-card__cta"
+                aria-label="{{ section.settings.button_label | escape }}"
+              >
+                <span class="jf-bundle-card__cta-label">{{ section.settings.button_label }}</span>
+              </button>
+            </form>
+          {% else %}
+            <button type="button" class="jf-bundle-card__cta" disabled>
+              <span class="jf-bundle-card__cta-label">{{ section.settings.button_label }}</span>
+            </button>
+          {% endif %}
+
+          {% if card_desc != blank %}
+            <p class="jf-bundle-card__desc">{{ card_desc }}</p>
+          {% endif %}
+
+          <div class="jf-bundle-card__prices">
+            {% if compare_price != blank %}
+              <span class="jf-bundle-card__compare">{{ compare_price }}</span>
+              <span class="jf-bundle-card__divider" aria-hidden="true"></span>
+            {% endif %}
+            {% if sale_price != blank %}
+              <span class="jf-bundle-card__sale">{{ sale_price }}</span>
+            {% endif %}
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Bundle offers",
+  "tag": "section",
+  "class": "section-jadeed-bundle-offers",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bundle Offers" },
+    { "type": "text", "id": "button_label", "label": "Button label", "default": "Add to cart" }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (optional override)" },
+        { "type": "text", "id": "asset_file", "label": "Theme asset filename", "info": "e.g. bundle-basmati-savings-1.jpg" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Savings Bundle" },
+        { "type": "textarea", "id": "description", "label": "Items description" },
+        { "type": "text", "id": "compare_price", "label": "Compare-at price text", "default": "3,280" },
+        { "type": "text", "id": "sale_price", "label": "Sale price text", "default": "2,980" },
+        { "type": "text", "id": "product_handle", "label": "Product handle" },
+        { "type": "text", "id": "variant_id", "label": "Variant ID (optional)" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Bundle offers" }]
+}
+{% endschema %}

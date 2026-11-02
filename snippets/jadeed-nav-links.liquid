@@ -62,8 +62,8 @@
 
 <li>
   <a
-    href="{{ routes.root_url }}#special-deals"
-    class="header__menu-item list-menu__item link link--text focus-inset jf-nav-flash"
+    href="/collections/special-deals"
+    class="header__menu-item list-menu__item link link--text focus-inset jf-nav-flash{% if request.path == '/collections/special-deals' %} list-menu__item--active{% endif %}"
   >
     <span>Special Deals</span>
   </a>
