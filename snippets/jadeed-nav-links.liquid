@@ -7,6 +7,7 @@
   assign jf_oil_href = collections['oil'].url | default: '/collections/oil'
   assign jf_rice_href = collections['rice'].url | default: '/collections/rice'
   assign jf_spices_href = collections['spices'].url | default: '/collections/spices'
+  assign jf_bundles_href = collections['bundles'].url | default: '/collections/bundles'
 -%}
 
 <li>
@@ -44,6 +45,11 @@
     <li>
       <a href="{{ jf_spices_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
         Spices
+      </a>
+    </li>
+    <li>
+      <a href="{{ jf_bundles_href }}" class="header__menu-item list-menu__item link link--text focus-inset">
+        Jadeed Bundles
       </a>
     </li>
   </ul>

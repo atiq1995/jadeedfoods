@@ -40,20 +40,6 @@
       "block_order": ["cat_rice", "cat_spices", "cat_oil"],
       "settings": { "heading": "Shop by Category" }
     },
-    "special_deals": {
-      "type": "special-deals",
-      "blocks": {
-        "deal_pepper": { "type": "deal", "settings": { "title": "Buy 5 Get 1 Free — Spice Packs", "color": "#203165", "link": "/collections/spices" } },
-        "deal_flax": { "type": "deal", "settings": { "title": "Free Delivery + 10% Off", "color": "#BC2026", "link": "/collections/all" } },
-        "deal_pack": { "type": "deal", "settings": { "title": "Rs. 500 Voucher on Rs. 10,000+", "color": "#253A78", "link": "/collections/all" } }
-      },
-      "block_order": ["deal_pepper", "deal_flax", "deal_pack"],
-      "settings": {
-        "heading": "Special Deals",
-        "button_label": "See all products",
-        "button_link": "/collections/all"
-      }
-    },
     "rich_aroma": {
       "type": "rich-aroma",
       "settings": {
@@ -160,7 +146,62 @@
         "heading": "Bundle Offers",
         "button_label": "Add to cart",
         "see_all_label": "See all bundles",
-        "see_all_link": "/collections/special-deals"
+        "see_all_link": "/collections/bundles"
+      }
+    },
+    "blogs": {
+      "type": "blogs",
+      "blocks": {
+        "blog_1": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Cooking tips",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_2": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Kitchen stories",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_3": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Spice guide",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_4": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Recipe ideas",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_5": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Healthy cooking",
+            "link": "/blogs/news"
+          }
+        },
+        "blog_6": {
+          "type": "manual_post",
+          "settings": {
+            "title": "Product news",
+            "link": "/blogs/news"
+          }
+        }
+      },
+      "block_order": ["blog_1", "blog_2", "blog_3", "blog_4", "blog_5", "blog_6"],
+      "settings": {
+        "heading": "Blogs",
+        "source": "manual",
+        "article_limit": 6,
+        "button_label": "See all blogs",
+        "button_link": "/blogs/news"
       }
     },
     "lifestyle": {
@@ -203,11 +244,11 @@
   "order": [
     "hero",
     "shop_by_category",
-    "special_deals",
+    "home_bundles",
     "rich_aroma",
     "best_selling_products",
     "purity_banner",
-    "home_bundles",
+    "blogs",
     "lifestyle",
     "testimonials"
   ]
