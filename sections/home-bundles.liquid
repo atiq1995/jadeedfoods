@@ -1,0 +1,238 @@
+<section
+  id="home-bundles"
+  class="jf-home-bundles"
+  data-jf-home-bundles
+  data-section-id="{{ section.id }}"
+>
+  <div class="jf-home-bundles__inner page-width">
+    <div class="jf-home-bundles__head">
+      <button type="button" class="jf-home-bundles__arrow" data-jf-bundles-prev aria-label="Previous bundles">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      <h2 class="jf-home-bundles__heading">{{ section.settings.heading }}</h2>
+      <button type="button" class="jf-home-bundles__arrow" data-jf-bundles-next aria-label="Next bundles">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+    </div>
+
+    <div class="jf-home-bundles__viewport" data-jf-bundles-viewport>
+      <div class="jf-home-bundles__track" data-jf-bundles-track>
+        {% for block in section.blocks %}
+          {% liquid
+            assign card_title = block.settings.title
+            assign product_handle = block.settings.product_handle | strip
+            assign img_url = ''
+
+            if block.settings.image != blank
+              assign img_url = block.settings.image | image_url: width: 1200
+            elsif block.settings.asset_file != blank
+              assign img_url = block.settings.asset_file | asset_url
+            endif
+
+            if product_handle != blank
+              assign bundle_product = all_products[product_handle]
+              if bundle_product != blank and img_url == blank and bundle_product.featured_media
+                assign img_url = bundle_product.featured_media | image_url: width: 1200
+              endif
+            endif
+
+            assign bundle_anchor = ''
+            if product_handle != blank
+              assign bundle_anchor = 'bundle-' | append: product_handle
+            endif
+            assign bundle_href = section.settings.see_all_link | default: '/collections/special-deals'
+            if bundle_anchor != blank
+              assign bundle_href = bundle_href | append: '#' | append: bundle_anchor
+            endif
+          %}
+
+          <a
+            href="{{ bundle_href }}"
+            class="jf-home-bundles__card jf-home-bundles__slide"
+            aria-label="{{ card_title | escape }}"
+            {{ block.shopify_attributes }}
+          >
+            <div class="jf-home-bundles__media">
+              {% if img_url != blank %}
+                <img
+                  src="{{ img_url }}"
+                  alt="{{ card_title | escape }}"
+                  width="819"
+                  height="1024"
+                  loading="{% if forloop.index > 2 %}lazy{% else %}eager{% endif %}"
+                >
+              {% endif %}
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    </div>
+
+    {% if section.settings.see_all_label != blank %}
+      <div class="jf-home-bundles__footer">
+        <a href="{{ section.settings.see_all_link | default: '/collections/special-deals' }}" class="jf-btn">
+          {{ section.settings.see_all_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<script>
+  (function () {
+    function initHomeBundles(root) {
+      if (!root || root.dataset.jfBundlesReady === '1') return;
+      var viewport = root.querySelector('[data-jf-bundles-viewport]');
+      var track = root.querySelector('[data-jf-bundles-track]');
+      var prev = root.querySelector('[data-jf-bundles-prev]');
+      var next = root.querySelector('[data-jf-bundles-next]');
+      if (!viewport || !track || !prev || !next) return;
+
+      root.dataset.jfBundlesReady = '1';
+
+      var slides = Array.prototype.slice.call(track.querySelectorAll('.jf-home-bundles__slide'));
+      if (!slides.length) return;
+
+      var index = 0;
+      var autoTimer = null;
+      var resumeTimer = null;
+      var AUTO_MS = 4000;
+
+      function perPage() {
+        return window.matchMedia('(max-width: 749px)').matches ? 1 : 2;
+      }
+
+      function maxIndex() {
+        return Math.max(0, slides.length - perPage());
+      }
+
+      function goTo(nextIndex, animate) {
+        index = nextIndex;
+        if (index > maxIndex()) index = 0;
+        if (index < 0) index = maxIndex();
+
+        var slide = slides[0];
+        var styles = window.getComputedStyle(track);
+        var gap = parseFloat(styles.columnGap || styles.gap || '0') || 0;
+        var slideW = slide.getBoundingClientRect().width;
+        var offset = index * (slideW + gap);
+
+        if (animate === false) {
+          track.style.transition = 'none';
+        } else {
+          track.style.transition = '';
+        }
+        track.style.transform = 'translate3d(' + (-offset) + 'px, 0, 0)';
+
+        if (animate === false) {
+          track.offsetHeight;
+          track.style.transition = '';
+        }
+      }
+
+      function step(dir) {
+        goTo(index + dir * perPage());
+      }
+
+      function stopAuto() {
+        if (autoTimer) {
+          clearInterval(autoTimer);
+          autoTimer = null;
+        }
+        if (resumeTimer) {
+          clearTimeout(resumeTimer);
+          resumeTimer = null;
+        }
+      }
+
+      function startAuto() {
+        stopAuto();
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (slides.length <= perPage()) return;
+        autoTimer = setInterval(function () {
+          step(1);
+        }, AUTO_MS);
+      }
+
+      function pauseThenResume() {
+        stopAuto();
+        resumeTimer = setTimeout(startAuto, AUTO_MS * 2);
+      }
+
+      prev.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        step(-1);
+        pauseThenResume();
+      });
+
+      next.addEventListener('click', function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        step(1);
+        pauseThenResume();
+      });
+
+      viewport.addEventListener('pointerenter', stopAuto);
+      viewport.addEventListener('pointerleave', startAuto);
+      viewport.addEventListener('touchstart', pauseThenResume, { passive: true });
+
+      window.addEventListener('resize', function () {
+        goTo(Math.min(index, maxIndex()), false);
+      });
+
+      goTo(0, false);
+      startAuto();
+    }
+
+    function boot() {
+      document.querySelectorAll('[data-jf-home-bundles]').forEach(initHomeBundles);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      var section = event.target && event.target.querySelector
+        ? event.target.querySelector('[data-jf-home-bundles]') || event.target
+        : null;
+      if (section && section.hasAttribute && section.hasAttribute('data-jf-home-bundles')) {
+        section.dataset.jfBundlesReady = '';
+        initHomeBundles(section);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Home bundles",
+  "tag": "section",
+  "class": "section-jadeed-home-bundles",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Bundle Offers" },
+    { "type": "text", "id": "see_all_label", "label": "See all label", "default": "See all bundles" },
+    { "type": "url", "id": "see_all_link", "label": "See all link" }
+  ],
+  "blocks": [
+    {
+      "type": "bundle",
+      "name": "Bundle card",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "Image (optional override)" },
+        { "type": "text", "id": "asset_file", "label": "Theme asset filename" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Savings Bundle" },
+        { "type": "text", "id": "product_handle", "label": "Product handle" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Home bundles" }]
+}
+{% endschema %}

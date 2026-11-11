@@ -40,7 +40,11 @@
           endif
         %}
 
-        <article class="jf-bundle-card" {{ block.shopify_attributes }}>
+        <article
+          class="jf-bundle-card"
+          id="{% if product_handle != blank %}bundle-{{ product_handle }}{% else %}bundle-{{ block.id }}{% endif %}"
+          {{ block.shopify_attributes }}
+        >
           <div class="jf-bundle-card__media">
             {% if img_url != blank %}
               <img
@@ -100,6 +104,18 @@
     </div>
   </div>
 </section>
+
+<script>
+  (function () {
+    var hash = window.location.hash;
+    if (!hash || hash.length < 2) return;
+    var target = document.getElementById(hash.slice(1));
+    if (!target) return;
+    window.requestAnimationFrame(function () {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+  })();
+</script>
 
 {% schema %}
 {

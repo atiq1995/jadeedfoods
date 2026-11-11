@@ -79,59 +79,88 @@
         "line_after": "taste you'll love!"
       }
     },
-    "blogs": {
-      "type": "blogs",
+    "home_bundles": {
+      "type": "home-bundles",
       "blocks": {
-        "blog_1": {
-          "type": "manual_post",
+        "b1": {
+          "type": "bundle",
           "settings": {
-            "title": "Cooking tips",
-            "link": "/blogs/news"
+            "asset_file": "bundle-basmati-savings-1.jpg",
+            "title": "Basmati Savings Bundle #1",
+            "description": "Basmati Rice + Dhania powder + Garam masala powder + Lal mirch whole + Sabudana + Khashkhash",
+            "compare_price": "3,280",
+            "sale_price": "2,980",
+            "product_handle": "basmati-savings-bundle-1",
+            "variant_id": "46248722202693"
           }
         },
-        "blog_2": {
-          "type": "manual_post",
+        "b2": {
+          "type": "bundle",
           "settings": {
-            "title": "Kitchen stories",
-            "link": "/blogs/news"
+            "asset_file": "bundle-basmati-savings-2.jpg",
+            "title": "Basmati Savings Bundle #2",
+            "description": "Basmati Rice + Salan masala + Kala namak + Lal mirch whole + Kalaunji + Methi dana",
+            "compare_price": "3,420",
+            "sale_price": "3,100",
+            "product_handle": "basmati-savings-bundle-2",
+            "variant_id": "46248740487237"
           }
         },
-        "blog_3": {
-          "type": "manual_post",
+        "b3": {
+          "type": "bundle",
           "settings": {
-            "title": "Spice guide",
-            "link": "/blogs/news"
+            "asset_file": "bundle-sela-savings-1.jpg",
+            "title": "Sela Savings Bundle #1",
+            "description": "Sela Rice + Haldi powder + Lal mirch powder + Dhara mirch + Meetha soda + Darchini powder",
+            "compare_price": "3,290",
+            "sale_price": "2,980",
+            "product_handle": "sela-savings-bundle-1",
+            "variant_id": "46248740716613"
           }
         },
-        "blog_4": {
-          "type": "manual_post",
+        "b4": {
+          "type": "bundle",
           "settings": {
-            "title": "Recipe ideas",
-            "link": "/blogs/news"
+            "asset_file": "bundle-sela-savings-2.jpg",
+            "title": "Sela Savings Bundle #2",
+            "description": "Sela Rice + Lal mirch powder + Zeera powder + Dhara mirch + Sabudana + Kalaunji",
+            "compare_price": "3,235",
+            "sale_price": "2,935",
+            "product_handle": "sela-savings-bundle-2",
+            "variant_id": "46248741077061"
           }
         },
-        "blog_5": {
-          "type": "manual_post",
+        "b5": {
+          "type": "bundle",
           "settings": {
-            "title": "Healthy cooking",
-            "link": "/blogs/news"
+            "asset_file": "bundle-tabletop-savings.jpg",
+            "title": "Table top Savings Bundle",
+            "description": "Pink salt grinder + Black pepper grinder",
+            "compare_price": "1,750",
+            "sale_price": "1,490",
+            "product_handle": "tabletop-savings-bundle",
+            "variant_id": "46248741208133"
           }
         },
-        "blog_6": {
-          "type": "manual_post",
+        "b6": {
+          "type": "bundle",
           "settings": {
-            "title": "Product news",
-            "link": "/blogs/news"
+            "asset_file": "bundle-spice-savings.jpg",
+            "title": "Spice Savings Bundle",
+            "description": "Lal mirch powder + Haldi powder + Darchini powder + Zeera powder + Curry powder + Kalaunji",
+            "compare_price": "1,145",
+            "sale_price": "980",
+            "product_handle": "spice-savings-bundle",
+            "variant_id": "46248742060101"
           }
         }
       },
-      "block_order": ["blog_1", "blog_2", "blog_3", "blog_4", "blog_5", "blog_6"],
+      "block_order": ["b1", "b2", "b3", "b4", "b5", "b6"],
       "settings": {
-        "heading": "Blogs",
-        "source": "manual",
-        "article_limit": 6,
-        "button_label": "See all blogs",
-        "button_link": "/blogs/news"
+        "heading": "Bundle Offers",
+        "button_label": "Add to cart",
+        "see_all_label": "See all bundles",
+        "see_all_link": "/collections/special-deals"
       }
     },
     "lifestyle": {
@@ -178,7 +207,7 @@
     "rich_aroma",
     "best_selling_products",
     "purity_banner",
-    "blogs",
+    "home_bundles",
     "lifestyle",
     "testimonials"
   ]
