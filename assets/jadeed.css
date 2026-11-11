@@ -6644,18 +6644,20 @@ main[data-template="collection"]:has(.jf-bundle-offers) .content-for-layout,
   padding: 4rem 0 4.5rem;
 }
 .jf-home-bundles__inner {
-  max-width: 1200px;
+  max-width: none;
   margin: 0 auto;
-  padding: 0 2.5rem;
+  padding: 0;
 }
 .jf-home-bundles__inner.page-width {
-  max-width: 1200px;
+  max-width: none;
+  padding: 0;
 }
 .jf-home-bundles__head {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 2.35rem;
+  margin: 0 auto 2.35rem;
+  padding: 0 1.5rem;
   text-align: center;
 }
 .jf-home-bundles__heading {
@@ -6670,9 +6672,9 @@ main[data-template="collection"]:has(.jf-bundle-offers) .content-for-layout,
 .jf-home-bundles__viewport {
   overflow: hidden;
   width: 100%;
-  margin: 0 auto;
-  mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent);
+  margin: 0;
+  mask-image: linear-gradient(90deg, transparent, #000 1.5%, #000 98.5%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 1.5%, #000 98.5%, transparent);
 }
 .jf-home-bundles__track {
   --jf-bundles-gap: 1.75rem;
@@ -6727,6 +6729,7 @@ main[data-template="collection"]:has(.jf-bundle-offers) .content-for-layout,
 }
 .jf-home-bundles__footer {
   margin-top: 2.25rem;
+  padding: 0 1.5rem;
   text-align: center;
 }
 .jf-home-bundles__footer .jf-btn {
@@ -6772,6 +6775,11 @@ main[data-template="collection"]:has(.jf-bundle-offers) .content-for-layout,
   }
   .jf-home-bundles__inner,
   .jf-home-bundles__inner.page-width {
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .jf-home-bundles__head,
+  .jf-home-bundles__footer {
     padding-left: 1.25rem;
     padding-right: 1.25rem;
   }
