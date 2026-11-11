@@ -1,17 +1,48 @@
 {
   "sections": {
     "main": {
-      "type": "main-list-collections",
+      "type": "jadeed-collections",
+      "blocks": {
+        "oil": {
+          "type": "category",
+          "settings": {
+            "asset_key": "category_oil",
+            "title": "Edible Oil",
+            "link": "/collections/oil"
+          }
+        },
+        "rice": {
+          "type": "category",
+          "settings": {
+            "asset_key": "category_rice",
+            "title": "Rice",
+            "link": "/collections/rice"
+          }
+        },
+        "spices": {
+          "type": "category",
+          "settings": {
+            "asset_key": "category_spices",
+            "title": "Spices",
+            "link": "/collections/spices"
+          }
+        },
+        "bundles": {
+          "type": "category",
+          "settings": {
+            "asset_key": "category_bundles",
+            "title": "Bundles",
+            "link": "/collections/special-deals"
+          }
+        }
+      },
+      "block_order": ["oil", "rice", "spices", "bundles"],
       "settings": {
-        "title": "Collections",
-        "sort": "alphabetical",
-        "image_ratio": "square",
-        "columns_desktop": 3,
-        "columns_mobile": "2"
+        "heading": "Our Products",
+        "subheading": "Choose a category to start shopping",
+        "default_layout": "row"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

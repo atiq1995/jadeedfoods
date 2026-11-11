@@ -1,0 +1,218 @@
+{{ 'jadeed.css' | asset_url | stylesheet_tag }}
+
+<section
+  id="jadeed-collections"
+  class="jf-collections-page"
+  data-jf-collections-page
+  data-section-id="{{ section.id }}"
+  data-default-layout="{{ section.settings.default_layout | default: 'row' }}"
+>
+  <div class="jf-collections-page__inner page-width">
+    <div class="jf-collections-page__top">
+      <div class="jf-collections-page__intro">
+        {% if section.settings.heading != blank %}
+          <h1 class="jf-collections-page__heading">{{ section.settings.heading }}</h1>
+        {% endif %}
+        {% if section.settings.subheading != blank %}
+          <p class="jf-collections-page__subheading">{{ section.settings.subheading }}</p>
+        {% endif %}
+      </div>
+
+      <div class="jf-collections-page__layout-toggle" role="group" aria-label="Layout">
+        <button
+          type="button"
+          class="jf-collections-page__layout-btn is-active"
+          data-jf-layout="row"
+          aria-pressed="true"
+          title="One row"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="7" width="4" height="10" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="9.5" y="7" width="4" height="10" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="16" y="7" width="4" height="10" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span>Row</span>
+        </button>
+        <button
+          type="button"
+          class="jf-collections-page__layout-btn"
+          data-jf-layout="grid"
+          aria-pressed="false"
+          title="2x2 grid"
+        >
+          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="3" width="7.5" height="7.5" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="13.5" y="3" width="7.5" height="7.5" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="3" y="13.5" width="7.5" height="7.5" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+            <rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.2" stroke="currentColor" stroke-width="1.8"/>
+          </svg>
+          <span>Grid</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="jf-collections-page__grid is-row" data-jf-collections-grid>
+      {% for block in section.blocks %}
+        {% liquid
+          assign card_title = block.settings.title
+          assign card_link = block.settings.link
+          assign asset_key = block.settings.asset_key | strip
+          assign asset_file = block.settings.asset_file | strip
+          assign img_url = ''
+
+          if block.settings.collection != blank
+            assign col = block.settings.collection
+            if card_title == blank
+              assign card_title = col.title
+            endif
+            if card_link == blank
+              assign card_link = col.url
+            endif
+            if block.settings.image == blank and col.featured_image
+              assign img_url = col.featured_image | image_url: width: 1200
+            endif
+          endif
+
+          if block.settings.image != blank
+            assign img_url = block.settings.image | image_url: width: 1200
+          elsif asset_file != blank
+            assign img_url = asset_file | asset_url
+          elsif asset_key != blank
+            capture img_url
+              render 'jadeed-asset-url', key: asset_key
+            endcapture
+            assign img_url = img_url | strip
+          endif
+        %}
+
+        <a
+          href="{{ card_link | default: '#' }}"
+          class="jf-collections-page__card"
+          aria-label="{{ card_title | escape }}"
+          {{ block.shopify_attributes }}
+        >
+          <div class="jf-collections-page__media">
+            {% if img_url != blank %}
+              <img
+                src="{{ img_url }}"
+                alt="{{ card_title | escape }}"
+                width="800"
+                height="1000"
+                loading="{% if forloop.index > 2 %}lazy{% else %}eager{% endif %}"
+              >
+            {% endif %}
+          </div>
+          <div class="jf-collections-page__meta">
+            <span class="jf-collections-page__title">{{ card_title }}</span>
+            <span class="jf-collections-page__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+                <line x1="5" y1="12" x2="19" y2="12"/>
+                <polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var STORAGE_KEY = 'jf-collections-layout';
+
+    function applyLayout(root, layout) {
+      var grid = root.querySelector('[data-jf-collections-grid]');
+      if (!grid) return;
+      var mode = layout === 'grid' ? 'grid' : 'row';
+      grid.classList.toggle('is-row', mode === 'row');
+      grid.classList.toggle('is-grid', mode === 'grid');
+
+      root.querySelectorAll('[data-jf-layout]').forEach(function (btn) {
+        var active = btn.getAttribute('data-jf-layout') === mode;
+        btn.classList.toggle('is-active', active);
+        btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      });
+
+      try {
+        window.localStorage.setItem(STORAGE_KEY, mode);
+      } catch (e) {}
+    }
+
+    function init(root) {
+      if (!root || root.dataset.jfCollectionsReady === '1') return;
+      root.dataset.jfCollectionsReady = '1';
+
+      var saved = null;
+      try {
+        saved = window.localStorage.getItem(STORAGE_KEY);
+      } catch (e) {}
+
+      var initial = saved || root.getAttribute('data-default-layout') || 'row';
+      applyLayout(root, initial);
+
+      root.querySelectorAll('[data-jf-layout]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          applyLayout(root, btn.getAttribute('data-jf-layout'));
+        });
+      });
+    }
+
+    function boot() {
+      document.querySelectorAll('[data-jf-collections-page]').forEach(init);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', boot);
+    } else {
+      boot();
+    }
+
+    document.addEventListener('shopify:section:load', function (event) {
+      var section = event.target && event.target.querySelector
+        ? event.target.querySelector('[data-jf-collections-page]') || event.target
+        : null;
+      if (section && section.hasAttribute && section.hasAttribute('data-jf-collections-page')) {
+        section.dataset.jfCollectionsReady = '';
+        init(section);
+      }
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Jadeed collections",
+  "tag": "section",
+  "class": "section-jadeed-collections",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Our Products" },
+    { "type": "text", "id": "subheading", "label": "Subheading", "default": "Choose a category to start shopping" },
+    {
+      "type": "select",
+      "id": "default_layout",
+      "label": "Default layout",
+      "options": [
+        { "value": "row", "label": "One row" },
+        { "value": "grid", "label": "2x2 grid" }
+      ],
+      "default": "row"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category card",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "Collection (optional)" },
+        { "type": "image_picker", "id": "image", "label": "Image override" },
+        { "type": "text", "id": "asset_key", "label": "Theme asset key", "info": "e.g. category_oil, category_rice" },
+        { "type": "text", "id": "asset_file", "label": "Theme asset filename" },
+        { "type": "text", "id": "title", "label": "Title", "default": "Category" },
+        { "type": "url", "id": "link", "label": "Link" }
+      ]
+    }
+  ],
+  "presets": [{ "name": "Jadeed collections" }]
+}
+{% endschema %}
